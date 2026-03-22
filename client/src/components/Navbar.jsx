@@ -1,24 +1,16 @@
 import { useState } from "react"
-import imageOutput from "../assets"
-import { Stack, Box, Button } from "@mui/material"
-
-const {
-    linkedInIcon: linkedInImage,
-    fbIcon: facebookImage,
-    instaIcon: instagramImage,
-    hamburgerMenu,
-    hamburgerMenuDark
-} = imageOutput;
+import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../assets"
+import { Stack, Box, Button, Typography } from "@mui/material"
 
 const socialMedia = [
-    { name: "linkedIn", url: "https://www.linkedin.com/in/can-korkmaz/", source: linkedInImage },
-    { name: "facebook", url: "https://www.facebook.com/ckckorkmaz", source: facebookImage },
-    { name: "instagram", url: "https://www.instagram.com/", source: instagramImage },
+    { name: "linkedIn", url: "https://www.linkedin.com/in/can-korkmaz/", source: linkedInIcon },
+    { name: "facebook", url: "https://www.facebook.com/ckckorkmaz", source: fbIcon },
+    { name: "instagram", url: "https://www.instagram.com/", source: instaIcon },
 ]
 
 const options = ["About", "Stack", "Projects"]
 
-const pxToMui = (px) => px / 8;
+const convert = (px) => px / 8;
 
 function DropdownMenu({ menu }) {
 
@@ -46,17 +38,17 @@ function DropdownMenu({ menu }) {
                     width: "fit-content",
                     height: "fit-content",
 
-                    px: pxToMui(27),
-                    py: pxToMui(66),
+                    px: convert(27),
+                    py: convert(66),
 
                     boxShadow: menu ? "0 4px 4px 0 rgba(0, 0, 0, 0.25)" : "none",
 
                     transformOrigin: "right",
                     transform: menu ? "translateX(0%)" : "translateX(100%)",
 
-                    transition: "transform 1s ease-in-out",
+                    transition: "transform 250ms ease-in-out",
                 }}>
-                <Stack direction="column" spacing={pxToMui(28.28)}
+                <Stack direction="column" spacing={convert(28.28)}
                     sx={{
                         width: "fit-content",
                         height: "fit-content"
@@ -70,9 +62,15 @@ function DropdownMenu({ menu }) {
                                     textDecoration: "none",
                                     color: "text.primary",
                                     border: "0.661px solid",
-                                    borderColor: "custom.borderDefault"
+                                    borderColor: "custom.borderDefault",
+                                    borderRadius: "10.58px",
+                                    px: convert(25),
+                                    py: convert(1),
+
                                 }}>
-                                {option}
+                                <Typography variant="cardTitle">
+                                    {option}
+                                </Typography>
                             </Box>
                         )
                     })}
@@ -84,7 +82,7 @@ function DropdownMenu({ menu }) {
 
 
 
-export default function Navbar() {
+export function Navbar() {
     const [menu, setMenu] = useState(false)
     const iconSize = 56; //note: numeric values in sx for width and height are treated as pixels
     const hamMenuSize = 53;
@@ -92,16 +90,16 @@ export default function Navbar() {
     return (
         <Stack direction="column"
         >
-            <Stack direction="row" spacing={pxToMui(89)}
+            <Stack direction="row" spacing={convert(89)}
                 sx={{
                     justifyContent: "center",
                     alignItems: "center",
-                    py: pxToMui(32),
-                    px: pxToMui(27),
+                    py: convert(32),
+                    px: convert(27),
                     position: "relative"
 
                 }}>
-                <Stack direction="row" spacing={pxToMui(27)} sx={{ alignItems: "center" }}>
+                <Stack direction="row" spacing={convert(27)} sx={{ alignItems: "center" }}>
                     {socialMedia.map(({ name, url, source }) => {
                         return (
                             <Box
@@ -116,7 +114,8 @@ export default function Navbar() {
                                     transform: "scale(1)",
                                     "&:hover": {
                                         transform: "scale(1.1)",
-                                    }
+                                    },
+                                    transition: "transform 300ms ease-in-out"
 
                                 }}>
                                 <Box component="img" key={name} alt={name} src={source} sx={{

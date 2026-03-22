@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import './App.css'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { CssBaseline, Box, Stack } from "@mui/material";
-import Navbar from "./components/Navbar"
+import { Navbar, Landing, TextOnly, SectionStack } from "./components"
 
 const sharedTypography = {
   fontFamily: '"Source Sans 3", sans-serif',
@@ -88,6 +88,13 @@ const themeSettings = {
   }
 }
 
+
+const profileDescription = `Hi, I’m Can.\n
+I’m a junior Frontend developer focused on
+building modern web applications with React and TypeScript. \n
+I have a background in IT support and multilingual communication(English, German, Portuguese).\n
+I’m particularly interested in building clean, performant,and scalable user interfaces.`
+
 function App() {
   const [theme, setTheme] = useState("dark");
   const muiTheme = useMemo(() =>
@@ -110,6 +117,9 @@ function App() {
           }}>
 
           <Navbar />
+          <Landing />
+          <TextOnly text={profileDescription} />
+          <SectionStack/>
 
         </Stack>
       </Stack>
