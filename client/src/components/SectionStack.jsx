@@ -1,0 +1,61 @@
+import { useState } from "react"
+import { Stack, Box, Button, Typography } from "@mui/material"
+import { htmlIcon, cssIcon, jsIcon, reactIcon, tsIcon, expressIcon, jestIcon } from "../assets"
+
+
+const convert = (px) => px / 8;
+
+const stackIcons = [
+    { name: "HTML", icon: htmlIcon },
+    { name: "CSS", icon: cssIcon },
+    { name: "JavaScript", icon: jsIcon },
+    { name: "React", icon: reactIcon },
+    { name: "TypeScript", icon: tsIcon },
+    { name: "Express", icon: expressIcon },
+    { name: "Jest", icon: jestIcon },
+];
+
+const iconSize = "89px";
+const title = "My Stack";
+
+function StackRow({ row }) {
+    return (
+        <Stack direction="row" justifyContent="space-between" spacing={convert(20)} >
+            {row.map(({ name, icon }) => {
+                return <Box component="img" src={icon} alt={name}
+                    sx={{
+                        height: 64,
+                        width: "auto",
+                        objectFit: "contain",
+                    }} />
+            })}
+        </Stack>
+    )
+}
+
+
+export function SectionStack() {
+
+    const rows = [];
+
+    for (var i = 0; i < stackIcons.length; i += 4) {
+        rows.push(stackIcons.slice(i, i + 4));
+    }
+
+    return (
+        <Stack direction="column" >
+            <Typography variant="headingTitle">{title}</Typography>
+            <Stack direction="column" spacing={convert(17)}
+                sx={{
+                    py: convert(21.54)
+                }}>
+                {rows.map((row, index) => {
+                    return <StackRow row={row} key={row} />
+                })
+                }
+
+
+            </Stack>
+        </Stack>
+    )
+}
