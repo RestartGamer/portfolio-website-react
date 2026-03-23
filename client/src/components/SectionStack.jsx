@@ -17,6 +17,7 @@ const stackIcons = [
 
 const iconSize = "89px";
 const title = "My Stack";
+const stackSize = 4;
 
 function StackRow({ row }) {
     return (
@@ -38,8 +39,8 @@ export function SectionStack() {
 
     const rows = [];
 
-    for (var i = 0; i < stackIcons.length; i += 4) {
-        rows.push(stackIcons.slice(i, i + 4));
+    for (var i = 0; i < stackIcons.length; i += stackSize) {
+        rows.push(stackIcons.slice(i, i + stackSize));
     }
 
     return (
@@ -50,7 +51,7 @@ export function SectionStack() {
                     py: convert(21.54)
                 }}>
                 {rows.map((row, index) => {
-                    return <StackRow row={row} key={row} />
+                    return <StackRow row={row} key={index} />
                 })
                 }
 

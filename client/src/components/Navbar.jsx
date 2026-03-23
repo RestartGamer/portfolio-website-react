@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../assets"
-import { Stack, Box, Button, Typography } from "@mui/material"
+import { Stack, Box, Button, Typography, ButtonBase } from "@mui/material"
 
 const socialMedia = [
     { name: "linkedIn", url: "https://www.linkedin.com/in/can-korkmaz/", source: linkedInIcon },
@@ -13,7 +13,6 @@ const options = ["About", "Stack", "Projects"]
 const convert = (px) => px / 8;
 
 function DropdownMenu({ menu }) {
-
     return (
         <Box
             sx={{
@@ -23,6 +22,7 @@ function DropdownMenu({ menu }) {
                 overflow: "hidden",
                 width: "fit-content",
                 height: "fit-content",
+                pointerEvents: menu ? "auto" : "none",
             }}>
             <Stack direction="column"
                 sx={{
@@ -55,7 +55,8 @@ function DropdownMenu({ menu }) {
                     }}>
                     {options.map(option => {
                         return (
-                            <Box key={option} component="a" href="#"
+                            <ButtonBase key={option} component="a" href="#"
+
                                 sx={{
                                     display: "inline-flex",
                                     justifyContent: "center",
@@ -67,11 +68,12 @@ function DropdownMenu({ menu }) {
                                     px: convert(25),
                                     py: convert(1),
 
+
                                 }}>
                                 <Typography variant="cardTitle">
                                     {option}
                                 </Typography>
-                            </Box>
+                            </ButtonBase>
                         )
                     })}
                 </Stack>
@@ -88,15 +90,21 @@ export function Navbar() {
     const hamMenuSize = 53;
 
     return (
-        <Stack direction="column"
-        >
+        <Stack direction="column" sx={{
+            width:"100%",
+            position: "sticky",
+            top: 0,
+            zIndex: 1000,
+
+        }}>
             <Stack direction="row" spacing={convert(89)}
                 sx={{
+
                     justifyContent: "center",
                     alignItems: "center",
                     py: convert(32),
                     px: convert(27),
-                    position: "relative"
+                    bgcolor: "#252525",
 
                 }}>
                 <Stack direction="row" spacing={convert(27)} sx={{ alignItems: "center" }}>
@@ -151,8 +159,8 @@ export function Navbar() {
 
 
             </Stack>
-            <hr style={{ width: "85.58%", borderWidth: 1 }}></hr>
 
-        </Stack>
+
+        </Stack >
     )
 }

@@ -2,7 +2,9 @@ import { useState, useMemo } from 'react'
 import './App.css'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { CssBaseline, Box, Stack } from "@mui/material";
-import { Navbar, Landing, TextOnly, SectionStack } from "./components"
+import { Navbar, Landing, TextOnly, SectionStack, SectionEducation, SectionProjects, Divider, SectionExperience, SectionContact } from "./components"
+
+const convert = (px) => px / 8;
 
 const sharedTypography = {
   fontFamily: '"Source Sans 3", sans-serif',
@@ -41,13 +43,13 @@ const sharedTypography = {
 
   bodyMedium: {
     fontSize: "16px",
-    fontWeight: 400, // upgraded from light → readability
+    fontWeight: 300, // default
     lineHeight: 1.5,
   },
 
   bodySmall: {
     fontSize: "14px",
-    fontWeight: 400, // default
+    fontWeight: 300, // default
     lineHeight: 1.45,
   },
 };
@@ -66,7 +68,8 @@ const themeSettings = {
       },
       custom: {
         borderDefault: "#1b1b1b"
-      }
+      },
+      divider: "#1b1b1b"
     }
   },
   dark: {
@@ -79,11 +82,14 @@ const themeSettings = {
       },
       text: {
         primary: "#ffffff",
+        secondary: "#100000"
       },
 
       custom: {
-        borderDefault: "#F2F2F2"
-      }
+        borderDefault: "#F2F2F2",
+        
+      },
+      divider: "#F2F2F2"
     }
   }
 }
@@ -114,12 +120,19 @@ function App() {
             alignItems: "center",
             width: "90%",
             maxWidth: "83ch",
+            position:"relative",
+            pb: convert(100)
           }}>
 
           <Navbar />
+          <Divider />
           <Landing />
           <TextOnly text={profileDescription} />
           <SectionStack/>
+          <SectionEducation />
+          <SectionProjects />
+          <SectionExperience />
+          <SectionContact />
 
         </Stack>
       </Stack>
