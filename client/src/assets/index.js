@@ -11,9 +11,15 @@ export { default as tsIcon } from "./icons/tsIcon.png";
 export { default as expressIcon } from "./icons/expressIcon.png";
 export { default as jestIcon } from "./icons/jestIcon.png";
 
+//Images
+export { default as currentCVImage } from "./images/currentCVImage.png";
+export { default as mgPortfolioImage } from "./images/mgPortfolioImage.png";
+export { default as oldCVImage } from "./images/oldCVImage.png";
+
 // Utilities
 export { default as hamburgerMenu } from "./utilities/hamburgerMenu.png";
 export { default as hamburgerMenuDark } from "./utilities/hamburgerMenuDarkmode.png";
+export { default as cardUIDecoration } from "./utilities/cardUIDecoration.png";
 
 // Avatar
 export { default as avatarImage } from "./avatarImage.png";
