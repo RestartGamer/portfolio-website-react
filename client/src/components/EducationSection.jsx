@@ -18,7 +18,7 @@ const content = [
 ]
 
 
-export function SectionEducation() {
+export function EducationSection() {
     return (
         <Stack direction="column" spacing={convert(48)} sx={{
             px: convert(35),

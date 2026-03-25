@@ -1,8 +1,12 @@
-import { useState, useMemo } from 'react'
 import './App.css'
+import { useState, useMemo } from 'react'
+import { Routes, Route } from "react-router-dom"
+import { Home } from "./pages/Home"
+import { MyJourney } from "./pages/MyJourney"
+import { UXWireframing } from "./pages/UXWireframing"
+
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { CssBaseline, Box, Stack } from "@mui/material";
-import { Navbar, Landing, TextOnly, SectionStack, SectionEducation, SectionProjects, Divider, SectionExperience, SectionContact } from "./components"
 
 const convert = (px) => px / 8;
 
@@ -53,7 +57,6 @@ const sharedTypography = {
     lineHeight: 1.45,
   },
 };
-
 const themeSettings = {
   light: {
     typography: sharedTypography,
@@ -87,29 +90,22 @@ const themeSettings = {
 
       custom: {
         borderDefault: "#F2F2F2",
-        
+
       },
       divider: "#F2F2F2"
     }
   }
 }
 
-
-const profileDescription = `Hi, I’m Can.\n
-I’m a junior Frontend developer focused on
-building modern web applications with React and TypeScript. \n
-I have a background in IT support and multilingual communication(English, German, Portuguese).\n
-I’m particularly interested in building clean, performant,and scalable user interfaces.`
-
 function App() {
   const [theme, setTheme] = useState("dark");
   const muiTheme = useMemo(() =>
     createTheme(themeSettings[theme]), [theme]
   )
-
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
+
       <Stack direction="column" sx={{
         alignItems: "center",
         width: "100%",
@@ -120,24 +116,18 @@ function App() {
             alignItems: "center",
             width: "90%",
             maxWidth: "83ch",
-            position:"relative",
-            pb: convert(100)
           }}>
 
-          <Navbar />
-          <Divider />
-          <Landing />
-          <TextOnly text={profileDescription} />
-          <SectionStack/>
-          <SectionEducation />
-          <SectionProjects />
-          <SectionExperience />
-          <SectionContact />
 
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/myjourney" element={<MyJourney />} />
+            <Route path="/uxwireframing" element={<UXWireframing />} />
+          </Routes>
         </Stack>
       </Stack>
     </ThemeProvider>
   )
 }
 
-export default App
+export default App;

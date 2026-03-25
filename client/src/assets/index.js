@@ -15,6 +15,15 @@ export { default as jestIcon } from "./icons/jestIcon.png";
 export { default as currentCVImage } from "./images/currentCVImage.png";
 export { default as mgPortfolioImage } from "./images/mgPortfolioImage.png";
 export { default as oldCVImage } from "./images/oldCVImage.png";
+export { default as pathwayImage } from "./images/pathwayImage.jpg";
+
+export { default as wireframe1Image } from "./images/wireframe1Image.png";
+export { default as wireframe2Image } from "./images/wireframe2Image.png";
+export { default as wireframe3Image } from "./images/wireframe3Image.png";
+export { default as prototype1Image } from "./images/prototype1Image.png";
+export { default as prototype2Image } from "./images/prototype2Image.png";
+export { default as prototype3Image } from "./images/prototype3Image.png";
+
 
 // Utilities
 export { default as hamburgerMenu } from "./utilities/hamburgerMenu.png";

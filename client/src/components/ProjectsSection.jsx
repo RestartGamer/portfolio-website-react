@@ -55,7 +55,7 @@ function KeywordRow({ row }) {
 }
 
 
-export function SectionProjects() {
+export function ProjectsSection() {
     const [expandedCard, setExpandedCard] = useState(null);
     const expandHeightRef = useRef(null);
     return (
@@ -200,10 +200,12 @@ export function SectionProjects() {
                                     display: "flex",
                                     justifyContent: "start",
                                 }}>
-                                    <TextOnly text={descriptionText} sx={{
+                                    <TextOnly sx={{
                                         fontWeight: "300",
                                         px: convert(22),
-                                    }} />
+                                    }}>
+                                        {descriptionText}
+                                    </TextOnly>
                                 </Box>
                             </Box>
 

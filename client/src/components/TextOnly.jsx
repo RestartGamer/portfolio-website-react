@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Stack, Box, Button, Typography } from "@mui/material"
 
 const convert = (px) => px / 8;
-export function TextOnly({ text, variant="bodyLarge", sx ={} }) {
+export function TextOnly({ children, variant="bodyLarge", sx ={} }) {
     return (
         <Typography variant={variant} sx={{
             width:"100%",
@@ -13,7 +13,7 @@ export function TextOnly({ text, variant="bodyLarge", sx ={} }) {
             ...sx,
 
         }}>
-            {text}
+            {children}
         </Typography>
     )
 }

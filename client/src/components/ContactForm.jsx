@@ -59,7 +59,7 @@ function InputField({ label, children }) {
 }
 
 
-export function SectionContact() {
+export function ContactForm() {
     const {
         register,
         handleSubmit,
