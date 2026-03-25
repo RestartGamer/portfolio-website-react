@@ -75,7 +75,7 @@ function Description({ description }, sx = {}) {
     )
 }
 
-export function SectionExperience() {
+export function ExperienceSection() {
     return (
         <Stack component="section" direction="column" spacing={convert(66)} sx={{
             width: "100%",

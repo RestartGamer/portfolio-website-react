@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../assets"
 import { Stack, Box, Button, Typography, ButtonBase } from "@mui/material"
+import {useNavigate} from "react-router-dom"
+
+
 
 const socialMedia = [
     { name: "linkedIn", url: "https://www.linkedin.com/in/can-korkmaz/", source: linkedInIcon },
@@ -8,11 +11,17 @@ const socialMedia = [
     { name: "instagram", url: "https://www.instagram.com/", source: instaIcon },
 ]
 
-const options = ["About", "Stack", "Projects"]
+const options = [
+    { name: "Home", route: "/" },
+    { name: "About my journey", route: "/myjourney" },
+    { name: "UX / Wireframing", route: "/uxwireframing" },
+]
+
+
 
 const convert = (px) => px / 8;
 
-function DropdownMenu({ menu }) {
+function DropdownMenu({ menu, navigate }) {
     return (
         <Box
             sx={{
@@ -53,9 +62,9 @@ function DropdownMenu({ menu }) {
                         width: "fit-content",
                         height: "fit-content"
                     }}>
-                    {options.map(option => {
+                    {options.map(({ name, route }) => {
                         return (
-                            <ButtonBase key={option} component="a" href="#"
+                            <ButtonBase key={name} component="a" onClick={()=> navigate(route)}
 
                                 sx={{
                                     display: "inline-flex",
@@ -71,7 +80,7 @@ function DropdownMenu({ menu }) {
 
                                 }}>
                                 <Typography variant="cardTitle">
-                                    {option}
+                                    {name}
                                 </Typography>
                             </ButtonBase>
                         )
@@ -85,22 +94,23 @@ function DropdownMenu({ menu }) {
 
 
 export function Navbar() {
+    const navigate = useNavigate();
     const [menu, setMenu] = useState(false)
     const iconSize = 56; //note: numeric values in sx for width and height are treated as pixels
     const hamMenuSize = 53;
 
     return (
         <Stack direction="column" sx={{
-            width:"100%",
+            width: "100%",
             position: "sticky",
             top: 0,
             zIndex: 1000,
 
         }}>
-            <Stack direction="row" spacing={convert(89)}
+            <Stack direction="row" spacing={convert(27)}
                 sx={{
 
-                    justifyContent: "center",
+                    justifyContent: "space-between",
                     alignItems: "center",
                     py: convert(32),
                     px: convert(27),
@@ -154,7 +164,7 @@ export function Navbar() {
 
                     </Box>
                 </Button>
-                <DropdownMenu menu={menu} />
+                <DropdownMenu menu={menu} navigate={navigate} />
 
 
 

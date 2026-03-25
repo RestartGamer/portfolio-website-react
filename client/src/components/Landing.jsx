@@ -12,6 +12,7 @@ const imageSize = "354px";
 export function Landing() {
     
     return (
+        
         <Stack component="section" direction="column" spacing={convert(26)}
         sx={{
             px:convert(26),
