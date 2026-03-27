@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 import { Stack, Box, Button, Typography, Card } from "@mui/material"
-import { currentCVImage, mgPortfolioImage, oldCVImage, cardUIDecoration } from "../assets"
+import { currentCVImage, mgPortfolioImage, oldCVImage, hoverImage } from "../assets"
 import { Divider, TextOnly } from "."
 
 const convert = (px) => px / 8;
@@ -37,8 +37,8 @@ const imageHeight = "228px";
 const stackSize = 3;
 
 
-
 function KeywordRow({ row }) {
+
     return (
         <>
             {
@@ -54,7 +54,6 @@ function KeywordRow({ row }) {
     )
 }
 
-
 export function ProjectsSection() {
     const [expandedCard, setExpandedCard] = useState(null);
     const expandHeightRef = useRef(null);
@@ -63,10 +62,10 @@ export function ProjectsSection() {
 
             <Typography variant="headingTitle">{title}</Typography>
 
-            {projects.map(({ title, keywords, image }) => {
-                const rows = [];
+            {projects.map(({ image, title, keywords }) => {
+                const row = [];
                 for (var i = 0; i < keywords.length; i += stackSize) {
-                    rows.push(keywords.slice(i, i + stackSize))
+                    row.push(keywords.slice(i, i + stackSize))
                 }
                 return (
 
@@ -80,7 +79,7 @@ export function ProjectsSection() {
                             borderRadius: "13px",
                             textDecoration: "none",
                         }}>
-                        <Stack direction="column" sx={{
+                        <Stack sx={{
                             gap: expandedCard == title ? convert(15) : convert(8),
                             transition: `gap ${expandTime} ease`,
                         }}>
@@ -102,7 +101,7 @@ export function ProjectsSection() {
                                     width: "100%",
                                 }}
                             >
-                                {/* LEFT SPACER */}
+
                                 <Box
                                     sx={{
                                         width: expandedCard == title ? "50%" : 0,
@@ -110,26 +109,28 @@ export function ProjectsSection() {
                                     }}
                                 />
 
-                                {/* TEXT BLOCK */}
                                 <Box
                                     sx={{
-                                        transition: `transform ${expandTime} ease`,
                                         transform: expandedCard == title
                                             ? "translateX(-50%)"
                                             : "translateX(0)",
+                                        transition: `transform ${expandTime} ease`,
+
                                     }}
                                 >
                                     <Stack direction="column">
                                         <Typography variant="bodyLarge" sx={{ textAlign: "start" }}>
                                             {title}
                                         </Typography>
-                                        {rows.map((row, index) => (
+                                        {row.map((row, index) => (
                                             <Stack direction="row" key={index} spacing={convert(10)}>
                                                 <KeywordRow row={row} />
                                             </Stack>
                                         ))}
                                     </Stack>
+
                                 </Box>
+
 
                                 {/* RIGHT BOX */}
                                 <Box
@@ -141,6 +142,9 @@ export function ProjectsSection() {
                                         overflow: "hidden",
                                         whiteSpace: "nowrap",
                                         boxSizing: "border-box",
+                                        borderStyle: "dashed",
+                                        borderColor: "background.paper",
+                                        borderRadius: "8px",
 
                                         width: expandedCard == title ? 0 : expandButtonWidth,
                                         px: expandedCard == title ? 0 : convert(14),
@@ -155,9 +159,7 @@ export function ProjectsSection() {
                                         border-width ${expandTime} ease
                                         `,
 
-                                        borderStyle: "dashed",
-                                        borderColor: "background.paper",
-                                        borderRadius: "8px",
+                                        
                                     }}
                                 >
                                     <Typography variant="bodyLarge" sx={{ color: "text.secondary" }}>
@@ -165,7 +167,7 @@ export function ProjectsSection() {
                                     </Typography>
                                     <Box
                                         component="img"
-                                        src={cardUIDecoration}
+                                        src={hoverImage}
                                         alt="More Info"
                                         sx={{
                                             height: hoverImageSize,

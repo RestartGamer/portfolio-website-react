@@ -1,8 +1,8 @@
-import { Stack, Box, Button, Typography } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 
 const convert = (px) => px / 8;
 
-const title="Education";
+const title = "Education";
 
 const content = [
     {
@@ -17,29 +17,32 @@ const content = [
     }
 ]
 
+function EducationItem({ title, subTitle, description }) {
+    return (
+        <Stack direction="column" spacing={convert(20)} sx={{ textAlign: "left" }}>
+            <Stack direction="column" spacing={convert(5)}>
+                <Typography variant="cardTitle" >
+                    {title}
+                </Typography>
+                <Typography variant="bodyLarge">
+                    {subTitle}
+                </Typography>
+            </Stack>
+            <Typography variant="bodyLarge" sx={{ fontWeight: 300 }} >
+                {description}
+            </Typography>
+        </Stack>
+    )
+}
 
 export function EducationSection() {
     return (
-        <Stack direction="column" spacing={convert(48)} sx={{
-            px: convert(35),
-        }}>
+        <Stack direction="column" spacing={convert(48)} >
             <Typography variant="headingTitle">{title}</Typography>
             <Stack direction="column" spacing={convert(41)}>
                 {content.map(({ title, subTitle, description }) => {
                     return (
-                        <Stack direction="column" key={title} spacing={convert(20)}>
-                            <Stack direction="column" spacing={convert(5)}>
-                                <Typography variant="cardTitle" sx={{textAlign:"left"}}>
-                                    {title}
-                                </Typography>
-                                <Typography variant="bodyLarge" sx={{textAlign:"left"}}>
-                                    {subTitle}
-                                </Typography>
-                            </Stack>
-                            <Typography variant="bodyLarge" sx={{ fontWeight: "300", textAlign:"left" }} >
-                                {description}
-                            </Typography>
-                        </Stack>
+                        <EducationItem key={title} title={title} subTitle={subTitle} description={description} />
                     )
                 })}
             </Stack>

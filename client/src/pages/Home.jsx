@@ -1,5 +1,5 @@
 import { CssBaseline, Box, Stack } from "@mui/material";
-import { Navbar, Landing, TextOnly, SectionStack, EducationSection, ProjectsSection, Divider, ExperienceSection, ContactForm } from "../components"
+import { Navbar, Landing, TextOnly, SectionStack, EducationSection, ProjectsSection, ProjectsSection2, Divider, ExperienceSection, ContactForm } from "../components"
 const convert = (px) => px / 8;
 
 const profileDescription = `Hi, I’m Can.\n
@@ -31,7 +31,8 @@ export function Home() {
                 <TextOnly>{profileDescription}</TextOnly>
                 <SectionStack />
                 <EducationSection />
-                <ProjectsSection />
+                <ProjectsSection/>
+                <ProjectsSection2 />
                 <ExperienceSection />
                 <ContactForm />
             </Stack>

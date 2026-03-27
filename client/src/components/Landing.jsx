@@ -1,5 +1,5 @@
 import {avatarImage} from "../assets"
-import { Stack, Box, Button, Typography } from "@mui/material"
+import { Stack, Box, Typography } from "@mui/material"
 
 
 const convert = (px) => px / 8;
@@ -13,10 +13,7 @@ export function Landing() {
     
     return (
         
-        <Stack component="section" direction="column" spacing={convert(26)}
-        sx={{
-            px:convert(26),
-        }}>
+        <Stack component="section" direction="column" spacing={convert(26)}>
             <Stack direction="column" spacing={convert(1)}
             sx={{
                 alignItems:"start",
