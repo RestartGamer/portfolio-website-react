@@ -9,3 +9,4 @@ export * from "./ProjectsSection2";
 export * from "./Divider";
 export * from "./ExperienceSection";
 export * from "./ContactForm";
+export * from "./Title";

@@ -1,4 +1,4 @@
-import { Stack, Typography,List, ListItem } from "@mui/material"
+import { Stack, Typography, List, ListItem } from "@mui/material"
 
 const convert = (px) => px / 8;
 const title = "Work Experience";
@@ -50,7 +50,7 @@ function TitleBox({ title, subTitle, sx = {} }) {
     )
 }
 
-function DateAndLocation({ date, location , sx = {} }) {
+function DateAndLocation({ date, location, sx = {} }) {
     return (
         <Stack direction="column" spacing={convert(1)}>
             <Typography variant="bodyLarge">{date}</Typography>
@@ -59,7 +59,7 @@ function DateAndLocation({ date, location , sx = {} }) {
     )
 }
 
-function Description({ description , sx = {} }) {
+function Description({ description, sx = {} }) {
     return (
         <ListItem component="li" sx={{
             display: "list-item",
@@ -78,7 +78,12 @@ function Description({ description , sx = {} }) {
 function ExperienceItem({ title, subTitle, date, location, descriptions }) {
     return (
         <Stack direction="column" spacing={convert(25)}
-            sx={{ textAlign: "left" }} >
+            sx={{
+                textAlign: "left",
+                maxWidth:"400px"
+            }} >
+
+
             <Stack direction="column" spacing={convert(10)}>
                 <TitleBox title={title} subTitle={subTitle} />
                 <DateAndLocation date={date} location={location} />
@@ -92,17 +97,24 @@ function ExperienceItem({ title, subTitle, date, location, descriptions }) {
                     return <Description key={description} description={description} />
                 })}
             </List>
+
+
         </Stack>
     )
 }
 
 export function ExperienceSection() {
     return (
-        <Stack component="section" direction="column" spacing={convert(66)} sx={{
-            width: "100%",
-            px: convert(14),
-        }}>
-            <Typography variant="headingTitle">{title}</Typography>
+        <Stack component="section" direction="row"
+            sx={{
+
+                flexWrap: "wrap",
+                width:"100%",
+                columnGap: {xs: 0, md: convert(66)},
+                rowGap: {xs: convert(66), md: convert(66)},
+                justifyContent: {xs: "center", md: "space-between"},
+                px: {xs: 0, md: convert(50)},
+            }}>
             {experienceItems.map(({ id, title, subTitle, date, location, descriptions }) => {
                 return (
                     <ExperienceItem key={id} title={title} subTitle={subTitle} date={date} location={location} descriptions={descriptions} />

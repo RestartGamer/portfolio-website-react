@@ -139,7 +139,6 @@ export function ContactForm() {
       spacing={convert(24)}
       sx={{ width: "100%" }}
     >
-      <Typography variant="headingTitle">{title}</Typography>
 
       {fields.map((field) => (
         <InputField key={field.zodId} label={field.label}>
