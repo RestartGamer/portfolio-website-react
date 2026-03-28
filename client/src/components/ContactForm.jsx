@@ -7,6 +7,7 @@ import {
   Select,
   MenuItem,
   FormControl,
+  Button,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -122,10 +123,15 @@ function FieldControl({ field, register, error }) {
 
   return null;
 }
+const data="hi"
+function onSubmit(data) {
+    console.log(data);
+  }
 
 export function ContactForm() {
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(Schema),
@@ -136,6 +142,7 @@ export function ContactForm() {
     <Stack
       component="form"
       direction="column"
+      onSubmit={handleSubmit(onSubmit)}
       spacing={convert(24)}
       sx={{ width: "100%" }}
     >
@@ -154,6 +161,9 @@ export function ContactForm() {
           </FormControl>
         </InputField>
       ))}
+      <Button variant="contained" type="submit" >
+          Submit
+      </Button>
     </Stack>
   );
 }
