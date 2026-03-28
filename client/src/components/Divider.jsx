@@ -5,7 +5,7 @@ export function Divider({ width = "85.58%", sx={}, ...props }) {
     <Box
       component="hr"
       sx={{
-        width,
+        width: {xs: "85.5%", md:"100%"},
         border: "none",
         borderTop: "1px solid",
         borderColor: "divider",

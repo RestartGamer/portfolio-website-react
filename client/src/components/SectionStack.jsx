@@ -44,8 +44,7 @@ export function SectionStack() {
     }
 
     return (
-        <Stack direction="column" >
-            <Typography variant="headingTitle">{title}</Typography>
+        <Stack direction="column">
             <Stack direction="column" spacing={convert(17)}
                 sx={{
                     py: convert(21.54)

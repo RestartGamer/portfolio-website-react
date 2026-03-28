@@ -5,11 +5,11 @@ const convert = (px) => px / 8;
 export function TextOnly({ children, variant="bodyLarge", sx ={} }) {
     return (
         <Typography variant={variant} sx={{
-            width:"100%",
             fontWeight: "300",
             textAlign: "left",
             whiteSpace: "pre-line",
-            px: convert(40),
+            maxWidth: {xs: "100%", md:"60%"},
+            minWidth: "300px",
             ...sx,
 
         }}>

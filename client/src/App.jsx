@@ -91,8 +91,17 @@ const themeSettings = {
       custom: {
         borderDefault: "#F2F2F2",
 
+
       },
       divider: "#F2F2F2"
+    },
+    customStyles: {
+      pageWidth: {
+        width: {
+          xs: "auto",
+          md: "100%",
+        }
+      }
     }
   }
 }
@@ -113,9 +122,9 @@ function App() {
       >
         <Stack direction="column"
           sx={{
+            width:"100%",
             alignItems: "center",
-            width: "90%",
-            maxWidth: "83ch",
+            maxWidth: "1300px",
           }}>
 
 

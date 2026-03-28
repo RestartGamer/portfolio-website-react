@@ -37,8 +37,7 @@ function EducationItem({ title, subTitle, description }) {
 
 export function EducationSection() {
     return (
-        <Stack direction="column" spacing={convert(48)} >
-            <Typography variant="headingTitle">{title}</Typography>
+        <Stack direction="column" spacing={convert(48)} sx={{width:"100%"}}>
             <Stack direction="column" spacing={convert(41)}>
                 {content.map(({ title, subTitle, description }) => {
                     return (
