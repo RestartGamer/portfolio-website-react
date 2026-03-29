@@ -13,94 +13,106 @@ const description2 = ["Focused on usability and content hierarchy.", "Used spaci
 
 const description3 = ["Designed with responsiveness in mind (mobile → desktop).", "Iterated from low-fidelity to high-fidelity design."]
 
+const heroTitleSpacing = { xs: convert(500), md: convert(90) };
+const sectionSpacing = convert(120);
+const imageSize = "500px";
+const textWidth = "700px";
+
+function PageSection({ children }) {
+    return (
+        <Stack
+            alignItems="center"
+            sx={{
+                width: { xs: "auto", md: "100%" },
+                gap: { xs: "58px", md: sectionSpacing },
+                px: { xs: convert(40), md: convert(50) },
+                pt: { xs: convert(500) / 2, md: convert(80) }
+            }}
+        >
+            {children}
+        </Stack>
+    );
+}
+
 export function UXWireframing() {
     return (
         <Stack direction="column" alignItems="center" sx={{
-
-            pb: convert(100),
+            paddingBottom: convert(100),
             gap: { xs: "10px", md: "10px" },
-            height: "100%",
+            width: "100%",
             position: "relative",
         }}>
             <Navbar />
+            <Divider />
 
+            <PageSection>
+                <Stack alignItems="start" spacing={heroTitleSpacing}>
+                    <Stack direction="column" spacing={convert(58)} sx={{ px: convert(15) }}>
+                        <Stack direction="column" alignItems="start" spacing={convert(10)}>
+                            <Typography variant="heroTitle">{title}</Typography>
+                            <Typography
+                                variant="sectionTitle"
+                                sx={{
+                                    width: "100%",
+                                    fontFamily: `"EB Garamond", serif`,
+                                    fontWeight: "400",
+                                    textAlign: "center"
+                                }}
+                            >
+                                {subTitle}
+                            </Typography>
+                        </Stack>
 
-            <Stack direction="column" alignItems="center" sx={{
-
-                gap: { xs: "58px", md: "120px" },
-                height: "100%",
-            }}>
-                <Divider />
-
-                <Stack direction="column" spacing={convert(58)} sx={{
-                    px: convert(15)
-                }}>
-                    <Stack direction="column" alignItems="start" spacing={convert(10)}>
-                        <Typography variant="heroTitle">{title}</Typography>
-                        <Typography variant="sectionTitle" sx={{ width: "100%", fontFamily: `"EB Garamond", serif`, fontWeight: "400", textAlign: "center" }}>{subTitle}</Typography>
+                        <Stack direction="row" alignItems="center" spacing={convert(11)}>
+                            <Box component="img" src={wireframe1Image} alt="Wireframe number 1" sx={{ maxWidth: imageSize }} />
+                            <Typography variant="sectionTitle" sx={{ fontFamily: `"EB Garamond", serif`, fontWeight: "400" }}>to</Typography>
+                            <Box component="img" src={prototype1Image} alt="Prototype number 1" sx={{ maxWidth: imageSize }} />
+                        </Stack>
                     </Stack>
+
+                    <List component="ul" sx={{ display: "list-item", listStyleType: "disc", width: textWidth }}>
+                        <ListItem>
+                            <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
+                                {description1}
+                            </Typography>
+                        </ListItem>
+                    </List>
+
+                    <Box component="img" src={wireframe2Image} alt="Wireframe number 2" sx={{ maxWidth: imageSize }} />
+
+                    <List component="ul" sx={{ listStyleType: "disc", width: textWidth }}>
+                        {description2.map((description) => {
+                            return (
+                                <ListItem component="li" sx={{ display: "list-item", p: 0 }}>
+                                    <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
+                                        {description}
+                                    </Typography>
+                                </ListItem>
+                            )
+                        })}
+                    </List>
+
+                    <Box component="img" src={prototype2Image} alt="Prototype number 2" sx={{ maxWidth: imageSize }} />
+
+                    <List component="ul" sx={{ listStyleType: "disc", maxWidth: textWidth }}>
+                        {description3.map((description) => {
+                            return (
+                                <ListItem component="li" sx={{ display: "list-item", p: 0 }}>
+                                    <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
+                                        {description}
+                                    </Typography>
+                                </ListItem>
+                            )
+                        })}
+                    </List>
+
                     <Stack direction="row" alignItems="center" spacing={convert(11)}>
-                        <Box component="img" src={wireframe1Image} alt="Wireframe number 1" sx={{
-                            width: "100%"
-                        }} />
+                        <Box component="img" src={wireframe3Image} alt="Wireframe number 3" sx={{ maxWidth: imageSize }} />
                         <Typography variant="sectionTitle" sx={{ fontFamily: `"EB Garamond", serif`, fontWeight: "400" }}>to</Typography>
-                        <Box component="img" src={prototype1Image} alt="Prototype number 1" sx={{
-                            width: "100%"
-                        }} />
+                        <Box component="img" src={prototype3Image} alt="Prototype number 3" sx={{ maxWidth: imageSize }} />
                     </Stack>
                 </Stack>
-
-                <List component="ul" sx={{ display: "list-item", listStyleType: "disc" }}>
-                    <ListItem>
-                        <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
-                            {description1}
-                        </Typography>
-
-                    </ListItem>
-                </List>
-
-                <Box component="img" src={wireframe2Image} alt="Wireframe number 2" sx={{ width: "100%" }} />
-
-                <List component="ul" sx={{ listStyleType: "disc", }}>
-                    {description2.map((description => {
-                        return (
-                            <ListItem component="li" sx={{ display: "list-item", p: 0 }}>
-
-                                <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
-                                    {description}
-                                </Typography>
-                            </ListItem>
-                        )
-                    }))}
-                </List>
-
-                <Box component="img" src={prototype2Image} alt="Prototype number 2" sx={{ width: "100%" }} />
-
-
-                <List component="ul" sx={{ listStyleType: "disc", }}>
-                    {description3.map((description => {
-                        return (
-                            <ListItem component="li" sx={{ display: "list-item", p: 0 }}>
-
-                                <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
-                                    {description}
-                                </Typography>
-                            </ListItem>
-                        )
-                    }))}
-                </List>
-
-                <Stack direction="row" alignItems="center" spacing={convert(11)}>
-                    <Box component="img" src={wireframe3Image} alt="Wireframe number 3" sx={{
-                        width: "100%"
-                    }} />
-                    <Typography variant="sectionTitle" sx={{ fontFamily: `"EB Garamond", serif`, fontWeight: "400" }}>to</Typography>
-                    <Box component="img" src={prototype3Image} alt="Prototype number 3" sx={{
-                        width: "100%"
-                    }} />
-                </Stack>
-
-            </Stack>
+            </PageSection>
         </Stack>
     )
-} 
+}

@@ -5,6 +5,8 @@ export * from "./TextOnly";
 export * from "./SectionStack";
 export * from "./EducationSection";
 export * from "./ProjectsSection";
+export * from "./ProjectsSection2";
 export * from "./Divider";
 export * from "./ExperienceSection";
 export * from "./ContactForm";
+export * from "./Title";

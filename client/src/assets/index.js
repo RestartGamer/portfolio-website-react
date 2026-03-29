@@ -28,7 +28,7 @@ export { default as prototype3Image } from "./images/prototype3Image.png";
 // Utilities
 export { default as hamburgerMenu } from "./utilities/hamburgerMenu.png";
 export { default as hamburgerMenuDark } from "./utilities/hamburgerMenuDarkmode.png";
-export { default as cardUIDecoration } from "./utilities/cardUIDecoration.png";
+export { default as hoverImage } from "./utilities/hoverImage.png";
 
 // Avatar
 export { default as avatarImage } from "./avatarImage.png";
