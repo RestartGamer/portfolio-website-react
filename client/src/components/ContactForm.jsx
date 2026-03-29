@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import {
   Stack,
   Typography,
@@ -73,6 +74,9 @@ const fields = [
   },
 ];
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
+
 function InputField({ label, children }) {
   return (
     <Stack direction="column">
@@ -123,11 +127,43 @@ function FieldControl({ field, register, error }) {
 
   return null;
 }
-function onSubmit(data) {
-    console.log(data);
-  }
 
 export function ContactForm() {
+  useEffect(() => {
+    async function fetchMessages() {
+      try {
+        const res = await fetch(`${API_BASE}/api/messages`);
+        const receivedData = await res.json();
+        console.log("this is the data received", receivedData)
+      } catch (err) {
+        console.error("There was an error with the fetch:", err)
+      }
+    }
+    fetchMessages();
+
+  }, []);
+
+  async function onSubmit(payload) {
+    try {
+      console.log("API_BASE:", API_BASE);
+      console.log("payload:", payload);
+      const res = await fetch(`${API_BASE}/api/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+
+      const result = await res.json();
+      console.log("The data was successfully sent", result)
+    } catch (err) {
+      console.error("There was an error with the submission:", err)
+    }
+  }
+
+
   const {
     register,
     handleSubmit,
@@ -135,6 +171,12 @@ export function ContactForm() {
   } = useForm({
     resolver: zodResolver(Schema),
     mode: "onChange",
+    defaultValues: {
+      name: "",
+      email: "",
+      inquiry: "",
+      message: "",
+    },
   });
 
   return (
@@ -161,7 +203,7 @@ export function ContactForm() {
         </InputField>
       ))}
       <Button variant="contained" type="submit" >
-          Submit
+        Submit
       </Button>
     </Stack>
   );
