@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { inquiryOptions } from "./inquiryOptions"
+import { inquiryOptions } from "./inquiryOptions.js"
 
 export const Schema = z.object({
     name: z.string().min(3, "3 characters minimum"),
