@@ -67,106 +67,121 @@ export function ProjectsSection2() {
     const [expandedCard, setExpandedCard] = useState(null);
     const expandHeightRef = useRef(null);
     return (
-            <Stack direction="row" sx={{
-                gap: convert(35),
-                flexWrap: "wrap", // or remove this line entirely
-                justifyContent: {xs: "center", md: "left"},
-            }}>
-                {cards.map(({ id, image, title, keywords }) => {
-                    const rows = [];
-                    for (var i = 0; i < keywords.length; i += stackSize) {
-                        rows.push(keywords.slice(i, i + stackSize))
-                    }
-                    while (rows.length < 2) {
-                        rows.push([]);
-                    }
-                    return (
-                        <Card key={id} onMouseEnter={() => setExpandedCard(id)} onMouseLeave={() => setExpandedCard(null)} sx={{
-                            overflow: "hidden",
-                            width: "fit-content",
-                            height: "fit-content",
-                            maxWidth: cardMaxWidth,
-                            pb: convert(11),
-                            border: "1px solid",
-                            borderColor: "#1465B1",
-                            borderRadius: "13px",
-                            textDecoration: "none",
-                        }}>
-                            <Box component="img" src={image} alt={title} sx={{
-                                width: "100%",
-                                height: "auto",
-                                objectFit: "cover",
-                            }} />
-                            {/*MAIN ROW*/}
-                            <Stack direction="row" justifyContent="center" alignItems="center" sx={{
-                                width: expandedCard === id ? "200%" : "100%",
+        <Stack direction="row" sx={{
+            gap: convert(35),
+            flexWrap: "wrap", // or remove this line entirely
+            justifyContent: { xs: "center", md: "left" },
+        }}>
+            {cards.map(({ id, image, title, keywords }) => {
+                const rows = [];
+                for (var i = 0; i < keywords.length; i += stackSize) {
+                    rows.push(keywords.slice(i, i + stackSize))
+                }
+                while (rows.length < 2) {
+                    rows.push([]);
+                }
+                return (
+                    <Card key={id} onMouseEnter={() => setExpandedCard(id)} onMouseLeave={() => setExpandedCard(null)} sx={{
+                        overflow: "hidden",
+                        width: "fit-content",
+                        height: "fit-content",
+                        maxWidth: cardMaxWidth,
+                        pb: convert(11),
+                        border: "1px solid",
+                        borderColor: "#1465B1",
+                        borderRadius: "13px",
+                        textDecoration: "none",
+                    }}>
+                        <Box component="img" src={image} alt={title} sx={{
+                            width: "100%",
+                            height: "auto",
+                            objectFit: "cover",
+                        }} />
+                        {/*MAIN ROW*/}
+                        <Stack direction="row" justifyContent="center" alignItems="center" sx={{
+                            width: expandedCard === id ? "200%" : "100%",
 
-                                pt: convert(12),
-                                pb: convert(8),
-                                transition: `width ${expandTime} ease-in-out`
+                            pt: convert(12),
+                            pb: convert(8),
+                            transition: `width ${expandTime} ease-in-out`
+
+                        }}>
+
+                            {/*BOX LEFT*/}
+                            <Stack alignItems="center" sx={{
+                                paddingInline: expandedCard === id ? 0 : convert(23),
+                                width: "50%",
+                                minWidth: "fit-content",
+                                boxSizing: "content-box",
+                                transition: `padding-inline ${expandTime} ease-in-out`
 
                             }}>
-
-                                {/*BOX LEFT*/}
-                                <Stack alignItems="center" sx={{
-                                    px: convert(23),
-                                    width: "50%",
+                                <Stack alignItems="start" sx={{
+                                    width: expandedCard === id ? 0 : "100%",
                                     minWidth: "fit-content",
-                                    boxSizing: "content-box"
-                                }}>
-                                    <Stack alignItems="start" sx={{
-                                        width: expandedCard === id ? 0 : "100%",
-                                        minWidth: "fit-content",
-                                        transition: `width ${expandTime} ease-in-out`,
+                                    transition: `width ${expandTime} ease-in-out`,
 
-                                    }}>
-                                        <Typography variant="bodyLarge">{title}</Typography>
-                                        <Stack>
-                                            {rows.map((rowStack, index) => {
-                                                return <KeywordRow key={index} row={rowStack} />
-                                            })}
-                                        </Stack>
+                                }}>
+                                    <Typography variant="bodyLarge">{title}</Typography>
+                                    <Stack>
+                                        {rows.map((rowStack, index) => {
+                                            return <KeywordRow key={index} row={rowStack} />
+                                        })}
                                     </Stack>
                                 </Stack>
+                            </Stack>
 
-                                {/*BOX RIGHT*/}
-                                <Stack alignItems="end" sx={{
-                                    px: convert(23),
-                                    width: "50%",
-                                }}>
-                                    <Stack direction="row" justifyContent="end" sx={{
-                                        overflow: "hidden",
-                                        whiteSpace: "nowrap",
-                                        borderStyle: "dashed",
-                                        borderColor: "background.paper",
-                                        borderRadius: "8px",
-                                        columnGap: convert(4),
+                            {/*BOX RIGHT*/}
+                            <Stack alignItems="end" sx={{
+                                px: convert(23),
+                                width: "50%",
+                            }}>
+                                <Stack direction="row" justifyContent="end" sx={{
+                                    overflow: "hidden",
+                                    whiteSpace: "nowrap",
+                                    borderStyle: "dashed",
+                                    borderColor: "background.paper",
+                                    borderRadius: "8px",
+                                    columnGap: convert(4),
 
 
 
-                                        px: convert(7),
-                                        py: convert(7),
-                                        borderWidth: "1px",
-                                        opacity: expandedCard === id ? 0 : 1,
+                                    px: convert(7),
+                                    py: convert(7),
+                                    borderWidth: "1px",
+                                    opacity: expandedCard === id ? 0 : 1,
 
-                                        transition: `
+                                    transition: `
                                         opacity ${expandTime} ease-in-out
                                         `,
 
-                                    }}>
-                                        <Typography variant="bodySmall" sx={{ color: "text.secondary" }}>{hoverText}</Typography>
-                                        <Box component="img" src={hoverImage} alt="hover image" sx={{
-                                            height: hoverImageSize,
-                                            width: "auto",
-                                            objectFit: "cover",
-                                        }} />
-                                    </Stack>
+                                }}>
+                                    <Typography variant="bodySmall" sx={{ color: "text.secondary" }}>{hoverText}</Typography>
+                                    <Box component="img" src={hoverImage} alt="hover image" sx={{
+                                        height: hoverImageSize,
+                                        width: "auto",
+                                        objectFit: "cover",
+                                    }} />
                                 </Stack>
-
-
                             </Stack>
 
-                            <Box sx={{
+
+                        </Stack>
+
+                        <Box sx={{
+                            height: "fit-content",
+                            width: "fit-content",
+
+
+
+
+                        }}>
+                            <Divider sx={{
+                                width: "85.58%",
+                                maxWidth: expandedCard === id ? "100%" : 0,
+                                transition: `max-width ${expandTime} ease-in-out`,
+                            }} />
+                            <Stack sx={{
                                 height: "fit-content",
                                 width: "fit-content",
                                 pb: expandedCard === id ? convert(10) : 0,
@@ -174,12 +189,8 @@ export function ProjectsSection2() {
                                     ? `35vh`
                                     : "0px",
                                 transition: `max-height ${expandTime} ease-in-out, padding ${expandTime} ease-in-out`,
-
+                                overflowX: "scroll",
                             }}>
-                                <Divider sx={{
-                                    maxWidth: expandedCard === id ? "100%" : 0,
-                                    transition: `max-width ${expandTime} ease-in-out`,
-                                }} />
                                 <Box sx={{
                                     display: "flex",
                                     justifyContent: "start",
@@ -191,12 +202,15 @@ export function ProjectsSection2() {
                                         {descriptionText}
                                     </TextOnly>
                                 </Box>
-                            </Box>
+                            </Stack>
 
-                        </Card>
-                    )
-                })}
-            </Stack>
+
+                        </Box>
+
+                    </Card>
+                )
+            })}
+        </Stack>
 
     )
 }

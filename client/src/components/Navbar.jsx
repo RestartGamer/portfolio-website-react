@@ -35,6 +35,7 @@ function DropdownMenu({ isMenuOpen, handleNavigate }) {
                 right: "0",
                 overflow: "hidden",
                 pointerEvents: isMenuOpen ? "auto" : "none",
+                pb:convert(1),
             }}>
             <Stack direction="column"
                 sx={{

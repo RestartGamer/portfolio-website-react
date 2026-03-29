@@ -123,7 +123,6 @@ function FieldControl({ field, register, error }) {
 
   return null;
 }
-const data="hi"
 function onSubmit(data) {
     console.log(data);
   }
