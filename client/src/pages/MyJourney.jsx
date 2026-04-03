@@ -20,7 +20,7 @@ function PageSection({ children }) {
         <Stack
             alignItems="center"
             sx={{
-                width: { xs: "auto", md: "100%" },
+                width: { xs: "100%", md: "100%" },
                 gap: { xs: convert(58), md: sectionSpacing },
                 px: { xs: convert(40), md: convert(50) },
                 pt: { xs: convert(40), md: convert(80) }
@@ -74,7 +74,8 @@ export function MyJourney() {
                                 loading="lazy"
                                 decoding="async"
                                 sx={{
-                                    width: imageSize
+                                    width: imageSize,
+                                    maxWidth:"100%"
                                 }}
                             />
                         </Box>

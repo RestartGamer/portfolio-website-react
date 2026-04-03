@@ -10,7 +10,7 @@ I’m particularly interested in building clean, performant,and scalable user in
 
 const heroTitle = "Can Korkmaz";
 const heroSubTitle = "Front-End Developer in Lisbon";
-const heroTitleSpacing = {xs: convert(500), md: convert(90)};
+const heroTitleSpacing = {xs: convert(90), md: convert(90)};
 const titleSpacing = { xs: convert(48), md: convert(70)}
 const sectionSpacing = convert(120)
 
@@ -21,7 +21,7 @@ function PageSection({ children }) {
                 width: { xs: "auto", md: "100%" },
                 gap: { xs: "58px", md: sectionSpacing },
                 px: {xs: convert(40), md: convert(50)},
-                pt: {xs: convert(500) / 2, md: convert(80)}
+                pt: {xs: convert(80), md: convert(80)}
             }}
         >
             {children}
