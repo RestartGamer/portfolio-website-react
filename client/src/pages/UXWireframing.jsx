@@ -1,7 +1,7 @@
 import { Stack, Box, Button, Typography, Card, List, ListItem, ListItemText } from "@mui/material"
 import { Navbar, Divider } from "../components"
 import { wireframe1Image, wireframe2Image, wireframe3Image, prototype1Image, prototype2Image, prototype3Image } from "../assets"
-const convert = (px) => px / 8;
+import { convert } from "../utils/muiConverter"
 
 const title = "From Idea..."
 const subTitle = "...to Concretization"
