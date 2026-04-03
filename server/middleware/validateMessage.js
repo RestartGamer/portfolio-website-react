@@ -8,7 +8,7 @@ export function validateMessage(req,res,next) {
     } catch(error) {
         res.status(400).json({
             success:false,
-            message:"validationo failed",
+            message:"validation failed",
             errors: error.issues ?? error.message,
         })
     }

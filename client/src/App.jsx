@@ -6,9 +6,7 @@ import { MyJourney } from "./pages/MyJourney"
 import { UXWireframing } from "./pages/UXWireframing"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { CssBaseline, Box, Stack } from "@mui/material";
-
-const convert = (px) => px / 8;
+import { CssBaseline, Stack } from "@mui/material";
 
 const sharedTypography = {
   fontFamily: '"Source Sans 3", sans-serif',

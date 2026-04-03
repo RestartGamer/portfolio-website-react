@@ -1,6 +1,6 @@
 import { CssBaseline, Box, Stack, Typography } from "@mui/material";
-import { Title, Navbar, Landing, TextOnly, SectionStack, EducationSection, ProjectsSection, ProjectsSection2, Divider, ExperienceSection, ContactForm } from "../components"
-const convert = (px) => px / 8;
+import { Title, Navbar, Landing, DescriptionBlock, SectionStack, EducationSection, ProjectsSection, Divider, ExperienceSection, ContactForm } from "../components"
+import { convert } from "../utils/muiConverter"
 
 const profileDescription = `Hi, I’m Can.\n
 I’m a junior Frontend developer focused on
@@ -62,7 +62,7 @@ export function Home() {
                             }}>
 
                             <Landing />
-                            <TextOnly >{profileDescription}</TextOnly>
+                            <DescriptionBlock >{profileDescription}</DescriptionBlock>
                         </Stack>
                     </Stack>
 
@@ -83,7 +83,7 @@ export function Home() {
 
                     <Stack spacing={titleSpacing} sx={{width:"100%"}}>
                         <Title title="My Projects" variant="headingTitle" />
-                        <ProjectsSection2 />
+                        <ProjectsSection />
                     </Stack>
 
                     <Stack spacing={titleSpacing} sx={{width:"100%"}}>

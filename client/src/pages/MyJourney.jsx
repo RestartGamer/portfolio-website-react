@@ -1,7 +1,7 @@
 import { CssBaseline, Box, Stack, Typography } from "@mui/material";
-import { Navbar, Landing, TextOnly, SectionStack, Divider } from "../components"
+import { Navbar, Landing, DescriptionBlock, SectionStack, Divider } from "../components"
 import { pathwayImage } from "../assets"
-const convert = (px) => px / 8;
+import { convert } from "../utils/muiConverter"
 
 const title = "My Journey"
 const subTitle = "From IT to Web-Development"
@@ -71,6 +71,8 @@ export function MyJourney() {
                                 component="img"
                                 src={pathwayImage}
                                 alt="Image of Pathway"
+                                loading="lazy"
+                                decoding="async"
                                 sx={{
                                     width: imageSize
                                 }}
@@ -78,9 +80,9 @@ export function MyJourney() {
                         </Box>
                     </Stack>
 
-                    <TextOnly>
+                    <DescriptionBlock>
                         {description}
-                    </TextOnly>
+                    </DescriptionBlock>
                 </Stack>
             </PageSection>
 
