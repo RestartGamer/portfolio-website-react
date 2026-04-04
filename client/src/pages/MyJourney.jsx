@@ -1,5 +1,7 @@
 import { CssBaseline, Box, Stack, Typography } from "@mui/material";
-import { Navbar, Landing, DescriptionBlock, SectionStack, Divider } from "../components"
+import { Navbar, DescriptionBlock, Divider } from "../components"
+import {HeroSection, SectionStack } from "../sections"
+
 import { pathwayImage } from "../assets"
 import { convert } from "../utils/muiConverter"
 

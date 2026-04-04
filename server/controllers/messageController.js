@@ -88,6 +88,7 @@ export async function createMessage(req, res) {
       message: "Message created and email sent successfully",
       data: newMessage,
     });
+    console.log("message sent via nodemailer")
   } catch (err) {
     console.error("createMessage error:", err);
     res.status(500).json({

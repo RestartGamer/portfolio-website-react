@@ -1,4 +1,4 @@
-import {Schema} from "../../shared/assets/schema.js"
+import {Schema} from "../../shared/config/schema.js"
 
 export function validateMessage(req,res,next) {
     try{

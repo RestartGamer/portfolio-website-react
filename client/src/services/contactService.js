@@ -1,5 +1,6 @@
 
 const adminEmail = "ckorkmaz56@gmail.com"
+const API_BASE = import.meta.env.VITE_API_URL;
 
 
 function openFallbackMailto(payload) {
@@ -15,7 +16,10 @@ Message:
 ${payload.message}`
   );
 
-  window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
+  window.open(
+  `mailto:${adminEmail}?subject=${subject}&body=${body}`,
+  "_blank"
+);
 }
 
 

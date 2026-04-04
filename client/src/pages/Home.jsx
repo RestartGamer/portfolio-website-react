@@ -1,5 +1,6 @@
 import { CssBaseline, Box, Stack, Typography } from "@mui/material";
-import { Title, Navbar, Landing, DescriptionBlock, SectionStack, EducationSection, ProjectsSection, Divider, ExperienceSection, ContactForm } from "../components"
+import { Title, Navbar, DescriptionBlock, Divider, ContactForm } from "../components"
+import { ExperienceSection, EducationSection, ProjectsSection, HeroSection, SectionStack } from "../sections"
 import { convert } from "../utils/muiConverter"
 
 const profileDescription = `Hi, I’m Can.\n
@@ -61,7 +62,7 @@ export function Home() {
                                 gap: convert(60),
                             }}>
 
-                            <Landing />
+                            <HeroSection />
                             <DescriptionBlock >{profileDescription}</DescriptionBlock>
                         </Stack>
                     </Stack>

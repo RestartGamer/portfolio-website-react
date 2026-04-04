@@ -7,7 +7,7 @@ const imageSize = "354px";
 
 
 
-export function Landing() {
+export function HeroSection() {
 
     return (
         <Stack alignItems="center" spacing={convert(26)} >
