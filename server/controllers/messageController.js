@@ -4,25 +4,6 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { messages } from "../mock-data/messages.js";
 
-export function getMessages(req, res) {
-  res.status(200).json(messages);
-}
-
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    minVersion: "TLSv1.2",
-    rejectUnauthorized: true
-  },
-  family: 4, // 👈 force IPv4 (IMPORTANT)
-});
-
 function escapeHtml(value = "") {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -60,6 +41,20 @@ function buildContactEmail(data) {
 }
 
 export async function createMessage(req, res) {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    tls: {
+      minVersion: "TLSv1.2",
+      rejectUnauthorized: false
+    },
+    family: 4, // 👈 force IPv4 (IMPORTANT)
+  });
   try {
     const newMessage = {
       id: crypto.randomUUID(),
