@@ -42,7 +42,6 @@ export function MyJourney() {
             position: "relative",
         }}>
             <Navbar />
-            <Divider />
 
             <PageSection>
                 <Stack alignItems="center" spacing={convert(20)}>

@@ -41,7 +41,6 @@ export function Home() {
             position: "relative",
         }}>
             <Navbar />
-                <Divider />
                 <PageSection>
                     
 

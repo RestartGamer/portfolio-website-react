@@ -77,14 +77,19 @@ function Description({ description, sx = {} }) {
 
 function ExperienceItem({ title, subTitle, date, location, descriptions }) {
     return (
-        <Stack direction="column" spacing={convert(25)}
+        <Stack
             sx={{
                 textAlign: "left",
-                maxWidth:"400px"
+                maxWidth: {xs:"400px", md: "100%"},
+                flexDirection: {xs: "column", md: "row"},
+                rowGap: {xs: convert(25), md: 0}
             }} >
 
 
-            <Stack direction="column" spacing={convert(10)}>
+            <Stack direction="column" spacing={convert(10)} sx={{
+                minWidth:"max-content",
+                pr:convert(80)
+            }}>
                 <TitleBox title={title} subTitle={subTitle} />
                 <DateAndLocation date={date} location={location} />
             </Stack>
@@ -105,7 +110,7 @@ function ExperienceItem({ title, subTitle, date, location, descriptions }) {
 
 export function ExperienceSection() {
     return (
-        <Stack component="section" direction="row"
+        <Stack component="section" direction="column"
             sx={{
 
                 flexWrap: "wrap",
@@ -113,6 +118,7 @@ export function ExperienceSection() {
                 columnGap: {xs: 0, md: convert(66)},
                 rowGap: {xs: convert(66), md: convert(66)},
                 justifyContent: {xs: "center", md: "space-between"},
+                alignItems: "center",
                 px: {xs: 0, md: convert(50)},
             }}>
             {experienceItems.map(({ id, title, subTitle, date, location, descriptions }) => {

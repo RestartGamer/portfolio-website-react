@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../../assets"
-import { Stack, Box, Button, Typography, ButtonBase } from "@mui/material"
+import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
+import { Divider } from "../../components"
 import { useNavigate } from "react-router-dom"
 import { convert } from "../../utils/muiConverter"
 
@@ -33,7 +34,7 @@ function DropdownMenu({ isMenuOpen, handleNavigate }) {
                 right: "0",
                 overflow: "hidden",
                 pointerEvents: isMenuOpen ? "auto" : "none",
-                pb:convert(1),
+                pb: convert(1),
             }}>
             <Stack direction="column"
                 sx={{
@@ -77,7 +78,7 @@ function DropdownMenu({ isMenuOpen, handleNavigate }) {
                                 <Typography variant="bodyLarge" sx={{
                                     width: "max-content",
                                 }}>
-                                
+
                                     {name}
                                 </Typography>
                             </ButtonBase>
@@ -121,6 +122,8 @@ function SocialIconLink({ id, url, source }) {
 export function Navbar() {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const theme = useTheme();
+    const isBelowMd = useMediaQuery(theme.breakpoints.down("md"))
 
     function handleNavigate(route) {
         navigate(route);
@@ -132,6 +135,8 @@ export function Navbar() {
             position: "sticky",
             top: 0,
             zIndex: 1000,
+            borderBottom: "1px solid",
+            borderColor: "custom.borderDefault"
         }}>
             <Stack direction="row" spacing={convert(27)}
                 sx={{
@@ -152,29 +157,54 @@ export function Navbar() {
                     })}
                 </Stack>
 
+                {isBelowMd ? (
 
-
-                <Box sx={{ position: "relative" }}>
-                    <Button
-                        onClick={() => setIsMenuOpen(prev => !prev)}
-                        aria-label="Open navigation menu"
-                        aria-expanded={isMenuOpen}
-                        aria-haspopup="true"
-                        sx={{
-                            display: "inline-flex"
-                        }}>
-                        <Box
-                            component="img"
-                            src={hamburgerMenuDark}
+                    <Box sx={{ position: "relative" }}>
+                        <Button
+                            onClick={() => setIsMenuOpen(prev => !prev)}
+                            aria-label="Open navigation menu"
+                            aria-expanded={isMenuOpen}
+                            aria-haspopup="true"
                             sx={{
-                                width: hamMenuSize,
-                                objectFit: "fill",
+                                display: "inline-flex"
                             }}>
+                            <Box
+                                component="img"
+                                src={hamburgerMenuDark}
+                                sx={{
+                                    width: hamMenuSize,
+                                    objectFit: "fill",
+                                }}>
 
-                        </Box>
-                    </Button>
-                    <DropdownMenu isMenuOpen={isMenuOpen} handleNavigate={handleNavigate} />
-                </Box>
+                            </Box>
+                        </Button>
+                        <DropdownMenu isMenuOpen={isMenuOpen} handleNavigate={handleNavigate} />
+                    </Box>
+                )
+                    : (
+                        <Stack direction="row" spacing={convert(50)}
+                            sx={{
+                                textDecoration: "none"
+                            }}>
+                            {options.map(({ name, route }) => {
+                                return (
+                                    <ButtonBase key={name} component="a" rel="noopener" target="_blank" onClick={() => handleNavigate(route)} sx={{
+                                        textDecoration: "none",
+                                        color: "text.primary",
+                                        px: convert(40),
+                                        py: convert(1),
+                                    }}>
+                                        <Typography variant="cardTitle">
+                                            {name}
+                                        </Typography>
+                                    </ButtonBase>
+                                )
+                            })}
+                        </Stack>
+                    )
+                }
+
+
             </Stack>
         </Stack >
     )

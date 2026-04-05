@@ -44,7 +44,6 @@ export function UXWireframing() {
             position: "relative",
         }}>
             <Navbar />
-            <Divider />
 
             <PageSection>
                 <Stack alignItems="start" spacing={heroTitleSpacing} sx={{ width: "100%" }}>
