@@ -1,6 +1,6 @@
 import { CssBaseline, Box, Stack, Typography } from "@mui/material";
-import { Navbar, DescriptionBlock, Divider } from "../components"
-import {HeroSection, SectionStack } from "../sections"
+import { Navbar, DescriptionBlock, Divider, TitleBlock } from "../components"
+import { HeroSection, SectionStack } from "../sections"
 
 import { pathwayImage } from "../assets"
 import { convert } from "../utils/muiConverter"
@@ -41,51 +41,19 @@ export function MyJourney() {
             width: "100%",
             position: "relative",
         }}>
-            <Navbar />
 
             <PageSection>
-                <Stack alignItems="center" spacing={convert(20)}>
-                    <Stack direction="column" spacing={convert(50)} sx=
-                        {{
-                            px: convert(15),
-                            alignItems: { xs: "start", md: "center" }
-                        }}>
-
-                        <Stack direction="column" sx={{
-                            alignItems: { xs: "start", md: "center" }
-                        }}>
-                            <Typography variant="heroTitle">{title}</Typography>
-                            <Typography
-                                variant="sectionTitle"
-                                sx={{
-                                    fontFamily: `"EB Garamond", serif`,
-                                    fontWeight: "400",
-                                    textAlign: "start",
-                                }}
-                            >
-                                {subTitle}
-                            </Typography>
-                        </Stack>
-
-                        <Box>
-                            <Box
-                                component="img"
-                                src={pathwayImage}
-                                alt="Image of Pathway"
-                                loading="lazy"
-                                decoding="async"
-                                sx={{
-                                    width: imageSize,
-                                    maxWidth:"100%"
-                                }}
-                            />
-                        </Box>
-                    </Stack>
-
-                    <DescriptionBlock>
-                        {description}
-                    </DescriptionBlock>
+                <Stack direction="column" sx={{
+                    alignItems: { xs: "start", md: "center" }
+                }}>
+                    <TitleBlock title={title} variant="heroTitle">
+                        {subTitle}
+                    </TitleBlock>
                 </Stack>
+
+                <HeroSection avatarImage={pathwayImage} avatarSize={imageSize}>
+                    {description}
+                </HeroSection>
             </PageSection>
 
 

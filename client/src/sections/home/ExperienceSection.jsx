@@ -96,6 +96,7 @@ function ExperienceItem({ title, subTitle, date, location, descriptions }) {
 
             <List component="ul" sx={{
                 listStyleType: "disc",
+                p:0,
                 pl: convert(15),
             }}>
                 {descriptions.map(description => {

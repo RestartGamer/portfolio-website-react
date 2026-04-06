@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { MyJourney } from "./pages/MyJourney"
 import { UXWireframing } from "./pages/UXWireframing"
+import { Navbar } from "./components"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { CssBaseline, Stack } from "@mui/material";
@@ -124,6 +125,7 @@ function App() {
             alignItems: "center",
             maxWidth: "1300px",
           }}>
+            <Navbar />
 
 
           <Routes>

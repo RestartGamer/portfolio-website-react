@@ -1,28 +1,52 @@
-import { avatarImage } from "../../assets"
+
 import { Stack, Box } from "@mui/material"
 import { convert } from "../../utils/muiConverter"
+import { DescriptionBlock } from "../../components"
+
+const maxWidth = "420px";
 
 
-const imageSize = "354px";
 
-
-
-export function HeroSection() {
+export function HeroSection({ children, avatarImage, avatarSize, isImgLeft=true }) {
 
     return (
-        <Stack alignItems="center" spacing={convert(26)} >
-            <Box sx={{
-                overflow: "hidden",
-                borderRadius: "22px",
-                width: "fit-content",
-                height: "fit-content",
+        <Stack direction="row" alignItems="center" justifyContent="center"
+            sx={{
+                width: "100%",
+                flexWrap: "wrap",
+                gap: convert(60),
             }}>
-                <Box component="img" src={avatarImage} alt="Profile Image"
-                    sx={{
-                        width: imageSize,
-                        height: "auto",
-                    }} />
-            </Box>
-        </Stack >
+
+            {isImgLeft ? (
+                <>
+                    <Box component="img" src={avatarImage} alt="Profile Image"
+                        sx={{
+                            width: avatarSize,
+                            maxWidth: maxWidth,
+                            height: "auto",
+                            borderRadius: "22px",
+                        }} />
+                    <DescriptionBlock>
+                        {children}
+                    </DescriptionBlock>
+                </>
+
+            ) :
+                (
+                    <>
+                        <DescriptionBlock>
+                            {children}
+                        </DescriptionBlock>
+                        <Box component="img" src={avatarImage} alt="Profile Image"
+                            sx={{
+                                width: avatarSize,
+                                height: "auto",
+                                borderRadius: "22px",
+                            }} />
+                    </>
+                )
+            }
+        </Stack>
+
     )
 }
