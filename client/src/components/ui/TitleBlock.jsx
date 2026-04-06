@@ -1,18 +1,22 @@
 import { Stack, Typography } from "@mui/material"
-import { convert } from "../../utils/muiConverter"
+import {pageLayout} from "../../layout/layout"
+const {
+  titleSpacing
+} = pageLayout;
 
-const title = "Can Korkmaz";
-const subTitle = "Front-End Developer in Lisbon";
 
-export function TitleBlock({ title, subTitle, children, variant = "heroTitle", sx = {} }) {
+export function TitleBlock({ title, children = null, variant = "heroTitle", sx = {} }) {
     return (
-        <Stack alignItems="center" spacing={convert(50)} sx={{ ...sx }}>
-            <Stack direction="column" spacing={convert(1)}
-                sx={{
-                    alignItems: "center",
-                    ...sx,
-                }}>
-                <Typography variant={variant}>{title}</Typography>
+        <Stack direction="column" spacing={titleSpacing}
+            sx={{
+                alignItems: "center",
+                ...sx,
+            }}>
+            <Typography variant={variant}>{title}</Typography>
+
+
+            {
+                children !== null &&
                 <Typography variant="sectionTitle" sx={{
                     fontFamily: `"EB Garamond", serif`,
                     fontWeight: "400",
@@ -20,11 +24,12 @@ export function TitleBlock({ title, subTitle, children, variant = "heroTitle", s
                 }}>
                     {children}
                 </Typography >
-                
+            }
 
-            </Stack>
 
-        </Stack>)
+
+        </Stack>
+    )
 
 
 }

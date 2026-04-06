@@ -1,9 +1,16 @@
 import { CssBaseline, Box, Stack, Typography } from "@mui/material";
 import { Navbar, DescriptionBlock, Divider, TitleBlock } from "../components"
-import { HeroSection, SectionStack } from "../sections"
+import { HeroSection, ContentSection } from "../sections"
 
 import { pathwayImage } from "../assets"
 import { convert } from "../utils/muiConverter"
+import { pageLayout } from "../layout/layout.js"
+
+const {
+    sectionTitleSpacing,
+    sectionSpacing,
+    imageMaxWidth,
+} = pageLayout;
 
 const title = "My Journey"
 const subTitle = "From IT to Web-Development"
@@ -13,51 +20,23 @@ Throughout my journey in IT Support, I became increasingly drawn to the creative
 So I started learning about the basics of web design, and deepened my knowledge, to the point of building
  products that aim to be intuitive, meaningful and, most of all, human.`
 
-const heroTitleSpacing = { xs: convert(500), md: convert(90) };
-const sectionSpacing = convert(120);
-const imageSize = "500px";
 
-function PageSection({ children }) {
-    return (
-        <Stack
-            alignItems="center"
-            sx={{
-                width: { xs: "100%", md: "100%" },
-                gap: { xs: convert(58), md: sectionSpacing },
-                px: { xs: convert(40), md: convert(50) },
-                pt: { xs: convert(40), md: convert(80) }
-            }}
-        >
-            {children}
-        </Stack>
-    );
-}
 
 export function MyJourney() {
     return (
-        <Stack direction="column" alignItems="center" sx={{
-            paddingBottom: convert(100),
-            gap: { xs: "10px", md: "10px" },
-            width: "100%",
-            position: "relative",
-        }}>
+        <>
 
-            <PageSection>
-                <Stack direction="column" sx={{
-                    alignItems: { xs: "start", md: "center" }
+            <TitleBlock title={title} variant="heroTitle">
+                {subTitle}
+            </TitleBlock>
+
+            <ContentSection>
+                <HeroSection image={pathwayImage} isImgLeft={false} imageSx={{
+                    maxWidth: "500px",
                 }}>
-                    <TitleBlock title={title} variant="heroTitle">
-                        {subTitle}
-                    </TitleBlock>
-                </Stack>
-
-                <HeroSection avatarImage={pathwayImage} avatarSize={imageSize}>
                     {description}
                 </HeroSection>
-            </PageSection>
-
-
-
-        </Stack>
+            </ContentSection>
+        </>
     )
 }

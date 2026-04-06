@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../../assets"
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
-import { Divider } from "../../components"
 import { useNavigate } from "react-router-dom"
 import { convert } from "../../utils/muiConverter"
 
@@ -130,21 +129,25 @@ export function Navbar() {
         setIsMenuOpen(false);
     }
     return (
-        <Stack direction="column" sx={{
+        <Box sx={{
             width: "100%",
             position: "sticky",
             top: 0,
             zIndex: 1000,
-            borderBottom: "1px solid",
-            borderColor: "custom.borderDefault"
+            bgcolor: "#252525",
+            px: {xs: 0, md: convert(100)},
+
         }}>
-            <Stack direction="row" spacing={convert(27)}
+            <Stack direction="row"
                 sx={{
+                    width: "100%",
                     justifyContent: "space-between",
                     alignItems: "center",
                     py: convert(32),
                     px: convert(27),
-                    bgcolor: "#252525",
+
+                    borderBottom: "1px solid",
+                    borderColor: "custom.borderDefault"
                 }}
             >
 
@@ -206,6 +209,6 @@ export function Navbar() {
 
 
             </Stack>
-        </Stack >
+        </Box >
     )
 }

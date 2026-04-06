@@ -70,7 +70,7 @@ export function ProjectsSection() {
         <Stack direction="row" sx={{
             gap: convert(35),
             flexWrap: "wrap", // or remove this line entirely
-            justifyContent: { xs: "center", md: "left" },
+            justifyContent: "center",
         }}>
             {cards.map(({ id, image, title, keywords }) => {
                 const rows = [];

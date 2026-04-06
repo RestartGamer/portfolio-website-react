@@ -17,7 +17,6 @@ import { inquiryOptions } from "../../../../shared/config/inquiryOptions";
 import { submitContactMessage } from "../../services/contactService"
 import { convert } from "../../utils/muiConverter"
 
-const title = "Contact Me";
 
 const baseFieldSx = {
   maxWidth: "50%",
@@ -74,8 +73,6 @@ const fields = [
     },
   },
 ];
-
-const API_BASE = import.meta.env.VITE_API_URL;
 
 
 function InputField({ label, children }) {

@@ -43,7 +43,7 @@ const experienceItems = [
 
 function TitleBox({ title, subTitle, sx = {} }) {
     return (
-        <Stack direction="column" spacing={convert(4)}>
+        <Stack direction="column" spacing={convert(4)} >
             <Typography variant="sectionTitle">{title}</Typography>
             <Typography variant="cardTitle">{subTitle}</Typography>
         </Stack>
@@ -80,15 +80,15 @@ function ExperienceItem({ title, subTitle, date, location, descriptions }) {
         <Stack
             sx={{
                 textAlign: "left",
-                maxWidth: {xs:"400px", md: "100%"},
+                width:"100%",
                 flexDirection: {xs: "column", md: "row"},
-                rowGap: {xs: convert(25), md: 0}
+                gap: {xs: convert(25), md: 0}
             }} >
 
 
             <Stack direction="column" spacing={convert(10)} sx={{
-                minWidth:"max-content",
-                pr:convert(80)
+                width:"max-content",
+                flex: 1,
             }}>
                 <TitleBox title={title} subTitle={subTitle} />
                 <DateAndLocation date={date} location={location} />
@@ -97,7 +97,7 @@ function ExperienceItem({ title, subTitle, date, location, descriptions }) {
             <List component="ul" sx={{
                 listStyleType: "disc",
                 p:0,
-                pl: convert(15),
+                flex: 1,
             }}>
                 {descriptions.map(description => {
                     return <Description key={description} description={description} />
