@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../../assets"
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link as RouteLink } from "react-router-dom"
 import { convert } from "../../utils/muiConverter"
 
 
@@ -185,13 +185,14 @@ export function Navbar() {
                     </Box>
                 )
                     : (
-                        <Stack direction="row" spacing={convert(50)}
+                        <Stack direction="row"
                             sx={{
-                                textDecoration: "none"
+                                textDecoration: "none",
+                                gap: convert(40),
                             }}>
                             {options.map(({ name, route }) => {
                                 return (
-                                    <ButtonBase key={name} component="a" rel="noopener" target="_blank" onClick={() => handleNavigate(route)} sx={{
+                                    <ButtonBase key={name} component={RouteLink} to={route} sx={{
                                         textDecoration: "none",
                                         color: "text.primary",
                                         px: convert(40),
