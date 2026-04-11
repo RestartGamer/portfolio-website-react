@@ -3,14 +3,14 @@ import { Navbar, Divider, TitleBlock, ListBlock, ImageComparisonBlock } from "..
 import { ContentSection } from "../sections"
 import { wireframe1Image, wireframe2Image, wireframe3Image, prototype1Image, prototype2Image, prototype3Image } from "../assets"
 import { convert } from "../utils/muiConverter"
-import {pageLayout} from "../layout/layout.js"
+import { pageLayout } from "../layout/layout.js"
 
 const {
-  heroTitleMt: titleMt,
-  titleMb,
-  contentSpacing,
-  pagePaddingX,
-  imageMaxWidth,
+    heroTitleMt: titleMt,
+    titleMb,
+    contentSpacing,
+    pagePaddingX,
+    imageMaxWidth,
 } = pageLayout;
 
 const title = "Figma Design Project"
@@ -25,16 +25,8 @@ const textWidth = "700px";
 
 export function UXWireframing() {
     return (
-        <Stack direction="column" alignItems="center" sx={{
-            paddingBottom: convert(100),
-            gap: { xs: "10px", md: "10px" },
-            width: "100%",
-            position: "relative",
-        }}>
-
+        <>
             <TitleBlock variant="heroTitle" title={title} sx={{
-                mt:titleMt,
-                mb:titleMb,
             }}>
                 {subTitle}
             </TitleBlock>
@@ -107,7 +99,7 @@ export function UXWireframing() {
 
 
             </ContentSection>
-        </Stack>
+        </>
     )
 }
 
