@@ -1,118 +1,105 @@
 import { Stack, Box, Button, Typography, Card, List, ListItem, ListItemText } from "@mui/material"
-import { Navbar, Divider } from "../components"
+import { Navbar, Divider, TitleBlock, ListBlock, ImageComparisonBlock } from "../components"
+import { ContentSection } from "../sections"
 import { wireframe1Image, wireframe2Image, wireframe3Image, prototype1Image, prototype2Image, prototype3Image } from "../assets"
-const convert = (px) => px / 8;
+import { convert } from "../utils/muiConverter"
+import { pageLayout } from "../layout/layout.js"
 
-const title = "From Idea..."
-const subTitle = "...to Concretization"
+const {
+    heroTitleMt: titleMt,
+    titleMb,
+    contentSpacing,
+    pagePaddingX,
+    imageMaxWidth,
+} = pageLayout;
 
-const description1 = `Translated abstract ideas into structured layouts.
- From Persona, to Customer Journey Map, to low-fidelity wireframe, to Figma Prototype.`
+const title = "Figma Design Project"
+const subTitle = "From Idea to Wireframe to Prototype"
 
-const description2 = ["Focused on usability and content hierarchy.", "Used spacing and alignment to guide user attention."]
-
-const description3 = ["Designed with responsiveness in mind (mobile → desktop).", "Iterated from low-fidelity to high-fidelity design."]
-
-const heroTitleSpacing = { xs: convert(500), md: convert(90) };
-const sectionSpacing = convert(120);
-const imageSize = "500px";
+const heroTitleSpacing = { xs: convert(90), md: convert(90) };
+const singleImageSize = "400px"
+const groupImageSize = "300px"
+const imageSize = "400px";
 const textWidth = "700px";
 
-function PageSection({ children }) {
-    return (
-        <Stack
-            alignItems="center"
-            sx={{
-                width: { xs: "auto", md: "100%" },
-                gap: { xs: "58px", md: sectionSpacing },
-                px: { xs: convert(40), md: convert(50) },
-                pt: { xs: convert(500) / 2, md: convert(80) }
-            }}
-        >
-            {children}
-        </Stack>
-    );
-}
 
 export function UXWireframing() {
     return (
-        <Stack direction="column" alignItems="center" sx={{
-            paddingBottom: convert(100),
-            gap: { xs: "10px", md: "10px" },
-            width: "100%",
-            position: "relative",
-        }}>
-            <Navbar />
-            <Divider />
+        <>
+            <TitleBlock variant="heroTitle" title={title} sx={{
+            }}>
+                {subTitle}
+            </TitleBlock>
 
-            <PageSection>
-                <Stack alignItems="start" spacing={heroTitleSpacing}>
-                    <Stack direction="column" spacing={convert(58)} sx={{ px: convert(15) }}>
-                        <Stack direction="column" alignItems="start" spacing={convert(10)}>
-                            <Typography variant="heroTitle">{title}</Typography>
-                            <Typography
-                                variant="sectionTitle"
-                                sx={{
-                                    width: "100%",
-                                    fontFamily: `"EB Garamond", serif`,
-                                    fontWeight: "400",
-                                    textAlign: "center"
-                                }}
-                            >
-                                {subTitle}
-                            </Typography>
-                        </Stack>
+            <ContentSection>
+                <ImageComparisonBlock
+                    image1={wireframe1Image} alt1="Image of Wireframe"
+                    midText="to"
+                    image2={prototype1Image} alt2="Image of Prototype"
+                    size={groupImageSize}
+                />
 
-                        <Stack direction="row" alignItems="center" spacing={convert(11)}>
-                            <Box component="img" src={wireframe1Image} alt="Wireframe number 1" sx={{ maxWidth: imageSize }} />
-                            <Typography variant="sectionTitle" sx={{ fontFamily: `"EB Garamond", serif`, fontWeight: "400" }}>to</Typography>
-                            <Box component="img" src={prototype1Image} alt="Prototype number 1" sx={{ maxWidth: imageSize }} />
-                        </Stack>
-                    </Stack>
+                <ListBlock
+                    listItems={
+                        [
+                            `Translated abstract ideas into structured layouts.
+                                From Persona, to Customer Journey Map, to low-fidelity wireframe, to Figma Prototype.`
+                        ]
+                    }
+                    textWidth={textWidth}
+                    typography="bodyLarge"
+                    fontWeight="300"
+                />
 
-                    <List component="ul" sx={{ display: "list-item", listStyleType: "disc", width: textWidth }}>
-                        <ListItem>
-                            <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
-                                {description1}
-                            </Typography>
-                        </ListItem>
-                    </List>
 
-                    <Box component="img" src={wireframe2Image} alt="Wireframe number 2" sx={{ maxWidth: imageSize }} />
+                <Box
+                    component="img"
+                    src={wireframe2Image}
+                    alt="Wireframe number 2"
+                    sx={{ maxWidth: { xs: "100%", md: singleImageSize }, width: "100%" }}
+                />
 
-                    <List component="ul" sx={{ listStyleType: "disc", width: textWidth }}>
-                        {description2.map((description) => {
-                            return (
-                                <ListItem component="li" sx={{ display: "list-item", p: 0 }}>
-                                    <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
-                                        {description}
-                                    </Typography>
-                                </ListItem>
-                            )
-                        })}
-                    </List>
+                <ListBlock
+                    listItems={
+                        [
+                            "Focused on usability and content hierarchy.",
+                            "Used spacing and alignment to guide user attention."
+                        ]
+                    }
+                    textWidth={textWidth}
+                    typography="bodyLarge"
+                    fontWeight="300"
+                />
 
-                    <Box component="img" src={prototype2Image} alt="Prototype number 2" sx={{ maxWidth: imageSize }} />
+                <Box
+                    component="img"
+                    src={prototype2Image}
+                    alt="Prototype number 2"
+                    sx={{ width: { xs: "100%", md: singleImageSize }, maxWidth: "100%" }}
+                />
 
-                    <List component="ul" sx={{ listStyleType: "disc", maxWidth: textWidth }}>
-                        {description3.map((description) => {
-                            return (
-                                <ListItem component="li" sx={{ display: "list-item", p: 0 }}>
-                                    <Typography variant="bodyLarge" sx={{ fontWeight: "300" }}>
-                                        {description}
-                                    </Typography>
-                                </ListItem>
-                            )
-                        })}
-                    </List>
+                <ListBlock
+                    listItems={
+                        [
+                            "Designed with responsiveness in mind (mobile → desktop).",
+                            "Iterated from low-fidelity to high-fidelity design."
+                        ]
+                    }
+                    textWidth={textWidth}
+                    typography="bodyLarge"
+                    fontWeight="300"
+                />
 
-                    <Stack direction="row" alignItems="center" spacing={convert(11)}>
-                        <Box component="img" src={wireframe3Image} alt="Wireframe number 3" sx={{ maxWidth: imageSize }} />
-                        <Typography variant="sectionTitle" sx={{ fontFamily: `"EB Garamond", serif`, fontWeight: "400" }}>to</Typography>
-                        <Box component="img" src={prototype3Image} alt="Prototype number 3" sx={{ maxWidth: imageSize }} />
-                    </Stack>
-                </Stack>
-            </PageSection>
-        </Stack>
+                <ImageComparisonBlock
+                    image1={wireframe3Image} alt1="Image of Wireframe"
+                    midText="to"
+                    image2={prototype3Image} alt2="Image of Prototype"
+                    size={groupImageSize}
+                />
+
+
+            </ContentSection>
+        </>
     )
 }
+

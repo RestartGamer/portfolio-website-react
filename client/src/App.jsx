@@ -4,11 +4,16 @@ import { Routes, Route } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { MyJourney } from "./pages/MyJourney"
 import { UXWireframing } from "./pages/UXWireframing"
+import { Navbar } from "./components"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { CssBaseline, Box, Stack } from "@mui/material";
+import { CssBaseline, Stack } from "@mui/material";
+import { pageLayout } from "./layout/layout.js"
+import { PageSection } from "./sections"
 
-const convert = (px) => px / 8;
+const {
+  pageMaxWidth,
+} = pageLayout;
 
 const sharedTypography = {
   fontFamily: '"Source Sans 3", sans-serif',
@@ -106,6 +111,7 @@ const themeSettings = {
   }
 }
 
+
 function App() {
   const [theme, setTheme] = useState("dark");
   const muiTheme = useMemo(() =>
@@ -122,17 +128,21 @@ function App() {
       >
         <Stack direction="column"
           sx={{
-            width:"100%",
+            width: "100%",
             alignItems: "center",
-            maxWidth: "1300px",
+            maxWidth: pageMaxWidth,
           }}>
+          <Navbar />
+
+          <PageSection>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/myjourney" element={<MyJourney />} />
+              <Route path="/uxwireframing" element={<UXWireframing />} />
+            </Routes>
+          </PageSection>
 
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/myjourney" element={<MyJourney />} />
-            <Route path="/uxwireframing" element={<UXWireframing />} />
-          </Routes>
         </Stack>
       </Stack>
     </ThemeProvider>

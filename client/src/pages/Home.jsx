@@ -1,6 +1,15 @@
-import { CssBaseline, Box, Stack, Typography } from "@mui/material";
-import { Title, Navbar, Landing, TextOnly, SectionStack, EducationSection, ProjectsSection, ProjectsSection2, Divider, ExperienceSection, ContactForm } from "../components"
-const convert = (px) => px / 8;
+import { Stack } from "@mui/material";
+import { TitleBlock, ContactForm } from "../components"
+import { ExperienceSection, EducationSection, ProjectsSection, HeroSection, SectionStack, ContentSection} from "../sections"
+import { avatarImage } from "../assets"
+import { pageLayout } from "../layout/layout.js"
+
+const {
+    sectionTitleSpacing,
+    sectionSpacing,
+    imageMaxWidth,
+    imageMinWidth,
+} = pageLayout;
 
 const profileDescription = `Hi, I’m Can.\n
 I’m a junior Frontend developer focused on
@@ -10,95 +19,59 @@ I’m particularly interested in building clean, performant,and scalable user in
 
 const heroTitle = "Can Korkmaz";
 const heroSubTitle = "Front-End Developer in Lisbon";
-const heroTitleSpacing = {xs: convert(500), md: convert(90)};
-const titleSpacing = { xs: convert(48), md: convert(70)}
-const sectionSpacing = convert(120)
 
-function PageSection({ children }) {
-    return (
-        <Stack alignItems="center"
-            sx={{
-                width: { xs: "auto", md: "100%" },
-                gap: { xs: "58px", md: sectionSpacing },
-                px: {xs: convert(40), md: convert(50)},
-                pt: {xs: convert(500) / 2, md: convert(80)}
-            }}
-        >
-            {children}
-        </Stack>
-    );
-}
+const avatarSize = "354px";
+
 
 export function Home() {
     return (
 
-        <Stack direction="column" alignItems="center" sx={{
+        <>
 
-            paddingBottom: convert(100),
-            gap: { xs: "10px", md: "10px" },
-            width: "100%",
-            position: "relative",
-        }}>
-            <Navbar />
-                <Divider />
-                <PageSection>
-                    
+            <TitleBlock title={heroTitle}>
+                {heroSubTitle}
+            </TitleBlock>
 
-                    <Stack alignItems="center" spacing={heroTitleSpacing}>
-                        <Title title={heroTitle} subTitle={heroSubTitle} sx={{ alignItems: "center" }}>
-                            <Typography variant="sectionTitle" sx={{
-                                fontFamily: `"EB Garamond", serif`,
-                                fontWeight: "400",
-                            }}>
-                                {heroSubTitle}
-                            </Typography >
-                        </Title>
+            <ContentSection>
+                <HeroSection image={avatarImage} isImgLeft={true} descriptionSx={{
 
-                        <Stack direction="row" alignItems="center" justifyContent="center"
-                            sx={{
-                                width: "100%",
-                                flexWrap: "wrap",
-                                gap: convert(60),
-                            }}>
+                }}>
+                    {profileDescription}
+                </HeroSection>
 
-                            <Landing />
-                            <TextOnly >{profileDescription}</TextOnly>
-                        </Stack>
+
+                <Stack direction="row" justifyContent="center" sx={{
+                    width: "100%",
+                    flexWrap: "wrap",
+                    gap: sectionSpacing,
+                }}>
+                    <Stack spacing={sectionTitleSpacing}>
+                        <TitleBlock title="My Stack" variant="headingTitle" />
+                        <SectionStack />
                     </Stack>
-
-
-                    <Stack direction="row" justifyContent="center" sx={{
-                        flexWrap: "wrap",
-                        gap: {xs: convert(120), md: convert(200)},
-                    }}>
-                        <Stack spacing={titleSpacing}>
-                            <Title title="My Stack" variant="headingTitle" />
-                            <SectionStack />
-                        </Stack>
-                        <Stack spacing={titleSpacing}>
-                            <Title title="Education" variant="headingTitle" />
-                            <EducationSection />
-                        </Stack>
+                    <Stack spacing={sectionTitleSpacing}>
+                        <TitleBlock title="Education" variant="headingTitle" />
+                        <EducationSection />
                     </Stack>
+                </Stack>
 
-                    <Stack spacing={titleSpacing} sx={{width:"100%"}}>
-                        <Title title="My Projects" variant="headingTitle" />
-                        <ProjectsSection2 />
-                    </Stack>
+                <Stack spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
+                    <TitleBlock title="My Projects" variant="headingTitle" />
+                    <ProjectsSection />
+                </Stack>
 
-                    <Stack spacing={titleSpacing} sx={{width:"100%"}}>
-                        <Title title="Work Experience" variant="headingTitle" />
-                        <ExperienceSection />
-                    </Stack>
+                <Stack spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
+                    <TitleBlock title="Work Experience" variant="headingTitle" />
+                    <ExperienceSection />
+                </Stack>
 
-                    <Stack spacing={titleSpacing} sx={{width:"100%"}}>
-                        <Title title="Contact Me" variant="headingTitle" />
-                        <ContactForm />
-                    </Stack>
+                <Stack spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
+                    <TitleBlock title="Contact Me" variant="headingTitle" />
+                    <ContactForm />
+                </Stack>
 
-                </PageSection>
-
-        </Stack>
+            </ContentSection>
+        </>
 
     )
 }

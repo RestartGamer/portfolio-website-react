@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-node_modules/
-client/node_modules/
-server/node_modules/
-dist/
-build/
-.env
-*.zip
-=======
 # Logs
 logs
 *.log
@@ -146,4 +137,3 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
->>>>>>> 51a26fc (feat: set up initial portfolio structure)
