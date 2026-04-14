@@ -6,3 +6,4 @@ export * from "./forms/ContactForm";
 export * from "./ui/TitleBlock";
 export * from "./ui/ListBlock";
 export * from "./ui/ImageComparisonBlock";
+export * from "./button/ThemeButton";

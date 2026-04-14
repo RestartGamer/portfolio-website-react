@@ -3,6 +3,7 @@ import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../../assets
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
 import { useNavigate, Link as RouteLink } from "react-router-dom"
 import { convert } from "../../utils/muiConverter"
+import {ThemeButton} from "../"
 
 
 const socialMedia = [
@@ -24,7 +25,7 @@ const hamMenuSize = 53;
 
 
 
-function DropdownMenu({ isMenuOpen, handleNavigate }) {
+function DropdownMenu({ isMenuOpen, handleNavigate, setTheme }) {
     return (
         <Box
             sx={{
@@ -57,6 +58,7 @@ function DropdownMenu({ isMenuOpen, handleNavigate }) {
                     transition: "transform 250ms ease-in-out",
                 }}>
                 <Stack direction="column" alignItems="center" spacing={convert(28.28)}>
+                    <ThemeButton setTheme={setTheme} />
                     {options.map(({ name, route }) => {
                         return (
                             <ButtonBase key={name} onClick={() => handleNavigate(route)}
@@ -118,7 +120,7 @@ function SocialIconLink({ id, url, source }) {
 
 }
 
-export function Navbar() {
+export function Navbar({setTheme}) {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const theme = useTheme();
@@ -181,7 +183,7 @@ export function Navbar() {
 
                             </Box>
                         </Button>
-                        <DropdownMenu isMenuOpen={isMenuOpen} handleNavigate={handleNavigate} />
+                        <DropdownMenu setTheme={setTheme} isMenuOpen={isMenuOpen} handleNavigate={handleNavigate} />
                     </Box>
                 )
                     : (
