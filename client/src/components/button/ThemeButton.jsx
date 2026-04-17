@@ -60,7 +60,7 @@ export function ThemeButton({setTheme}) {
                             transition: `left ${animTime} ease-in-out`,
 
                             borderRadius: "4px",
-                            background: "#00B2E3",
+                            background: mode==="light"? "#00B2E3": "#616161",
                         }}>
 
                     </Box>

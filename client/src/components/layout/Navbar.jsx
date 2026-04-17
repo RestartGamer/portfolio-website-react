@@ -3,7 +3,7 @@ import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../../assets
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
 import { useNavigate, Link as RouteLink } from "react-router-dom"
 import { convert } from "../../utils/muiConverter"
-import {ThemeButton} from "../"
+import { ThemeButton } from "../"
 
 
 const socialMedia = [
@@ -120,7 +120,7 @@ function SocialIconLink({ id, url, source }) {
 
 }
 
-export function Navbar({setTheme}) {
+export function Navbar({ setTheme }) {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const theme = useTheme();
@@ -137,7 +137,7 @@ export function Navbar({setTheme}) {
             top: 0,
             zIndex: 1000,
             bgcolor: "#252525",
-            px: {xs: 0, md: convert(100)},
+            px: { xs: 0, md: convert(100) },
 
         }}>
             <Stack direction="row"
@@ -187,11 +187,13 @@ export function Navbar({setTheme}) {
                     </Box>
                 )
                     : (
+
                         <Stack direction="row"
                             sx={{
                                 textDecoration: "none",
                                 gap: convert(40),
                             }}>
+                            <ThemeButton setTheme={setTheme} />
                             {options.map(({ name, route }) => {
                                 return (
                                     <ButtonBase key={name} component={RouteLink} to={route} sx={{
