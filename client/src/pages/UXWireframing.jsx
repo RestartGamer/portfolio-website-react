@@ -1,25 +1,13 @@
-import { Stack, Box, Button, Typography, Card, List, ListItem, ListItemText } from "@mui/material"
-import { Navbar, Divider, TitleBlock, ListBlock, ImageComparisonBlock } from "../components"
+import { Box } from "@mui/material"
+import { TitleBlock, ListBlock, ImageComparisonBlock } from "../components"
 import { ContentSection } from "../sections"
 import { wireframe1Image, wireframe2Image, wireframe3Image, prototype1Image, prototype2Image, prototype3Image } from "../assets"
-import { convert } from "../utils/muiConverter"
-import { pageLayout } from "../layout/layout.js"
-
-const {
-    heroTitleMt: titleMt,
-    titleMb,
-    contentSpacing,
-    pagePaddingX,
-    imageMaxWidth,
-} = pageLayout;
 
 const title = "Figma Design Project"
 const subTitle = "From Idea to Wireframe to Prototype"
 
-const heroTitleSpacing = { xs: convert(90), md: convert(90) };
 const singleImageSize = "400px"
 const groupImageSize = "300px"
-const imageSize = "400px";
 const textWidth = "700px";
 
 

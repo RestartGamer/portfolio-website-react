@@ -1,8 +1,6 @@
 import { Stack, Typography, List, ListItem } from "@mui/material"
 import { convert } from "../../utils/muiConverter"
 
-const title = "Work Experience";
-
 const experienceItems = [
     {
         id: "wtw-analyst",

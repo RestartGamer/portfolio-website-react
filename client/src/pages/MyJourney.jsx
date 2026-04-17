@@ -1,16 +1,7 @@
-import { CssBaseline, Box, Stack, Typography } from "@mui/material";
-import { Navbar, DescriptionBlock, Divider, TitleBlock } from "../components"
+import { TitleBlock } from "../components"
 import { HeroSection, ContentSection } from "../sections"
 
 import { pathwayImage } from "../assets"
-import { convert } from "../utils/muiConverter"
-import { pageLayout } from "../layout/layout.js"
-
-const {
-    sectionTitleSpacing,
-    sectionSpacing,
-    imageMaxWidth,
-} = pageLayout;
 
 const title = "My Journey"
 const subTitle = "From IT to Web-Development"

@@ -15,8 +15,6 @@ const stackIcons = [
     { name: "Jest", icon: jestIcon },
 ];
 
-const iconSize = "89px";
-const title = "My Stack";
 const stackSize = 4;
 
 function StackRow({ row }) {

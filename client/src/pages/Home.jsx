@@ -7,8 +7,6 @@ import { pageLayout } from "../layout/layout.js"
 const {
     sectionTitleSpacing,
     sectionSpacing,
-    imageMaxWidth,
-    imageMinWidth,
 } = pageLayout;
 
 const profileDescription = `Hi, I’m Can.\n
@@ -33,9 +31,7 @@ export function Home() {
             </TitleBlock>
 
             <ContentSection>
-                <HeroSection image={avatarImage} isImgLeft={true} descriptionSx={{
-
-                }}>
+                <HeroSection image={avatarImage} isImgLeft={true}>
                     {profileDescription}
                 </HeroSection>
 

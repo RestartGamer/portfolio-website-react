@@ -5,9 +5,7 @@ import { pageLayout } from "../layout/layout.js"
 const {
     pageMt,
     pageSpacing,
-    contentSpacing,
     pagePaddingX,
-    imageMaxWidth,
     pagePb,
 } = pageLayout;
 

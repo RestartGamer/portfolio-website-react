@@ -1,12 +1,8 @@
 import { Stack } from "@mui/material"
-import { convert } from "../utils/muiConverter"
 import {pageLayout} from "../layout/layout.js"
 
 const {
-  heroTitleMt,
   contentSpacing,
-  pagePaddingX,
-  imageMaxWidth,
 } = pageLayout;
 
 export function ContentSection({ children }) {

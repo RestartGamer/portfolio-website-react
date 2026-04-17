@@ -39,3 +39,21 @@ https://your-deployment-link.com
 ---
 
 ## Project Structure
+
+client/
+  src/
+    components/   Reusable UI components
+    pages/        Route-level pages
+    sections/     Larger page sections/compositions
+    services/     Frontend API / helper functions
+    layout/       Shared layout values and tokens
+    assets/       Images and static visual assets
+
+server/
+  controllers/    Request handlers
+  middleware/     Validation and request middleware
+  routes/         Express routes
+  utils/          Server-side helpers
+
+shared/
+  config/         Shared constants and Zod schemas used by client and server

@@ -25,7 +25,6 @@ const cards = [
         image: currentCVImage
     },
 ]
-const title = "My Projects";
 const descriptionText = `A responsive e-commerce concept website for the fictional jewelry brand Mangata & Gallo,
  built to simulate a real client project from homepage to product highlights and promotional sections. The focus
   is on clean layout, typography, and a smooth browsing experience across different screen sizes.`
@@ -34,9 +33,7 @@ const hoverText = "More Info";
 const hoverImageSize = "20px";
 const cardMaxWidth = "350px";
 const expandTime = "0.5s";
-const expandButtonWidth = "132px";
 
-const imageHeight = "228px";
 const stackSize = 3;
 
 
@@ -65,7 +62,6 @@ function KeywordRow({ row }) {
 
 export function ProjectsSection() {
     const [expandedCard, setExpandedCard] = useState(null);
-    const expandHeightRef = useRef(null);
     return (
         <Stack direction="row" sx={{
             gap: convert(35),

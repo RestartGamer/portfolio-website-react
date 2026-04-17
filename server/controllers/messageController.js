@@ -51,22 +51,12 @@ export async function createMessage(req, res) {
     },
     tls: {
       minVersion: "TLSv1.2",
-      rejectUnauthorized: false
     },
     family: 4, // 👈 force IPv4 (IMPORTANT)
   });
   try {
-    const newMessage = {
-      id: crypto.randomUUID(),
-      ...req.validatedData,
-      createdAt: new Date().toISOString(),
-    };
-
-    messages.push(newMessage);
 
     const emailTemplate = buildContactEmail(newMessage);
-
-    await transporter.verify();
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,

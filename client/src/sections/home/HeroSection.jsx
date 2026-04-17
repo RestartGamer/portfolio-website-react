@@ -5,8 +5,6 @@ import { DescriptionBlock } from "../../components"
 import { pageLayout } from "../../layout/layout"
 
 const {
-    sectionTitleSpacing,
-    sectionSpacing,
     imageMaxWidth,
     imageMinWidth,
 } = pageLayout;
