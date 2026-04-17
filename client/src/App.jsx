@@ -132,7 +132,7 @@ function App() {
             alignItems: "center",
             maxWidth: pageMaxWidth,
           }}>
-          <Navbar />
+          <Navbar theme={theme} setTheme={setTheme} />
 
           <PageSection>
             <Routes>
