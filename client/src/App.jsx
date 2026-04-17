@@ -75,7 +75,8 @@ const themeSettings = {
         primary: "#000000",
       },
       custom: {
-        borderDefault: "#1b1b1b"
+        borderDefault: "#1b1b1b",
+        borderDefault2: "#ffffff",
       },
       divider: "#1b1b1b"
     }
@@ -95,7 +96,7 @@ const themeSettings = {
 
       custom: {
         borderDefault: "#F2F2F2",
-
+        borderDefault2: "#131313",
 
       },
       divider: "#F2F2F2"

@@ -1,28 +1,32 @@
-import { useState, useRef } from "react"
-import { Stack, Box, Typography, Card } from "@mui/material"
+import { useState } from "react"
+import { Stack, Box, Typography, Card, useMediaQuery, useTheme } from "@mui/material"
 import { currentCVImage, mgPortfolioImage, oldCVImage, hoverImage } from "../../assets"
 import { Divider, DescriptionBlock } from "../../components"
+import { convert } from "../../utils/muiConverter"
 
-const convert = (px) => px / 8;
+
 
 const cards = [
     {
         id: "mgportfolio",
         title: "M.G - Portfolio",
         keywords: ["HTML", "CSS", "Vanilla JS"],
-        image: mgPortfolioImage
+        image: mgPortfolioImage,
+        targetRef: "https://can-k-portfolio.netlify.app/home",
     },
     {
         id: "cvportfolio",
         title: "CV - Portfolio",
         keywords: ["HTML", "CSS", "Vanilla JS"],
-        image: oldCVImage
+        image: oldCVImage,
+        targetRef: "https://can-k-cv.netlify.app/",
     },
     {
         id: "cvreactportfolio",
         title: "CV - React Portfolio",
         keywords: ["HTML", "CSS", "React.js", "Express.js", "Jest", "TypeScript"],
-        image: currentCVImage
+        image: currentCVImage,
+        targetRef: "http://localhost:5173/",
     },
 ]
 const descriptionText = `A responsive e-commerce concept website for the fictional jewelry brand Mangata & Gallo,
@@ -59,16 +63,18 @@ function KeywordRow({ row }) {
 
 
 
-
 export function ProjectsSection() {
     const [expandedCard, setExpandedCard] = useState(null);
+    const theme = useTheme();
+    const isBelowMd = useMediaQuery(theme.breakpoints.down("md"))
+
     return (
         <Stack direction="row" sx={{
             gap: convert(35),
             flexWrap: "wrap", // or remove this line entirely
             justifyContent: "center",
         }}>
-            {cards.map(({ id, image, title, keywords }) => {
+            {cards.map(({ id, image, title, keywords, targetRef }) => {
                 const rows = [];
                 for (var i = 0; i < keywords.length; i += stackSize) {
                     rows.push(keywords.slice(i, i + stackSize))
@@ -77,17 +83,30 @@ export function ProjectsSection() {
                     rows.push([]);
                 }
                 return (
-                    <Card key={id} onMouseEnter={() => setExpandedCard(id)} onMouseLeave={() => setExpandedCard(null)} sx={{
-                        overflow: "hidden",
-                        width: "fit-content",
-                        height: "fit-content",
-                        maxWidth: cardMaxWidth,
-                        pb: convert(11),
-                        border: "1px solid",
-                        borderColor: "#1465B1",
-                        borderRadius: "13px",
-                        textDecoration: "none",
-                    }}>
+                    <Card key={id} component="a" href={expandedCard !== null && targetRef}
+                        onClick={(e) => {
+                            if (isBelowMd) {
+                                if (expandedCard !== id) {
+                                    e.preventDefault();
+                                    setExpandedCard(id);
+                                }
+                            }
+                        }}
+                        onMouseEnter={() => !isBelowMd && setExpandedCard(id)} onMouseLeave={() => setExpandedCard(null)} sx={{
+                            overflow: "hidden",
+                            width: "fit-content",
+                            height: "fit-content",
+                            maxWidth: cardMaxWidth,
+                            pb: convert(11),
+                            border: "1px solid",
+                            borderColor: "#1465B1",
+                            borderRadius: "13px",
+                            textDecoration: "none",
+                            background: "background.default",
+                            "&:hover": {
+                                cursor: "pointer",
+                            }
+                        }}>
                         <Box component="img" src={image} alt={title} sx={{
                             width: "100%",
                             height: "auto",
@@ -136,7 +155,7 @@ export function ProjectsSection() {
                                     overflow: "hidden",
                                     whiteSpace: "nowrap",
                                     borderStyle: "dashed",
-                                    borderColor: "background.paper",
+                                    borderColor: "custom.borderDefault2",
                                     borderRadius: "8px",
                                     columnGap: convert(4),
 

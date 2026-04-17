@@ -45,7 +45,7 @@ function DropdownMenu({ isMenuOpen, handleNavigate, setTheme }) {
                     borderTop: "2px solid #1465B1",
                     borderBottom: "2px solid #1465B1",
                     borderLeft: "2px solid #1465B1",
-                    bgcolor: "#252525",
+                    bgcolor: "background.default",
 
                     px: convert(60),
                     py: convert(66),
@@ -61,7 +61,7 @@ function DropdownMenu({ isMenuOpen, handleNavigate, setTheme }) {
                     <ThemeButton setTheme={setTheme} />
                     {options.map(({ name, route }) => {
                         return (
-                            <ButtonBase key={name} onClick={() => handleNavigate(route)}
+                            <ButtonBase key={name} component={RouteLink} to={route}
 
                                 sx={{
                                     display: "inline-flex",
@@ -126,17 +126,13 @@ export function Navbar({ setTheme }) {
     const theme = useTheme();
     const isBelowMd = useMediaQuery(theme.breakpoints.down("md"))
 
-    function handleNavigate(route) {
-        navigate(route);
-        setIsMenuOpen(false);
-    }
     return (
         <Box sx={{
             width: "100%",
             position: "sticky",
             top: 0,
             zIndex: 1000,
-            bgcolor: "#252525",
+            bgcolor: "background.default",
             px: { xs: 0, md: convert(100) },
 
         }}>
@@ -183,7 +179,7 @@ export function Navbar({ setTheme }) {
 
                             </Box>
                         </Button>
-                        <DropdownMenu setTheme={setTheme} isMenuOpen={isMenuOpen} handleNavigate={handleNavigate} />
+                        <DropdownMenu setTheme={setTheme} isMenuOpen={isMenuOpen}  />
                     </Box>
                 )
                     : (

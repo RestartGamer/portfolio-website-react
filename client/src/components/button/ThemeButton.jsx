@@ -21,7 +21,7 @@ export function ThemeButton({setTheme}) {
                 height: height,
 
                 borderRadius: "5px",
-                background: "#171717",
+                background: "background.paper",
                 boxShadow: "0 8px 4px 2px rgba(0, 0, 0, 0.25)",
 
             }}>
@@ -36,7 +36,7 @@ export function ThemeButton({setTheme}) {
 
 
                     borderRadius: "5px",
-                    background: "#2A2A2A",
+                    bgcolor: "background.default",
                     boxShadow: "0 19px 3.5px 1px rgba(0, 0, 0, 0.25)",
                 }}>
                 <Box
