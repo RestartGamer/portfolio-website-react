@@ -2,7 +2,6 @@
 
 import crypto from "crypto";
 import nodemailer from "nodemailer";
-import { messages } from "../mock-data/messages.js";
 
 function escapeHtml(value = "") {
   return String(value)
@@ -62,7 +61,6 @@ export async function createMessage(req, res) {
       createdAt: new Date().toISOString(),
     };
 
-    messages.push(newMessage);
 
     const emailTemplate = buildContactEmail(newMessage);
 
