@@ -1,8 +1,5 @@
 
-
-import crypto from "crypto";
 import nodemailer from "nodemailer";
-import { messages } from "../mock-data/messages.js";
 
 function escapeHtml(value = "") {
   return String(value)
