@@ -24,7 +24,7 @@ export function HeroSection({ children, image, isImgLeft = true, descriptionSx =
             sx={{
                 width: "100%",
                 flexWrap: "wrap",
-                gap: convert(60),
+                gap: convert(120),
             }}>
 
             <Box component="img" src={image} alt="Profile Image"

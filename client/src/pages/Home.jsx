@@ -9,10 +9,9 @@ const {
     sectionSpacing,
 } = pageLayout;
 
-const profileDescription = `Hi, I’m Can.\n
-I’m a junior Frontend developer focused on
-building modern web applications with React and TypeScript. \n
-I have a background in IT support and multilingual communication(English, German, Portuguese).\n
+const profileDescription = `Hi, I’m Can.\n\n
+I’m a junior Frontend developer focused on building modern web applications with React
+and TypeScript. I have a background in IT support and multilingual communication(English, German, Portuguese).\n
 I’m particularly interested in building clean, performant,and scalable user interfaces.`
 
 const heroTitle = "Can Korkmaz";
@@ -31,7 +30,7 @@ export function Home() {
             </TitleBlock>
 
             <ContentSection>
-                <HeroSection image={avatarImage} isImgLeft={true}>
+                <HeroSection image={avatarImage} isImgLeft={true} descriptionSx={{maxWidth: "60%"}}>
                     {profileDescription}
                 </HeroSection>
 
