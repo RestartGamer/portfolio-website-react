@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark } from "../../assets"
+import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark, hamburgerMenuLight } from "../../assets"
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
 import { useNavigate, Link as RouteLink } from "react-router-dom"
 import { convert } from "../../utils/muiConverter"
@@ -171,7 +171,7 @@ export function Navbar({ setTheme }) {
                             }}>
                             <Box
                                 component="img"
-                                src={hamburgerMenuDark}
+                                src={theme.palette.mode === "dark" ? hamburgerMenuDark : hamburgerMenuLight}
                                 sx={{
                                     width: hamMenuSize,
                                     objectFit: "fill",
