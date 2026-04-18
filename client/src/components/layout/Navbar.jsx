@@ -25,7 +25,7 @@ const hamMenuSize = 53;
 
 
 
-function DropdownMenu({ isMenuOpen, setTheme, useReference }) {
+function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
     return (
         <Box ref={useReference}
             sx={{
@@ -61,7 +61,11 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference }) {
                     <ThemeButton setTheme={setTheme} />
                     {options.map(({ name, route }) => {
                         return (
-                            <ButtonBase key={name} component={RouteLink} to={route}
+                            <ButtonBase key={name} component={RouteLink} to={route} 
+                            onClick={()=> {
+                                setIsMenuOpen(false)
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                            }}
 
                                 sx={{
                                     display: "inline-flex",
@@ -203,7 +207,7 @@ export function Navbar({ setTheme }) {
 
                             </Box>
                         </Button>
-                        <DropdownMenu setTheme={setTheme} isMenuOpen={isMenuOpen} useReference={dropMenuRef} />
+                        <DropdownMenu setTheme={setTheme} isMenuOpen={isMenuOpen} useReference={dropMenuRef} setIsMenuOpen={setIsMenuOpen} />
                     </Box>
                 )
                     : (
