@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from "react"
-import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark, hamburgerMenuLight } from "../../assets"
+import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark, hamburgerMenuLight, githubIconDarkMode, githubIconLightMode } from "../../assets"
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
 import { useNavigate, Link as RouteLink } from "react-router-dom"
 import { convert } from "../../utils/muiConverter"
 import { ThemeButton } from "../"
 
-
 const socialMedia = [
     { id: "linkedIn", url: "https://www.linkedin.com/in/can-korkmaz/", source: linkedInIcon },
     { id: "facebook", url: "https://www.facebook.com/ckckorkmaz", source: fbIcon },
     { id: "instagram", url: "https://www.instagram.com/", source: instaIcon },
+    { id: "github", url: "https://github.com/RestartGamer", source: githubIconDarkMode, sourceLight: githubIconLightMode },
 ]
 
 const options = [
@@ -61,11 +61,11 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
                     <ThemeButton setTheme={setTheme} />
                     {options.map(({ name, route }) => {
                         return (
-                            <ButtonBase key={name} component={RouteLink} to={route} 
-                            onClick={()=> {
-                                setIsMenuOpen(false)
-                                window.scrollTo({ top: 0, behavior: "smooth" });
-                            }}
+                            <ButtonBase key={name} component={RouteLink} to={route}
+                                onClick={() => {
+                                    setIsMenuOpen(false)
+                                    window.scrollTo({ top: 0, behavior: "smooth" });
+                                }}
 
                                 sx={{
                                     display: "inline-flex",
@@ -95,7 +95,7 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
     )
 }
 
-function SocialIconLink({ id, url, source }) {
+function SocialIconLink({ id, url, source, sourceLight = null, theme }) {
     return (
         <Box
             component="a"
@@ -113,7 +113,7 @@ function SocialIconLink({ id, url, source }) {
 
             }}>
 
-            <Box component="img" alt={id} src={source} sx={{
+            <Box component="img" alt={id} src={sourceLight && theme.palette.mode === "light" ? sourceLight : source} sx={{
                 width: "100%",
                 height: "100%"
             }} />
@@ -179,9 +179,9 @@ export function Navbar({ setTheme }) {
 
 
                 <Stack direction="row" spacing={convert(27)} sx={{ alignItems: "center" }}>
-                    {socialMedia.map(({ id, url, source }) => {
+                    {socialMedia.map(({ id, url, source, sourceLight }) => {
                         return (
-                            <SocialIconLink key={id} id={id} url={url} source={source} />
+                            <SocialIconLink key={id} id={id} url={url} source={source} sourceLight={sourceLight} theme={theme} />
                         )
                     })}
                 </Stack>
