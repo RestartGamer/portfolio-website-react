@@ -31,7 +31,7 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
             sx={{
                 position: "absolute",
                 top: "100%",
-                right: "0",
+                right: "-40%",
                 overflow: "hidden",
                 pointerEvents: isMenuOpen ? "auto" : "none",
                 pb: convert(1),
@@ -178,7 +178,7 @@ export function Navbar({ setTheme }) {
             >
 
 
-                <Stack direction="row" spacing={convert(27)} sx={{ alignItems: "center" }}>
+                <Stack direction="row" spacing={{md: convert(27), xs: convert(13)}} sx={{ alignItems: "center" }}>
                     {socialMedia.map(({ id, url, source, sourceLight }) => {
                         return (
                             <SocialIconLink key={id} id={id} url={url} source={source} sourceLight={sourceLight} theme={theme} />
@@ -215,18 +215,24 @@ export function Navbar({ setTheme }) {
                         <Stack direction="row"
                             sx={{
                                 textDecoration: "none",
-                                gap: convert(40),
+                                gap: "6vw",
+                                
                             }}>
                             <ThemeButton setTheme={setTheme} />
                             {options.map(({ name, route }) => {
                                 return (
-                                    <ButtonBase key={name} component={RouteLink} to={route} sx={{
+                                    <ButtonBase key={name} component={RouteLink} to={route} 
+                                    onClick={()=> window.scrollTo({ top: 0, behavior: "smooth" })}
+                                    sx={{
                                         textDecoration: "none",
                                         color: "text.primary",
-                                        px: convert(40),
+                                        px: "0.5vw",
                                         py: convert(1),
+                                        borderRadius: "10px"
                                     }}>
-                                        <Typography variant="cardTitle">
+                                        <Typography variant="cardTitle" sx={{
+                                            textWrap: "nowrap"
+                                        }}>
                                             {name}
                                         </Typography>
                                     </ButtonBase>
