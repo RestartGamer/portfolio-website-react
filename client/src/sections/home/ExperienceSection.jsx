@@ -85,7 +85,7 @@ function ExperienceItem({ title, subTitle, date, location, descriptions }) {
 
 
             <Stack direction="column" spacing={convert(10)} sx={{
-                width:"max-content",
+                width:"100%",
                 flex: 1,
             }}>
                 <TitleBox title={title} subTitle={subTitle} />
