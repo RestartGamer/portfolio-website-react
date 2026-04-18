@@ -30,7 +30,7 @@ export function Home() {
             </TitleBlock>
 
             <ContentSection>
-                <HeroSection image={avatarImage} isImgLeft={true} descriptionSx={{maxWidth: "60%"}}>
+                <HeroSection image={avatarImage} isImgLeft={true} descriptionSx={{maxWidth: {md: "60%"} }}>
                     {profileDescription}
                 </HeroSection>
 
