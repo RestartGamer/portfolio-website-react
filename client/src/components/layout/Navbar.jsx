@@ -173,12 +173,12 @@ export function Navbar({ setTheme }) {
                     px: convert(27),
 
                     borderBottom: "1px solid",
-                    borderColor: "custom.borderDefault"
+                    borderColor: "custom.borderDefault",
                 }}
             >
 
 
-                <Stack direction="row" spacing={{md: convert(27), xs: convert(13)}} sx={{ alignItems: "center" }}>
+                <Stack direction="row" spacing={{md: convert(27), xs: convert(13)}} sx={{ alignItems: "center" , pr:convert(10)}}>
                     {socialMedia.map(({ id, url, source, sourceLight }) => {
                         return (
                             <SocialIconLink key={id} id={id} url={url} source={source} sourceLight={sourceLight} theme={theme} />
