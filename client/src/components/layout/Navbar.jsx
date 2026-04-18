@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark, hamburgerMenuLight } from "../../assets"
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
 import { useNavigate, Link as RouteLink } from "react-router-dom"
@@ -25,9 +25,9 @@ const hamMenuSize = 53;
 
 
 
-function DropdownMenu({ isMenuOpen, handleNavigate, setTheme }) {
+function DropdownMenu({ isMenuOpen, setTheme, useReference }) {
     return (
-        <Box
+        <Box ref={useReference}
             sx={{
                 position: "absolute",
                 top: "100%",
@@ -120,11 +120,35 @@ function SocialIconLink({ id, url, source }) {
 
 }
 
+
+
 export function Navbar({ setTheme }) {
-    const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const theme = useTheme();
+    const theme = useTheme()
     const isBelowMd = useMediaQuery(theme.breakpoints.down("md"))
+    const dropMenuRef = useRef(null)
+    const hamMenuRef = useRef(null)
+
+    useEffect(() => {
+
+        function offClickHandler(e) {
+            if (dropMenuRef.current && !dropMenuRef.current.contains(e.target) &&
+                hamMenuRef.current && !hamMenuRef.current.contains(e.target)) {
+                setIsMenuOpen(false)
+            }
+
+
+        }
+        document.addEventListener("mousedown", offClickHandler)
+
+        return () => {
+            document.removeEventListener("mousedown", offClickHandler)
+        }
+
+
+    }, [])
+
+
 
     return (
         <Box sx={{
@@ -160,7 +184,7 @@ export function Navbar({ setTheme }) {
 
                 {isBelowMd ? (
 
-                    <Box sx={{ position: "relative" }}>
+                    <Box ref={hamMenuRef} sx={{ position: "relative" }}>
                         <Button
                             onClick={() => setIsMenuOpen(prev => !prev)}
                             aria-label="Open navigation menu"
@@ -179,7 +203,7 @@ export function Navbar({ setTheme }) {
 
                             </Box>
                         </Button>
-                        <DropdownMenu setTheme={setTheme} isMenuOpen={isMenuOpen}  />
+                        <DropdownMenu setTheme={setTheme} isMenuOpen={isMenuOpen} useReference={dropMenuRef} />
                     </Box>
                 )
                     : (
