@@ -155,14 +155,10 @@ export function Navbar({ setTheme }) {
 
 
     return (
-        <Box component="navbar" sx={{
+        <Box component="nav" sx={{
             width: "100%",
-            position: "sticky",
-            top: 0,
-            zIndex: 1000,
             bgcolor: "background.default",
             px: { xs: 0, md: convert(100) },
-
         }}>
             <Stack direction="row"
                 sx={{
@@ -221,14 +217,26 @@ export function Navbar({ setTheme }) {
                             <ThemeButton setTheme={setTheme} />
                             {options.map(({ name, route }) => {
                                 return (
-                                    <ButtonBase key={name} component={RouteLink} to={route} 
+                                    <ButtonBase 
+                                    component={RouteLink}
+                                    key={name}  
+                                    to={route} 
                                     onClick={()=> window.scrollTo({ top: 0, behavior: "smooth" })}
                                     sx={{
                                         textDecoration: "none",
                                         color: "text.primary",
                                         px: "0.5vw",
                                         py: convert(1),
-                                        borderRadius: "10px"
+                                        borderRadius: "10px",
+                                        border: "1px solid",
+                                        borderColor: "transparent",
+                                        "&:focus": {
+                                            borderColor: "custom.borderDefault",
+                                        },          
+                                        "&:hover": {
+                                            borderColor: "custom.borderDefault",
+                                        }
+
                                     }}>
                                         <Typography variant="cardTitle" sx={{
                                             textWrap: "nowrap"

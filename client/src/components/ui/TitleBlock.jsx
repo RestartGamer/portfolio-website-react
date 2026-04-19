@@ -12,12 +12,14 @@ export function TitleBlock({ title, children = null, variant = "heroTitle", sx =
                 alignItems: "center",
                 ...sx,
             }}>
-            <Typography variant={variant}>{title}</Typography>
+            <Typography variant={variant} component={
+                variant === "heroTitle" ? "h1" : variant === "headingTitle" ? "h2" : variant === "sectionTitle" && "h3" 
+            }>{title}</Typography>
 
 
             {
                 children !== null &&
-                <Typography variant="sectionTitle" sx={{
+                <Typography variant="sectionTitle" component="h3" sx={{
                     fontFamily: `"EB Garamond", serif`,
                     fontWeight: "400",
 

@@ -155,8 +155,15 @@ function App() {
             width: "100%",
             alignItems: "center",
             maxWidth: pageMaxWidth,
+            
           }}>
-          <Box component="header" sx={{ width: "100%" }}>
+          <Box component="header" 
+          sx={{ 
+            width: "100%",
+            position: "sticky",
+            top: 0,
+            zIndex: 1000,
+            }}>
             <Navbar theme={theme} setTheme={setTheme} />
           </Box>
 

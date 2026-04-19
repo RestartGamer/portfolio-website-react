@@ -79,6 +79,7 @@ function InputField({ label, children }) {
   return (
     <Stack direction="column">
       <InputLabel
+        htmlFor={label}
         sx={{
           color: "text.primary",
           typography: "bodyLarge",
@@ -97,6 +98,7 @@ function FieldControl({ field, register, error }) {
     return (
       <>
         <TextField
+          id={field.label}
           {...register(field.zodId)}
           placeholder={field.placeholder ?? ""}
           {...(field.textFieldProps ?? {})}

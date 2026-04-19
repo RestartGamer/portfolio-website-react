@@ -13,6 +13,8 @@ const textLayout = {
     flex: "1 0 550px",
 }
 
+const avatarAlt = "Portrait of Can Korkmaz"
+
 export function HeroSection({ children, image, isImgLeft = true, descriptionSx = {} , imageSx ={}}) {
 
     return (
@@ -27,7 +29,7 @@ export function HeroSection({ children, image, isImgLeft = true, descriptionSx =
                 gap: convert(120),
             }}>
 
-            <Box component="img" src={image} alt="Profile Image"
+            <Box component="img" src={image} alt={avatarAlt}
                 sx={{
                     width: "100%",
                     minWidth: imageMinWidth,

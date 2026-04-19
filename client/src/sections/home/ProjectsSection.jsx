@@ -12,21 +12,21 @@ const cards = [
         title: "M.G - Portfolio",
         keywords: ["HTML", "CSS", "Vanilla JS"],
         image: mgPortfolioImage,
-        targetRef: "https://can-k-portfolio.netlify.app/home",
+        targetLink: "https://can-k-portfolio.netlify.app/home",
     },
     {
         id: "cvportfolio",
         title: "CV - Portfolio",
         keywords: ["HTML", "CSS", "Vanilla JS"],
         image: oldCVImage,
-        targetRef: "https://can-k-cv.netlify.app/",
+        targetLink: "https://can-k-cv.netlify.app/",
     },
     {
         id: "cvreactportfolio",
         title: "CV - React Portfolio",
         keywords: ["HTML", "CSS", "React.js", "Express.js", "Jest", "TypeScript"],
         image: currentCVImage,
-        targetRef: "http://localhost:5173/",
+        targetLink: "http://localhost:5173/",
     },
 ]
 const descriptionText = `A responsive e-commerce concept website for the fictional jewelry brand Mangata & Gallo,
@@ -74,7 +74,7 @@ export function ProjectsSection() {
             flexWrap: "wrap", // or remove this line entirely
             justifyContent: "center",
         }}>
-            {cards.map(({ id, image, title, keywords, targetRef }) => {
+            {cards.map(({ id, image, title, keywords, targetLink: targetLink }) => {
                 const rows = [];
                 for (var i = 0; i < keywords.length; i += stackSize) {
                     rows.push(keywords.slice(i, i + stackSize))
@@ -83,7 +83,8 @@ export function ProjectsSection() {
                     rows.push([]);
                 }
                 return (
-                    <Card key={id} component="a" href={expandedCard !== null && targetRef}
+                    <Card key={id} component="a" href={expandedCard !== null && targetLink}
+                        aria-label={`Open project: ${title}`}
                         onClick={(e) => {
                             if (isBelowMd) {
                                 if (expandedCard !== id) {
@@ -92,7 +93,10 @@ export function ProjectsSection() {
                                 }
                             }
                         }}
-                        onMouseEnter={() => !isBelowMd && setExpandedCard(id)} onMouseLeave={() => setExpandedCard(null)} sx={{
+                        onFocus={() => !isBelowMd && setExpandedCard(id)}
+                        onMouseEnter={() => !isBelowMd && setExpandedCard(id)} 
+                        onMouseLeave={() => setExpandedCard(null)} 
+                        sx={{
                             overflow: "hidden",
                             width: "fit-content",
                             height: "fit-content",

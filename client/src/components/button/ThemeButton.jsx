@@ -2,7 +2,7 @@ import { ButtonBase, Box, useTheme } from "@mui/material"
 import { convert } from "../../utils/muiConverter"
 
 
-export function ThemeButton({setTheme}) {
+export function ThemeButton({ setTheme }) {
     const theme = useTheme();
     const mode = theme.palette.mode;
     const width = 78;
@@ -10,6 +10,7 @@ export function ThemeButton({setTheme}) {
     const animTime = "0.2s";
     return (
         <ButtonBase
+            aria-label={mode === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             onClick={() => setTheme(prev => prev === "dark" ? "light" : "dark")}
             sx={{
                 display: "flex",
@@ -23,6 +24,15 @@ export function ThemeButton({setTheme}) {
                 borderRadius: "5px",
                 background: "background.paper",
                 boxShadow: "0 8px 4px 2px rgba(0, 0, 0, 0.25)",
+                
+                border: "1px solid",
+                borderColor: "transparent",
+                "&:focus": {
+                    borderColor: "custom.borderDefault",
+                },
+                "&:hover": {
+                    borderColor: "custom.borderDefault",
+                }
 
             }}>
             <Box
@@ -54,12 +64,12 @@ export function ThemeButton({setTheme}) {
                             width: "var(--width)",
                             height: "100%",
                             zIndex: 10,
-                            position:"absolute",
-                            left: mode==="light" ? `calc(100% - var(--width))` : 0,
+                            position: "absolute",
+                            left: mode === "light" ? `calc(100% - var(--width))` : 0,
                             transition: `left ${animTime} ease-in-out`,
 
                             borderRadius: "4px",
-                            background: mode==="light"? "#00B2E3": "#616161",
+                            background: mode === "light" ? "#00B2E3" : "#616161",
                         }}>
 
                     </Box>
