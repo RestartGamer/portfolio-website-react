@@ -155,7 +155,7 @@ export function Navbar({ setTheme }) {
 
 
     return (
-        <Box sx={{
+        <Box component="navbar" sx={{
             width: "100%",
             position: "sticky",
             top: 0,

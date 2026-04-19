@@ -7,7 +7,7 @@ import { UXWireframing } from "./pages/UXWireframing"
 import { Navbar } from "./components"
 
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { CssBaseline, Stack } from "@mui/material";
+import { CssBaseline, Stack, Box } from "@mui/material";
 import { pageLayout } from "./layout/layout.js"
 import { PageSection } from "./sections"
 
@@ -121,6 +121,29 @@ function App() {
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
+      <Box
+        component="a"
+        href="#main-content"
+        sx={{
+          position: "absolute",
+          left: 16,
+          top: 0,
+          transform: "translateY(-120%)",
+          zIndex: 2000,
+          px: 2,
+          py: 1,
+          bgcolor: "background.paper",
+          color: "text.primary",
+          textDecoration: "none",
+          border: "1px solid",
+          borderColor: "divider",
+          "&:focus": {
+            transform: "translateY(0)",
+          },
+        }}
+      >
+        Skip to main content
+      </Box>
 
       <Stack direction="column" sx={{
         alignItems: "center",
@@ -133,7 +156,9 @@ function App() {
             alignItems: "center",
             maxWidth: pageMaxWidth,
           }}>
-          <Navbar theme={theme} setTheme={setTheme} />
+          <Box component="header" sx={{ width: "100%" }}>
+            <Navbar theme={theme} setTheme={setTheme} />
+          </Box>
 
           <PageSection>
             <Routes>

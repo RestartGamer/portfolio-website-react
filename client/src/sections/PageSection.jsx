@@ -12,6 +12,7 @@ const {
 export function PageSection({ children }) {
     return (
         <Stack
+            component="main" id="main-content"
             alignItems="center"
             sx={{
                 mt: pageMt,
