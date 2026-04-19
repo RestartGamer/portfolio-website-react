@@ -99,6 +99,7 @@ function SocialIconLink({ id, url, source, sourceLight = null, theme }) {
     return (
         <Box
             component="a"
+            aria-label={`Open ${id.charAt(0).toUpperCase() + id.slice(1)} profile`}
             href={url}
             target="_blank"
             rel="noreferrer"

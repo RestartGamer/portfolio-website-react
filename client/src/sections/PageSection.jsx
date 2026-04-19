@@ -14,6 +14,7 @@ export function PageSection({ children }) {
         <Stack
             component="main" id="main-content"
             alignItems="center"
+            tabIndex={-1}
             sx={{
                 mt: pageMt,
                 pb: pagePb,
