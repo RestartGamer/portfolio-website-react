@@ -28,6 +28,7 @@ const hamMenuSize = 53;
 function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
     return (
         <Box ref={useReference}
+        id="navbarDropdown"
             sx={{
                 position: "absolute",
                 top: "100%",
@@ -62,6 +63,7 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
                     {options.map(({ name, route }) => {
                         return (
                             <ButtonBase key={name} component={RouteLink} to={route}
+                                aria-label={`Go to ${name}`}
                                 onClick={() => {
                                     setIsMenuOpen(false)
                                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -99,6 +101,7 @@ function SocialIconLink({ id, url, source, sourceLight = null, theme }) {
     return (
         <Box
             component="a"
+            aria-label={`Open ${id.charAt(0).toUpperCase() + id.slice(1)} profile`}
             href={url}
             target="_blank"
             rel="noreferrer"
@@ -155,14 +158,10 @@ export function Navbar({ setTheme }) {
 
 
     return (
-        <Box sx={{
+        <Box component="nav" sx={{
             width: "100%",
-            position: "sticky",
-            top: 0,
-            zIndex: 1000,
             bgcolor: "background.default",
             px: { xs: 0, md: convert(100) },
-
         }}>
             <Stack direction="row"
                 sx={{
@@ -191,9 +190,10 @@ export function Navbar({ setTheme }) {
                     <Box ref={hamMenuRef} sx={{ position: "relative" }}>
                         <Button
                             onClick={() => setIsMenuOpen(prev => !prev)}
-                            aria-label="Open navigation menu"
+                            aria-label={ isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                             aria-expanded={isMenuOpen}
                             aria-haspopup="true"
+                            aria-controls="navbarDropdown"
                             sx={{
                                 display: "inline-flex"
                             }}>
@@ -221,14 +221,27 @@ export function Navbar({ setTheme }) {
                             <ThemeButton setTheme={setTheme} />
                             {options.map(({ name, route }) => {
                                 return (
-                                    <ButtonBase key={name} component={RouteLink} to={route} 
+                                    <ButtonBase 
+                                    aria-label={`Go to ${name}`}
+                                    component={RouteLink}
+                                    key={name}  
+                                    to={route} 
                                     onClick={()=> window.scrollTo({ top: 0, behavior: "smooth" })}
                                     sx={{
                                         textDecoration: "none",
                                         color: "text.primary",
                                         px: "0.5vw",
                                         py: convert(1),
-                                        borderRadius: "10px"
+                                        borderRadius: "10px",
+                                        border: "1px solid",
+                                        borderColor: "transparent",
+                                        "&:focus": {
+                                            borderColor: "custom.borderDefault",
+                                        },          
+                                        "&:hover": {
+                                            borderColor: "custom.borderDefault",
+                                        }
+
                                     }}>
                                         <Typography variant="cardTitle" sx={{
                                             textWrap: "nowrap"

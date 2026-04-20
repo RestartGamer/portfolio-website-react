@@ -35,32 +35,32 @@ export function Home() {
                 </HeroSection>
 
 
-                <Stack direction="row" justifyContent="center" sx={{
+                <Stack component="section" direction="row" justifyContent="center" sx={{
                     width: "100%",
                     flexWrap: "wrap",
                     gap: sectionSpacing,
                 }}>
-                    <Stack spacing={sectionTitleSpacing}>
+                    <Stack component="section" spacing={sectionTitleSpacing}>
                         <TitleBlock title="My Stack" variant="headingTitle" />
                         <SectionStack />
                     </Stack>
-                    <Stack spacing={sectionTitleSpacing}>
+                    <Stack component="section" spacing={sectionTitleSpacing}>
                         <TitleBlock title="Education" variant="headingTitle" />
                         <EducationSection />
                     </Stack>
                 </Stack>
 
-                <Stack spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
+                <Stack component="section" spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
                     <TitleBlock title="My Projects" variant="headingTitle" />
                     <ProjectsSection />
                 </Stack>
 
-                <Stack spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
+                <Stack component="section" spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
                     <TitleBlock title="Work Experience" variant="headingTitle" />
                     <ExperienceSection />
                 </Stack>
 
-                <Stack spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
+                <Stack component="section" spacing={sectionTitleSpacing} sx={{ width: "100%" }}>
                     <TitleBlock title="Contact Me" variant="headingTitle" />
                     <ContactForm />
                 </Stack>

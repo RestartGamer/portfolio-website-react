@@ -7,7 +7,8 @@ const {
 
 export function ContentSection({ children }) {
     return (
-        <Stack
+        <Stack 
+            component="section"
             alignItems="center"
             sx={{
                 width:"100%",

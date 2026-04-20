@@ -13,7 +13,8 @@ const textLayout = {
     flex: "1 0 550px",
 }
 
-export function HeroSection({ children, image, isImgLeft = true, descriptionSx = {} , imageSx ={}}) {
+
+export function HeroSection({ children, image, isImgLeft = true, descriptionSx = {} , imageSx ={},  imageAlt = "Portrait of Can Korkmaz"}) {
 
     return (
         <Stack direction={{
@@ -27,7 +28,7 @@ export function HeroSection({ children, image, isImgLeft = true, descriptionSx =
                 gap: convert(120),
             }}>
 
-            <Box component="img" src={image} alt="Profile Image"
+            <Box component="img" src={image} alt={imageAlt}
                 sx={{
                     width: "100%",
                     minWidth: imageMinWidth,
