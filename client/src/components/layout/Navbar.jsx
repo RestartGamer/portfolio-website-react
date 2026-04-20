@@ -28,6 +28,7 @@ const hamMenuSize = 53;
 function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
     return (
         <Box ref={useReference}
+        id="navbarDropdown"
             sx={{
                 position: "absolute",
                 top: "100%",
@@ -62,6 +63,7 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
                     {options.map(({ name, route }) => {
                         return (
                             <ButtonBase key={name} component={RouteLink} to={route}
+                                aria-label={`Go to ${name}`}
                                 onClick={() => {
                                     setIsMenuOpen(false)
                                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -188,9 +190,10 @@ export function Navbar({ setTheme }) {
                     <Box ref={hamMenuRef} sx={{ position: "relative" }}>
                         <Button
                             onClick={() => setIsMenuOpen(prev => !prev)}
-                            aria-label="Open navigation menu"
+                            aria-label={ isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                             aria-expanded={isMenuOpen}
                             aria-haspopup="true"
+                            aria-controls="navbarDropdown"
                             sx={{
                                 display: "inline-flex"
                             }}>
@@ -219,6 +222,7 @@ export function Navbar({ setTheme }) {
                             {options.map(({ name, route }) => {
                                 return (
                                     <ButtonBase 
+                                    aria-label={`Go to ${name}`}
                                     component={RouteLink}
                                     key={name}  
                                     to={route} 

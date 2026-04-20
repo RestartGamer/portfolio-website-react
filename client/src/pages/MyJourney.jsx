@@ -17,12 +17,12 @@ export function MyJourney() {
     return (
         <>
 
-            <TitleBlock title={title} variant="heroTitle">
+            <TitleBlock title={title} variant="heroTitle" >
                 {subTitle}
             </TitleBlock>
 
             <ContentSection>
-                <HeroSection image={pathwayImage} isImgLeft={false} imageSx={{
+                <HeroSection image={pathwayImage} isImgLeft={false} imageAlt="A picture of a curvy road" imageSx={{
                     maxWidth: "500px",
                 }}>
                     {description}
