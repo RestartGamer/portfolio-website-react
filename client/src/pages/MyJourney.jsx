@@ -8,8 +8,7 @@ const subTitle = "From IT to Web-Development"
 
 const description = `I believe the road to success isn’t always linear, but that’s what creates authenticity.\n
 Throughout my journey in IT Support, I became increasingly drawn to the creative side of technology.\n
-So I started learning about the basics of web design, and deepened my knowledge, to the point of building
- products that aim to be intuitive, meaningful and, most of all, human.`
+So I started learning about the basics of web design, and deepened my knowledge, to the point of building products that aim to be intuitive, meaningful and, most of all, human.`
 
 
 
