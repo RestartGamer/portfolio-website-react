@@ -24,7 +24,7 @@ const cards = [
     {
         id: "cvreactportfolio",
         title: "CV - React Portfolio",
-        keywords: ["HTML", "CSS", "React.js", "Express.js", "Jest", "TypeScript"],
+        keywords: ["HTML", "CSS", "React.js", "Express.js", "", ""],
         image: currentCVImage,
         targetLink: "https://can-k-portfolio-app.netlify.app/",
     },
