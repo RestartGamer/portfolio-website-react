@@ -64,8 +64,6 @@ export async function createMessage(req, res) {
 
     const emailTemplate = buildContactEmail(newMessage);
 
-    await transporter.verify();
-
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
