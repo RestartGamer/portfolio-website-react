@@ -8,26 +8,27 @@ import { convert } from "../../utils/muiConverter"
 
 const cards = [
     {
+        id: "cvreactportfolio",
+        title: "Full-Stack CV",
+        keywords: ["HTML", "CSS", "React.js", "Express.js", "", ""],
+        image: currentCVImage,
+        targetLink: "https://react-cv-portfolio.netlify.app/",
+    },
+    {
         id: "mgportfolio",
-        title: "M.G - Portfolio",
+        title: "E-Commerce UI",
         keywords: ["HTML", "CSS", "Vanilla JS"],
         image: mgPortfolioImage,
         targetLink: "https://mangata-gallo-ecommerce-ui.netlify.app/",
     },
     {
         id: "cvportfolio",
-        title: "CV - Portfolio",
+        title: "Vanilla JS CV",
         keywords: ["HTML", "CSS", "Vanilla JS"],
         image: oldCVImage,
         targetLink: "https://vanilla-js-cv-portfolio.netlify.app/",
     },
-    {
-        id: "cvreactportfolio",
-        title: "CV - React Portfolio",
-        keywords: ["HTML", "CSS", "React.js", "Express.js", "", ""],
-        image: currentCVImage,
-        targetLink: "https://react-cv-portfolio.netlify.app/",
-    },
+    
 ]
 const descriptionText = `A responsive e-commerce concept website for the fictional jewelry brand Mangata & Gallo,
  built to simulate a real client project from homepage to product highlights and promotional sections. The focus
@@ -190,7 +191,7 @@ export function ProjectsSection() {
 
                                         {/*BOX RIGHT*/}
                                         <Stack alignItems="end" sx={{
-                                            px: convert(23),
+                                            pr: convert(20),
                                             width: "50%",
                                         }}>
                                             <Stack direction="row" justifyContent="end" sx={{
