@@ -244,7 +244,7 @@ export function ContactForm() {
           {fallbackUrl && (
             <Stack spacing={convert(10)}>
               <Typography variant="bodyLarge">
-                The email service is temporarily unavailable. You can still contact me directly using the button below.
+                Message delivery timed out. You can contact me directly using the button below.
               </Typography>
 
               <Button component="a" href={fallbackUrl} variant="outlined">
