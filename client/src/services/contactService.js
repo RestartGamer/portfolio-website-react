@@ -16,10 +16,7 @@ Message:
 ${payload.message}`
   );
 
-  window.open(
-  `mailto:${adminEmail}?subject=${subject}&body=${body}`,
-  "_blank"
-);
+  return `mailto:${adminEmail}?subject=${subject}&body=${body}`;
 }
 
 

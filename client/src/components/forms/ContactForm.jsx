@@ -158,13 +158,26 @@ function FieldControl({ field, register, error, control }) {
 
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [fallbackUrl, setFallbackUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(data) {
     try {
-      await submitContactMessage(data);
+      setIsLoading(true);
+      setFallbackUrl("");
+
+      const result = await submitContactMessage(data);
+
+      if (result?.status === "fallback") {
+        setFallbackUrl(result.fallbackUrl);
+        return;
+      }
+
       setIsSubmitted(true);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -228,6 +241,22 @@ export function ContactForm() {
             </InputField>
 
           ))}
+          {fallbackUrl && (
+            <Stack spacing={convert(10)}>
+              <Typography variant="bodyLarge">
+                The email service is temporarily unavailable. You can still contact me directly using the button below.
+              </Typography>
+
+              <Button component="a" href={fallbackUrl} variant="outlined">
+                Open email app
+              </Button>
+            </Stack>
+          )}
+          {isLoading && (
+            <Typography variant="bodyLarge" role="status" aria-live="polite">
+              Sending your message...
+            </Typography>
+          )}
           <Button variant="contained" type="submit">
             Submit
           </Button>
