@@ -1,11 +1,7 @@
-
-const adminEmail = "ckorkmaz56@gmail.com"
+const adminEmail = "ckorkmaz56@gmail.com";
 const API_BASE = import.meta.env.VITE_API_URL;
 
-
 function openFallbackMailto(payload) {
-  const adminEmail = "ckorkmaz56@gmail.com";
-
   const subject = encodeURIComponent(`Portfolio Contact: ${payload.inquiry}`);
   const body = encodeURIComponent(
 `Name: ${payload.name}
@@ -18,7 +14,6 @@ ${payload.message}`
 
   return `mailto:${adminEmail}?subject=${subject}&body=${body}`;
 }
-
 
 export async function submitContactMessage(payload) {
   try {
@@ -35,9 +30,12 @@ export async function submitContactMessage(payload) {
     }
 
     return { status: "sent" };
-
   } catch (error) {
-    openFallbackMailto(payload);
-    return { status: "fallback-opened" };
+    console.error("Email API failed, using mailto fallback:", error);
+
+    return {
+      status: "fallback",
+      fallbackUrl: openFallbackMailto(payload),
+    };
   }
 }
