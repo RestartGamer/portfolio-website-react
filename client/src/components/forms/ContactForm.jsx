@@ -241,25 +241,33 @@ export function ContactForm() {
             </InputField>
 
           ))}
-          {fallbackUrl && (
-            <Stack spacing={convert(10)}>
-              <Typography variant="bodyLarge">
-                Message delivery timed out. You can contact me directly using the button below.
-              </Typography>
-
-              <Button component="a" href={fallbackUrl} variant="outlined">
-                Open email app
-              </Button>
-            </Stack>
-          )}
           {isLoading && (
             <Typography variant="bodyLarge" role="status" aria-live="polite">
               Sending your message...
             </Typography>
           )}
-          <Button variant="contained" type="submit">
-            Submit
-          </Button>
+          {fallbackUrl ? (
+            <>
+              <Stack spacing={convert(10)}>
+                <Typography variant="bodyLarge">
+                  Message delivery timed out. You can contact me directly using the button below.
+                </Typography>
+
+                <Button component="a" href={fallbackUrl} variant="outlined">
+                  Open email app
+                </Button>
+              </Stack>
+              <Button variant="contained" type="submit">
+                Try again
+              </Button>
+
+            </>
+          ) :
+            <Button variant="contained" type="submit">
+              Submit
+            </Button>
+          }
+
         </>
       )}
     </Stack>
