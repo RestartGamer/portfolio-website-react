@@ -1,7 +1,7 @@
-
-
 import crypto from "crypto";
 import nodemailer from "nodemailer";
+import type { Request, Response } from "express";
+import type { ContactFormData } from "../../shared/config/schema.js";
 
 function escapeHtml(value = "") {
   return String(value)
@@ -12,7 +12,18 @@ function escapeHtml(value = "") {
     .replace(/'/g, "&#39;");
 }
 
-function buildContactEmail(data) {
+type EmailTemplate = {
+  subject: string;
+  text: string;
+  html: string;
+};
+
+type MessageData = ContactFormData & {
+  id: string;
+  createdAt: string;
+};
+
+function buildContactEmail(data: MessageData): EmailTemplate {
   const safeName = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
   const safeInquiry = escapeHtml(data.inquiry);
@@ -39,28 +50,31 @@ function buildContactEmail(data) {
   };
 }
 
-export async function createMessage(req, res) {
-  const transporter = nodemailer.createTransport({
+export async function createMessage(req: Request, res: Response): Promise<void> {
+  // Variable avoids excess-property check; family (force IPv4) is valid at runtime but absent from @types/nodemailer.
+  // Non-null assertions on EMAIL_USER/PASS preserve original behavior (runtime fails if unset, same as JS).
+  const smtpOptions = {
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: process.env.EMAIL_USER!,
+      pass: process.env.EMAIL_PASS!,
     },
     tls: {
-      minVersion: "TLSv1.2",
-      rejectUnauthorized: false
+      minVersion: "TLSv1.2" as const,
+      rejectUnauthorized: false,
     },
-    family: 4, // 👈 force IPv4 (IMPORTANT)
-  });
+    family: 4,
+  };
+  const transporter = nodemailer.createTransport(smtpOptions);
+
   try {
-    const newMessage = {
+    const newMessage: MessageData = {
       id: crypto.randomUUID(),
       ...req.validatedData,
       createdAt: new Date().toISOString(),
     };
-
 
     const emailTemplate = buildContactEmail(newMessage);
 
@@ -73,19 +87,18 @@ export async function createMessage(req, res) {
       html: emailTemplate.html,
     });
 
-
     res.status(201).json({
       success: true,
       message: "Message created and email sent successfully",
       data: newMessage,
     });
-    console.log("message sent via nodemailer")
+    console.log("message sent via nodemailer");
   } catch (err) {
     console.error("createMessage error:", err);
     res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: err.message,
+      error: err instanceof Error ? err.message : String(err),
     });
   }
 }

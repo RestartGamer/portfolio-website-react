@@ -43,10 +43,9 @@ const experienceItems = [
 type TitleBoxProps = {
   title: string;
   subTitle: string;
-  sx?: SxProps<Theme>;
 };
 
-function TitleBox({ title, subTitle, sx: _sx = {} }: TitleBoxProps) {
+function TitleBox({ title, subTitle }: TitleBoxProps) {
     return (
         <Stack direction="column" spacing={convert(4)} >
             <Typography variant="sectionTitle">{title}</Typography>
@@ -58,10 +57,9 @@ function TitleBox({ title, subTitle, sx: _sx = {} }: TitleBoxProps) {
 type DateAndLocationProps = {
   date: string;
   location: string;
-  sx?: SxProps<Theme>;
 };
 
-function DateAndLocation({ date, location, sx: _sx = {} }: DateAndLocationProps) {
+function DateAndLocation({ date, location }: DateAndLocationProps) {
     return (
         <Stack direction="column" spacing={convert(1)}>
             <Typography variant="bodyLarge">{date}</Typography>

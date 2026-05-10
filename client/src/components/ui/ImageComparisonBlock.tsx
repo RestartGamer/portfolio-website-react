@@ -7,11 +7,10 @@ type ImageComparisonBlockProps = {
   midText?: string;
   image2: string;
   alt2?: string;
-  isHorizontal?: boolean;
   size?: string;
 };
 
-export function ImageComparisonBlock({ image1, alt1 = "Image 1", midText = "to", image2, alt2 = "Image 2", isHorizontal: _isHorizontal = true, size = "300px" }: ImageComparisonBlockProps) {
+export function ImageComparisonBlock({ image1, alt1 = "Image 1", midText = "to", image2, alt2 = "Image 2", size = "300px" }: ImageComparisonBlockProps) {
     return <Stack
         direction="row"
         alignItems="center"

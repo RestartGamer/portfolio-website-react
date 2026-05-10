@@ -3,7 +3,7 @@ import type { Dispatch, SetStateAction, RefObject } from "react";
 import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark, hamburgerMenuLight, githubIconDarkMode, githubIconLightMode } from "../../assets";
 import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material";
 import type { Theme } from "@mui/material/styles";
-import { useNavigate as _useNavigate, Link as RouteLink } from "react-router-dom";
+import { Link as RouteLink } from "react-router-dom";
 import { convert } from "../../utils/muiConverter";
 import { ThemeButton } from "../";
 

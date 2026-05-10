@@ -1,4 +1,4 @@
-export const inquiryOptions: string[] = [
+export const inquiryOptions: readonly string[] = [
   "General Inquiry",
   "Request Services",
   "Report bug",

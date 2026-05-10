@@ -45,7 +45,7 @@ type FieldDescriptor = {
   type: "input" | "select";
   zodId: keyof ContactFormData;
   placeholder?: string;
-  menuItems?: string[];
+  menuItems?: readonly string[];
   formControlSx?: SxProps<Theme>;
   textFieldProps?: {
     multiline?: boolean;
@@ -91,7 +91,7 @@ const fields: FieldDescriptor[] = [
 type InputFieldProps = {
   label: string;
   children: ReactNode;
-  zodId: string;
+  zodId: keyof ContactFormData;
 };
 
 function InputField({ label, children, zodId }: InputFieldProps) {
