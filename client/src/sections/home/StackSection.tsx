@@ -41,7 +41,7 @@ export function SectionStack() {
 
     const rows = [];
 
-    for (var i = 0; i < stackIcons.length; i += stackSize) {
+    for (let i = 0; i < stackIcons.length; i += stackSize) {
         rows.push(stackIcons.slice(i, i + stackSize));
     }
 

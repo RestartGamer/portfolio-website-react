@@ -80,7 +80,7 @@ export function ProjectsSection() {
         }}>
             {cards.map(({ id, image, title, keywords, targetLink: targetLink }) => {
                 const rows = [];
-                for (var i = 0; i < keywords.length; i += stackSize) {
+                for (let i = 0; i < keywords.length; i += stackSize) {
                     rows.push(keywords.slice(i, i + stackSize))
                 }
                 while (rows.length < 2) {
