@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import type { ReactNode } from "react";
 import {
   Stack,
   Typography,
@@ -10,13 +11,15 @@ import {
   FormControl,
   Button,
 } from "@mui/material";
+import type { SxProps, Theme } from "@mui/material/styles";
 import { useForm, Controller } from "react-hook-form";
+import type { UseFormRegister, Control, FieldError } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Schema } from "../../../../shared/config/schema";
+import type { ContactFormData } from "../../../../shared/config/schema";
 import { inquiryOptions } from "../../../../shared/config/inquiryOptions";
-import { submitContactMessage } from "../../services/contactService"
-import { convert } from "../../utils/muiConverter"
-
+import { submitContactMessage } from "../../services/contactService";
+import { convert } from "../../utils/muiConverter";
 
 const baseFieldSx = {
   maxWidth: "50%",
@@ -37,7 +40,21 @@ const baseFieldSx = {
   },
 };
 
-const fields = [
+type FieldDescriptor = {
+  label: string;
+  type: "input" | "select";
+  zodId: keyof ContactFormData;
+  placeholder?: string;
+  menuItems?: string[];
+  formControlSx?: SxProps<Theme>;
+  textFieldProps?: {
+    multiline?: boolean;
+    rows?: number;
+    fullWidth?: boolean;
+  };
+};
+
+const fields: FieldDescriptor[] = [
   {
     label: "Name",
     placeholder: "Your First Name",
@@ -71,7 +88,13 @@ const fields = [
   },
 ];
 
-function InputField({ label, children, zodId }) {
+type InputFieldProps = {
+  label: string;
+  children: ReactNode;
+  zodId: string;
+};
+
+function InputField({ label, children, zodId }: InputFieldProps) {
   return (
     <Stack direction="column">
       <InputLabel
@@ -89,7 +112,14 @@ function InputField({ label, children, zodId }) {
   );
 }
 
-function FieldControl({ field, register, error, control }) {
+type FieldControlProps = {
+  field: FieldDescriptor;
+  register: UseFormRegister<ContactFormData>;
+  error: FieldError | undefined;
+  control: Control<ContactFormData>;
+};
+
+function FieldControl({ field, register, error, control }: FieldControlProps) {
   if (field.type === "input") {
     return (
       <>
@@ -107,13 +137,11 @@ function FieldControl({ field, register, error, control }) {
   }
 
   if (field.type === "select") {
-
     return (
       <>
         <Controller
           name={field.zodId}
           control={control}
-
           render={({ field: controllerField }) => (
             <Select
               id={field.zodId}
@@ -123,7 +151,7 @@ function FieldControl({ field, register, error, control }) {
               onBlur={controllerField.onBlur}
               inputRef={controllerField.ref}
               displayEmpty
-              renderValue={(selected) => {
+              renderValue={(selected: string) => {
                 if (!selected) {
                   return "Select an option";
                 }
@@ -138,7 +166,6 @@ function FieldControl({ field, register, error, control }) {
                   cursor: "pointer",
                 },
               }}
-
             >
               {(field.menuItems ?? []).map((item) => (
                 <MenuItem key={item} value={item}>
@@ -161,7 +188,7 @@ export function ContactForm() {
   const [fallbackUrl, setFallbackUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  async function onSubmit(data) {
+  async function onSubmit(data: ContactFormData) {
     try {
       setIsLoading(true);
       setFallbackUrl("");
@@ -186,7 +213,7 @@ export function ContactForm() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ContactFormData>({
     resolver: zodResolver(Schema),
     mode: "onChange",
     defaultValues: {
@@ -225,7 +252,6 @@ export function ContactForm() {
       ) : (
         <>
           {fields.map((field) => (
-
             <InputField key={field.zodId} zodId={field.zodId} label={field.label}>
               <FormControl
                 error={!!errors[field.zodId]}
@@ -239,7 +265,6 @@ export function ContactForm() {
                 />
               </FormControl>
             </InputField>
-
           ))}
           {isLoading && (
             <Typography variant="bodyLarge" role="status" aria-live="polite">
@@ -260,14 +285,12 @@ export function ContactForm() {
               <Button variant="contained" type="submit">
                 Try again
               </Button>
-
             </>
           ) :
             <Button variant="contained" type="submit">
               Submit
             </Button>
           }
-
         </>
       )}
     </Stack>

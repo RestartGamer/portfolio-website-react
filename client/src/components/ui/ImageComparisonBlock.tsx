@@ -1,8 +1,17 @@
-import {Stack, Box, Typography} from "@mui/material"
-import { convert } from "../../utils/muiConverter"
+import { Stack, Box, Typography } from "@mui/material";
+import { convert } from "../../utils/muiConverter";
 
+type ImageComparisonBlockProps = {
+  image1: string;
+  alt1?: string;
+  midText?: string;
+  image2: string;
+  alt2?: string;
+  isHorizontal?: boolean;
+  size?: string;
+};
 
-export function ImageComparisonBlock({ image1, alt1 = "Image 1", midText = "to", image2, alt2 = "Image 2", isHorizontal = true, size = "300px" }) {
+export function ImageComparisonBlock({ image1, alt1 = "Image 1", midText = "to", image2, alt2 = "Image 2", isHorizontal: _isHorizontal = true, size = "300px" }: ImageComparisonBlockProps) {
     return <Stack
         direction="row"
         alignItems="center"

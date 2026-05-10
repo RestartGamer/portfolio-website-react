@@ -8,3 +8,5 @@ export const Schema = z.object({
         { message: "Please select an option" }),
     message: z.string().min(10, "10 characters minimum"),
 })
+
+export type ContactFormData = z.infer<typeof Schema>;

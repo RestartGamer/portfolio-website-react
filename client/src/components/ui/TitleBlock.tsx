@@ -1,11 +1,21 @@
-import { Stack, Typography } from "@mui/material"
-import { pageLayout } from "../../layout/layout"
+import type { ReactNode } from "react";
+import { Stack, Typography } from "@mui/material";
+import type { TypographyProps } from "@mui/material";
+import type { SxProps, Theme } from "@mui/material/styles";
+import { pageLayout } from "../../layout/layout";
+
 const {
     titleSpacing
 } = pageLayout;
 
+type TitleBlockProps = {
+  title: string;
+  children?: ReactNode;
+  variant?: TypographyProps["variant"];
+  sx?: SxProps<Theme>;
+};
 
-export function TitleBlock({ title, children = null, variant = "heroTitle", sx = {} }) {
+export function TitleBlock({ title, children = null, variant = "heroTitle", sx = {} }: TitleBlockProps) {
     return (
         <Stack direction="column" spacing={titleSpacing}
             sx={{
@@ -14,9 +24,13 @@ export function TitleBlock({ title, children = null, variant = "heroTitle", sx =
             }}>
             <Typography
                 variant={variant}
-                component={
-                    variant === "heroTitle" ? "h1" : variant === "headingTitle" ? "h2" : variant === "sectionTitle" && "h3"
-                }
+                {...(variant === "heroTitle"
+                    ? { component: "h1" as const }
+                    : variant === "headingTitle"
+                    ? { component: "h2" as const }
+                    : variant === "sectionTitle"
+                    ? { component: "h3" as const }
+                    : {})}
                 color="text.primary"
             >
                 {title}

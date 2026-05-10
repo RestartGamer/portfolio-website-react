@@ -1,31 +1,36 @@
-import { useState, useRef, useEffect } from "react"
-import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark, hamburgerMenuLight, githubIconDarkMode, githubIconLightMode } from "../../assets"
-import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material"
-import { useNavigate, Link as RouteLink } from "react-router-dom"
-import { convert } from "../../utils/muiConverter"
-import { ThemeButton } from "../"
+import { useState, useRef, useEffect } from "react";
+import type { Dispatch, SetStateAction, RefObject } from "react";
+import { linkedInIcon, fbIcon, instaIcon, hamburgerMenuDark, hamburgerMenuLight, githubIconDarkMode, githubIconLightMode } from "../../assets";
+import { Stack, Box, Button, Typography, ButtonBase, useMediaQuery, useTheme } from "@mui/material";
+import type { Theme } from "@mui/material/styles";
+import { useNavigate as _useNavigate, Link as RouteLink } from "react-router-dom";
+import { convert } from "../../utils/muiConverter";
+import { ThemeButton } from "../";
 
 const socialMedia = [
     { id: "linkedIn", url: "https://www.linkedin.com/in/can-korkmaz/", source: linkedInIcon },
     { id: "facebook", url: "https://www.facebook.com/ckckorkmaz", source: fbIcon },
     { id: "instagram", url: "https://www.instagram.com/", source: instaIcon },
     { id: "github", url: "https://github.com/RestartGamer", source: githubIconDarkMode, sourceLight: githubIconLightMode },
-]
+];
 
 const options = [
     { name: "Home", route: "/" },
     { name: "Journey", route: "/myjourney" },
     { name: "UX UI", route: "/uxwireframing" },
-]
+];
 
-const iconSize = 56; //note: numeric values in sx for width and height are treated as pixels
+const iconSize = 56;
 const hamMenuSize = 53;
 
+type DropdownMenuProps = {
+    isMenuOpen: boolean;
+    setTheme: Dispatch<SetStateAction<"light" | "dark">>;
+    useReference: RefObject<HTMLDivElement | null>;
+    setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
+};
 
-
-
-
-function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
+function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }: DropdownMenuProps) {
     return (
         <Box ref={useReference}
         id="navbarDropdown"
@@ -65,7 +70,7 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
                             <ButtonBase key={name} component={RouteLink} to={route}
                                 aria-label={`Go to ${name}`}
                                 onClick={() => {
-                                    setIsMenuOpen(false)
+                                    setIsMenuOpen(false);
                                     window.scrollTo({ top: 0, behavior: "smooth" });
                                 }}
 
@@ -89,15 +94,23 @@ function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }) {
                                     {name}
                                 </Typography>
                             </ButtonBase>
-                        )
+                        );
                     })}
                 </Stack>
             </Stack >
         </Box>
-    )
+    );
 }
 
-function SocialIconLink({ id, url, source, sourceLight = null, theme }) {
+type SocialIconLinkProps = {
+    id: string;
+    url: string;
+    source: string;
+    sourceLight?: string | null;
+    theme: Theme;
+};
+
+function SocialIconLink({ id, url, source, sourceLight = null, theme }: SocialIconLinkProps) {
     return (
         <Box
             component="a"
@@ -123,37 +136,39 @@ function SocialIconLink({ id, url, source, sourceLight = null, theme }) {
 
 
         </Box>
-    )
+    );
 
 }
 
+type NavbarProps = {
+    setTheme: Dispatch<SetStateAction<"light" | "dark">>;
+};
 
-
-export function Navbar({ setTheme }) {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const theme = useTheme()
-    const isBelowMd = useMediaQuery(theme.breakpoints.down("md"))
-    const dropMenuRef = useRef(null)
-    const hamMenuRef = useRef(null)
+export function Navbar({ setTheme }: NavbarProps) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const theme = useTheme();
+    const isBelowMd = useMediaQuery(theme.breakpoints.down("md"));
+    const dropMenuRef = useRef<HTMLDivElement>(null);
+    const hamMenuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
 
-        function offClickHandler(e) {
-            if (dropMenuRef.current && !dropMenuRef.current.contains(e.target) &&
-                hamMenuRef.current && !hamMenuRef.current.contains(e.target)) {
-                setIsMenuOpen(false)
+        function offClickHandler(e: MouseEvent) {
+            if (dropMenuRef.current && !dropMenuRef.current.contains(e.target as Node) &&
+                hamMenuRef.current && !hamMenuRef.current.contains(e.target as Node)) {
+                setIsMenuOpen(false);
             }
 
 
         }
-        document.addEventListener("mousedown", offClickHandler)
+        document.addEventListener("mousedown", offClickHandler);
 
         return () => {
-            document.removeEventListener("mousedown", offClickHandler)
-        }
+            document.removeEventListener("mousedown", offClickHandler);
+        };
 
 
-    }, [])
+    }, []);
 
 
 
@@ -181,7 +196,7 @@ export function Navbar({ setTheme }) {
                     {socialMedia.map(({ id, url, source, sourceLight }) => {
                         return (
                             <SocialIconLink key={id} id={id} url={url} source={source} sourceLight={sourceLight} theme={theme} />
-                        )
+                        );
                     })}
                 </Stack>
 
@@ -216,16 +231,16 @@ export function Navbar({ setTheme }) {
                             sx={{
                                 textDecoration: "none",
                                 gap: "6vw",
-                                
+
                             }}>
                             <ThemeButton setTheme={setTheme} />
                             {options.map(({ name, route }) => {
                                 return (
-                                    <ButtonBase 
+                                    <ButtonBase
                                     aria-label={`Go to ${name}`}
                                     component={RouteLink}
-                                    key={name}  
-                                    to={route} 
+                                    key={name}
+                                    to={route}
                                     onClick={()=> window.scrollTo({ top: 0, behavior: "smooth" })}
                                     sx={{
                                         textDecoration: "none",
@@ -237,7 +252,7 @@ export function Navbar({ setTheme }) {
                                         borderColor: "transparent",
                                         "&:focus": {
                                             borderColor: "custom.borderDefault",
-                                        },          
+                                        },
                                         "&:hover": {
                                             borderColor: "custom.borderDefault",
                                         }
@@ -249,7 +264,7 @@ export function Navbar({ setTheme }) {
                                             {name}
                                         </Typography>
                                     </ButtonBase>
-                                )
+                                );
                             })}
                         </Stack>
                     )
@@ -258,5 +273,5 @@ export function Navbar({ setTheme }) {
 
             </Stack>
         </Box >
-    )
+    );
 }

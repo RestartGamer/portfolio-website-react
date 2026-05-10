@@ -9,16 +9,13 @@ const {
     sectionSpacing,
 } = pageLayout;
 
-const profileDescription = `Hi, I’m Can.\n\n
-I’m a junior Frontend developer focused on building modern web applications with React
+const profileDescription = `Hi, I'm Can.\n\n
+I'm a junior Frontend developer focused on building modern web applications with React
 and TypeScript. I have a background in IT support and multilingual communication(English, German, Portuguese).\n
-I’m particularly interested in building clean, performant,and scalable user interfaces.`
+I'm particularly interested in building clean, performant,and scalable user interfaces.`
 
 const heroTitle = "Can Korkmaz";
 const heroSubTitle = "Front-End Developer in Lisbon";
-
-const avatarSize = "354px";
-
 
 export function Home() {
     return (
@@ -70,4 +67,3 @@ export function Home() {
 
     )
 }
-

@@ -2,8 +2,6 @@ import { Stack, Typography } from "@mui/material"
 import { convert } from "../../utils/muiConverter"
 
 
-const title = "Education";
-
 const content = [
     {
         title: "Meta Front-End Developer Professional Certificate",
@@ -17,7 +15,13 @@ const content = [
     }
 ]
 
-function EducationItem({ title, subTitle, description }) {
+type EducationItemProps = {
+  title: string;
+  subTitle: string;
+  description: string;
+};
+
+function EducationItem({ title, subTitle, description }: EducationItemProps) {
     return (
         <Stack direction="column" spacing={convert(20)} sx={{ textAlign: "left" }}>
             <Stack direction="column" spacing={convert(5)}>

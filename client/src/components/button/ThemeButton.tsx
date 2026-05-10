@@ -1,8 +1,12 @@
-import { ButtonBase, Box, useTheme } from "@mui/material"
-import { convert } from "../../utils/muiConverter"
+import type { Dispatch, SetStateAction } from "react";
+import { ButtonBase, Box, useTheme } from "@mui/material";
+import { convert } from "../../utils/muiConverter";
 
+type ThemeButtonProps = {
+  setTheme: Dispatch<SetStateAction<"light" | "dark">>;
+};
 
-export function ThemeButton({ setTheme }) {
+export function ThemeButton({ setTheme }: ThemeButtonProps) {
     const theme = useTheme();
     const mode = theme.palette.mode;
     const width = 78;
@@ -24,7 +28,7 @@ export function ThemeButton({ setTheme }) {
                 borderRadius: "5px",
                 background: "background.paper",
                 boxShadow: "0 8px 4px 2px rgba(0, 0, 0, 0.25)",
-                
+
                 border: "1px solid",
                 borderColor: "transparent",
                 "&:focus": {

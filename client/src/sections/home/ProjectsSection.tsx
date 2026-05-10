@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Stack, Box, Typography, Card, useMediaQuery, useTheme, ButtonBase, Button } from "@mui/material"
+import { Stack, Box, Typography, Card, useMediaQuery, useTheme, ButtonBase } from "@mui/material"
 import { currentCVImage, mgPortfolioImage, oldCVImage, hoverImage } from "../../assets"
 import { Divider, DescriptionBlock } from "../../components"
 import { convert } from "../../utils/muiConverter"
@@ -28,7 +28,7 @@ const cards = [
         image: oldCVImage,
         targetLink: "https://vanilla-js-cv-portfolio.netlify.app/",
     },
-    
+
 ]
 const descriptionText = `A responsive e-commerce concept website for the fictional jewelry brand Mangata & Gallo,
  built to simulate a real client project from homepage to product highlights and promotional sections. The focus
@@ -41,8 +41,11 @@ const expandTime = "0.5s";
 
 const stackSize = 3;
 
+type KeywordRowProps = {
+  row: string[];
+};
 
-function KeywordRow({ row }) {
+function KeywordRow({ row }: KeywordRowProps) {
 
     return (
         <Stack direction="row" sx={{
@@ -65,7 +68,7 @@ function KeywordRow({ row }) {
 
 
 export function ProjectsSection() {
-    const [expandedCard, setExpandedCard] = useState(null);
+    const [expandedCard, setExpandedCard] = useState<string | null>(null);
     const theme = useTheme();
     const isBelowMd = useMediaQuery(theme.breakpoints.down("md"))
 

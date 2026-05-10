@@ -1,15 +1,16 @@
 import './App.css'
-import { useState, useMemo } from 'react'
-import { Routes, Route } from "react-router-dom"
-import { Home } from "./pages/Home"
-import { MyJourney } from "./pages/MyJourney"
-import { UXWireframing } from "./pages/UXWireframing"
-import { Navbar } from "./components"
+import { useState, useMemo } from 'react';
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { MyJourney } from "./pages/MyJourney";
+import { UXWireframing } from "./pages/UXWireframing";
+import { Navbar } from "./components";
 
-import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import type { ThemeOptions } from "@mui/material/styles";
 import { CssBaseline, Stack, Box } from "@mui/material";
-import { pageLayout } from "./layout/layout.js"
-import { PageSection } from "./sections"
+import { pageLayout } from "./layout/layout.js";
+import { PageSection } from "./sections";
 
 const {
   pageMaxWidth,
@@ -34,35 +35,36 @@ const sharedTypography = {
 
   sectionTitle: {
     fontSize: "28px",
-    fontWeight: 600, // default; 400 for regular
+    fontWeight: 600,
     lineHeight: 1.3,
   },
 
   cardTitle: {
     fontSize: "24px",
-    fontWeight: 500, // default; 600 for semiBold
+    fontWeight: 500,
     lineHeight: 1.35,
   },
 
   bodyLarge: {
     fontSize: "20px",
-    fontWeight: 400, // default; 
+    fontWeight: 400,
     lineHeight: 1.5,
   },
 
   bodyMedium: {
     fontSize: "16px",
-    fontWeight: 300, // default
+    fontWeight: 300,
     lineHeight: 1.5,
   },
 
   bodySmall: {
     fontSize: "14px",
-    fontWeight: 300, // default
+    fontWeight: 300,
     lineHeight: 1.45,
   },
 };
-const themeSettings = {
+
+const themeSettings: Record<"light" | "dark", ThemeOptions> = {
   light: {
     typography: sharedTypography,
     palette: {
@@ -101,23 +103,15 @@ const themeSettings = {
       },
       divider: "#F2F2F2"
     },
-    customStyles: {
-      pageWidth: {
-        width: {
-          xs: "auto",
-          md: "100%",
-        }
-      }
-    }
   }
-}
+};
 
 
 function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const muiTheme = useMemo(() =>
     createTheme(themeSettings[theme]), [theme]
-  )
+  );
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
@@ -155,16 +149,16 @@ function App() {
             width: "100%",
             alignItems: "center",
             maxWidth: pageMaxWidth,
-            
+
           }}>
-          <Box component="header" 
-          sx={{ 
+          <Box component="header"
+          sx={{
             width: "100%",
             position: "sticky",
             top: 0,
             zIndex: 1000,
             }}>
-            <Navbar theme={theme} setTheme={setTheme} />
+            <Navbar setTheme={setTheme} />
           </Box>
 
           <PageSection>
@@ -179,7 +173,7 @@ function App() {
         </Stack>
       </Stack>
     </ThemeProvider>
-  )
+  );
 }
 
 export default App;

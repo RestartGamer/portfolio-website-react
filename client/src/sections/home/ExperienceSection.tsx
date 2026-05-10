@@ -1,4 +1,5 @@
 import { Stack, Typography, List, ListItem } from "@mui/material"
+import type { SxProps, Theme } from "@mui/material/styles";
 import { convert } from "../../utils/muiConverter"
 
 const experienceItems = [
@@ -39,7 +40,13 @@ const experienceItems = [
     }
 ]
 
-function TitleBox({ title, subTitle, sx = {} }) {
+type TitleBoxProps = {
+  title: string;
+  subTitle: string;
+  sx?: SxProps<Theme>;
+};
+
+function TitleBox({ title, subTitle, sx: _sx = {} }: TitleBoxProps) {
     return (
         <Stack direction="column" spacing={convert(4)} >
             <Typography variant="sectionTitle">{title}</Typography>
@@ -48,7 +55,13 @@ function TitleBox({ title, subTitle, sx = {} }) {
     )
 }
 
-function DateAndLocation({ date, location, sx = {} }) {
+type DateAndLocationProps = {
+  date: string;
+  location: string;
+  sx?: SxProps<Theme>;
+};
+
+function DateAndLocation({ date, location, sx: _sx = {} }: DateAndLocationProps) {
     return (
         <Stack direction="column" spacing={convert(1)}>
             <Typography variant="bodyLarge">{date}</Typography>
@@ -57,7 +70,12 @@ function DateAndLocation({ date, location, sx = {} }) {
     )
 }
 
-function Description({ description, sx = {} }) {
+type DescriptionProps = {
+  description: string;
+  sx?: SxProps<Theme>;
+};
+
+function Description({ description, sx = {} }: DescriptionProps) {
     return (
         <ListItem component="li" sx={{
             display: "list-item",
@@ -73,7 +91,15 @@ function Description({ description, sx = {} }) {
     )
 }
 
-function ExperienceItem({ title, subTitle, date, location, descriptions }) {
+type ExperienceItemProps = {
+  title: string;
+  subTitle: string;
+  date: string;
+  location: string;
+  descriptions: string[];
+};
+
+function ExperienceItem({ title, subTitle, date, location, descriptions }: ExperienceItemProps) {
     return (
         <Stack
             sx={{
@@ -127,4 +153,4 @@ export function ExperienceSection() {
             })}
         </Stack>
     )
-} 
+}

@@ -1,5 +1,6 @@
-
+import type { ReactNode } from "react";
 import { Stack, Box } from "@mui/material"
+import type { SxProps, Theme } from "@mui/material/styles";
 import { convert } from "../../utils/muiConverter"
 import { DescriptionBlock } from "../../components"
 import { pageLayout } from "../../layout/layout"
@@ -13,8 +14,16 @@ const textLayout = {
     flex: "1 0 550px",
 }
 
+type HeroSectionProps = {
+  children: ReactNode;
+  image: string;
+  isImgLeft?: boolean;
+  descriptionSx?: SxProps<Theme>;
+  imageSx?: SxProps<Theme>;
+  imageAlt?: string;
+};
 
-export function HeroSection({ children, image, isImgLeft = true, descriptionSx = {} , imageSx ={},  imageAlt = "Portrait of Can Korkmaz"}) {
+export function HeroSection({ children, image, isImgLeft = true, descriptionSx = {} , imageSx ={},  imageAlt = "Portrait of Can Korkmaz"}: HeroSectionProps) {
 
     return (
         <Stack direction={{

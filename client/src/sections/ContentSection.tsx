@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Stack } from "@mui/material"
 import {pageLayout} from "../layout/layout.js"
 
@@ -5,9 +6,13 @@ const {
   contentSpacing,
 } = pageLayout;
 
-export function ContentSection({ children }) {
+type ContentSectionProps = {
+  children: ReactNode;
+};
+
+export function ContentSection({ children }: ContentSectionProps) {
     return (
-        <Stack 
+        <Stack
             component="section"
             alignItems="center"
             sx={{

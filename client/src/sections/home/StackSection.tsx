@@ -3,7 +3,7 @@ import { Stack, Box } from "@mui/material"
 import { htmlIcon, cssIcon, jsIcon, reactIcon, tsIcon, expressIcon, jestIcon } from "../../assets"
 
 
-const convert = (px) => px / 8;
+const convert = (px: number): number => px / 8;
 
 const stackIcons = [
     { name: "HTML", icon: htmlIcon },
@@ -17,7 +17,11 @@ const stackIcons = [
 
 const stackSize = 4;
 
-function StackRow({ row }) {
+type StackRowProps = {
+  row: Array<{ name: string; icon: string }>;
+};
+
+function StackRow({ row }: StackRowProps) {
     return (
         <Stack direction="row" justifyContent="space-between" spacing={convert(20)} >
             {row.map(({ name, icon }) => {
