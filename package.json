@@ -1,4 +1,10 @@
 {
+  "name": "portfolio-website-react",
+  "version": "1.0.0",
+  "scripts": {
+    "typecheck": "npm run typecheck --prefix client && npm run typecheck --prefix server",
+    "build": "npm run build --prefix client"
+  },
   "dependencies": {
     "zod": "^4.3.6"
   },

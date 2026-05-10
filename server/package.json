@@ -2,16 +2,23 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app.ts",
   "scripts": {
-    "dev": "node app.js",
-    "start": "node app.js"
-
+    "dev": "tsx app.ts",
+    "start": "tsx app.ts",
+    "typecheck": "node node_modules/typescript/bin/tsc -p tsconfig.json --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.3",
+    "@types/nodemailer": "^6.4.17",
+    "tsx": "^4.19.3",
+    "typescript": "^6.0.3"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.0",
