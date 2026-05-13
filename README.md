@@ -159,6 +159,28 @@ http://localhost:5173
 
 ---
 
+## Testing
+
+Frontend tests are written with **Vitest** and **React Testing Library**.
+
+Coverage includes:
+
+- Contact form rendering, field validation, and submission states
+- Contact service fallback logic (server errors, network failures, `mailto:` URL construction)
+- Shared Zod schema validation rules
+
+No real emails are sent during tests — the contact service is mocked at the module level.  
+Backend tests are not included yet.
+
+```bash
+cd client
+npm test                  # run all tests once
+npm run test:coverage     # run tests with coverage report
+npm run typecheck         # type-check without emitting
+```
+
+---
+
 ## Notes
 
 - The frontend runs with **Vite**
