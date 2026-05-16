@@ -33,7 +33,7 @@ type DropdownMenuProps = {
 function DropdownMenu({ isMenuOpen, setTheme, useReference, setIsMenuOpen }: DropdownMenuProps) {
     return (
         <Box ref={useReference}
-        id="navbarDropdown"
+            id="navbarDropdown"
             sx={{
                 position: "absolute",
                 top: "100%",
@@ -144,6 +144,13 @@ type NavbarProps = {
     setTheme: Dispatch<SetStateAction<"light" | "dark">>;
 };
 
+function preloadImages(srcList: string[]) {
+    srcList.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
 export function Navbar({ setTheme }: NavbarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const theme = useTheme();
@@ -170,7 +177,14 @@ export function Navbar({ setTheme }: NavbarProps) {
 
     }, []);
 
-
+    useEffect(() => {
+        preloadImages([
+            githubIconDarkMode,
+            githubIconLightMode,
+            hamburgerMenuDark,
+            hamburgerMenuLight,
+        ]);
+    }, []);
 
     return (
         <Box component="nav" sx={{
@@ -192,7 +206,7 @@ export function Navbar({ setTheme }: NavbarProps) {
             >
 
 
-                <Stack direction="row" spacing={{md: convert(27), xs: convert(13)}} sx={{ alignItems: "center" , pr:convert(10)}}>
+                <Stack direction="row" spacing={{ md: convert(27), xs: convert(13) }} sx={{ alignItems: "center", pr: convert(10) }}>
                     {socialMedia.map(({ id, url, source, sourceLight }) => {
                         return (
                             <SocialIconLink key={id} id={id} url={url} source={source} sourceLight={sourceLight} theme={theme} />
@@ -205,7 +219,7 @@ export function Navbar({ setTheme }: NavbarProps) {
                     <Box ref={hamMenuRef} sx={{ position: "relative" }}>
                         <Button
                             onClick={() => setIsMenuOpen(prev => !prev)}
-                            aria-label={ isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                             aria-expanded={isMenuOpen}
                             aria-haspopup="true"
                             aria-controls="navbarDropdown"
@@ -237,27 +251,27 @@ export function Navbar({ setTheme }: NavbarProps) {
                             {options.map(({ name, route }) => {
                                 return (
                                     <ButtonBase
-                                    aria-label={`Go to ${name}`}
-                                    component={RouteLink}
-                                    key={name}
-                                    to={route}
-                                    onClick={()=> window.scrollTo({ top: 0, behavior: "smooth" })}
-                                    sx={{
-                                        textDecoration: "none",
-                                        color: "text.primary",
-                                        px: "0.5vw",
-                                        py: convert(1),
-                                        borderRadius: "10px",
-                                        border: "1px solid",
-                                        borderColor: "transparent",
-                                        "&:focus": {
-                                            borderColor: "custom.borderDefault",
-                                        },
-                                        "&:hover": {
-                                            borderColor: "custom.borderDefault",
-                                        }
+                                        aria-label={`Go to ${name}`}
+                                        component={RouteLink}
+                                        key={name}
+                                        to={route}
+                                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                                        sx={{
+                                            textDecoration: "none",
+                                            color: "text.primary",
+                                            px: "0.5vw",
+                                            py: convert(1),
+                                            borderRadius: "10px",
+                                            border: "1px solid",
+                                            borderColor: "transparent",
+                                            "&:focus": {
+                                                borderColor: "custom.borderDefault",
+                                            },
+                                            "&:hover": {
+                                                borderColor: "custom.borderDefault",
+                                            }
 
-                                    }}>
+                                        }}>
                                         <Typography variant="cardTitle" sx={{
                                             textWrap: "nowrap"
                                         }}>
