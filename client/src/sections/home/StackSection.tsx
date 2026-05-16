@@ -1,6 +1,6 @@
 
 import { Stack, Box } from "@mui/material"
-import { htmlIcon, cssIcon, jsIcon, reactIcon, tsIcon, expressIcon, jestIcon } from "../../assets"
+import { htmlIcon, cssIcon, jsIcon, reactIcon, tsIcon, expressIcon, vitestIcon } from "../../assets"
 
 
 const convert = (px: number): number => px / 8;
@@ -12,7 +12,7 @@ const stackIcons = [
     { name: "React", icon: reactIcon },
     { name: "TypeScript", icon: tsIcon },
     { name: "Express", icon: expressIcon },
-    { name: "Jest", icon: jestIcon },
+    { name: "Vitest", icon: vitestIcon },
 ];
 
 const stackSize = 4;

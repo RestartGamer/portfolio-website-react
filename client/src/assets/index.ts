@@ -9,7 +9,7 @@ export { default as jsIcon } from "./icons/jsIcon.png";
 export { default as reactIcon } from "./icons/reactIcon.png";
 export { default as tsIcon } from "./icons/tsIcon.png";
 export { default as expressIcon } from "./icons/expressIcon.png";
-export { default as jestIcon } from "./icons/jestIcon.png";
+export { default as vitestIcon } from "./icons/vitestIcon.png";
 export { default as githubIconDarkMode } from "./icons/githubIconDarkMode.png";
 export { default as githubIconLightMode } from "./icons/githubIconLightMode.png";
 
