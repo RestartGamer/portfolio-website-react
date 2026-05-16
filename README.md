@@ -9,8 +9,9 @@ A personal portfolio website built with **React** and **Express**, featuring a r
 ### Live Application
 ![App Preview](./assets/app-preview.png)
 
-### Figma Design
-![Figma Design](./assets/figma-preview.png)
+### Figma Design Prototype
+
+[View the Figma prototype](https://www.figma.com/proto/z1P0vivGg2VOTYeImqJRSZ/React-CV-Project?node-id=2-2&starting-point-node-id=2%3A2)
 
 ---
 
@@ -22,8 +23,9 @@ A personal portfolio website built with **React** and **Express**, featuring a r
 
 ## Tech Stack
 
-- **Frontend:** React, MUI, React Hook Form, Zod
-- **Backend:** Node.js, Express, Nodemailer
+- **Frontend:** React, TypeScript, MUI, React Hook Form, Zod
+- **Backend:** Node.js, Express, TypeScript, Nodemailer
+- **Testing:** Vitest, React Testing Library
 - **Build Tool:** Vite
 
 ---
@@ -168,8 +170,9 @@ Coverage includes:
 - Contact form rendering, field validation, and submission states
 - Contact service fallback logic (server errors, network failures, `mailto:` URL construction)
 - Shared Zod schema validation rules
+- Utility function behavior
 
-No real emails are sent during tests — the contact service is mocked at the module level.  
+No real emails or network requests are sent during tests — form tests mock the contact service, and service tests mock `fetch`.  
 Backend tests are not included yet.
 
 ```bash
@@ -178,8 +181,6 @@ npm test                  # run all tests once
 npm run test:coverage     # run tests with coverage report
 npm run typecheck         # type-check without emitting
 ```
-
----
 
 ## Notes
 
