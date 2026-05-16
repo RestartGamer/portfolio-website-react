@@ -7,23 +7,33 @@ A personal portfolio website built with **React** and **Express**, featuring a r
 ## Preview
 
 ### Live Application
-![App Preview](./assets/app-preview.png)
 
-### Figma Design
-![Figma Design](./assets/figma-preview.png)
+<details>
+  <summary>View application preview</summary>
+
+  <br />
+
+  ![App Preview](./assets/app-preview.png)
+
+</details>
+
+### Figma Design Prototype
+
+[View the Figma prototype](https://www.figma.com/proto/z1P0vivGg2VOTYeImqJRSZ/React-CV-Project?node-id=2-2&starting-point-node-id=2%3A2)
 
 ---
 
 ## Live Demo
 
-_Add your deployment link here._
+[View live demo](https://react-cv-portfolio.netlify.app/)
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** React, MUI, React Hook Form, Zod
-- **Backend:** Node.js, Express, Nodemailer
+- **Frontend:** React, TypeScript, MUI, React Hook Form, Zod
+- **Backend:** Node.js, Express, TypeScript, Nodemailer
+- **Testing:** Vitest, React Testing Library
 - **Build Tool:** Vite
 
 ---
@@ -118,13 +128,13 @@ Create a `.env` file in both the `client` and `server` folders.
 #### `client/.env`
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:3001
 ```
 
 #### `server/.env`
 
 ```env
-PORT=5000
+PORT=3001
 CLIENT_URL=http://localhost:5173
 EMAIL_USER=your-email@example.com
 EMAIL_PASS=your-email-app-password
@@ -158,6 +168,27 @@ http://localhost:5173
 ```
 
 ---
+
+## Testing
+
+Frontend tests are written with **Vitest** and **React Testing Library**.
+
+Coverage includes:
+
+- Contact form rendering, field validation, and submission states
+- Contact service fallback logic (server errors, network failures, `mailto:` URL construction)
+- Shared Zod schema validation rules
+- Utility function behavior
+
+No real emails or network requests are sent during tests — form tests mock the contact service, and service tests mock `fetch`.  
+Backend tests are not included yet.
+
+```bash
+cd client
+npm test                  # run all tests once
+npm run test:coverage     # run tests with coverage report
+npm run typecheck         # type-check without emitting
+```
 
 ## Notes
 
