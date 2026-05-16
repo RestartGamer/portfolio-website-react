@@ -7,7 +7,15 @@ A personal portfolio website built with **React** and **Express**, featuring a r
 ## Preview
 
 ### Live Application
-![App Preview](./assets/app-preview.png)
+
+<details>
+  <summary>View application preview</summary>
+
+  <br />
+
+  ![App Preview](./assets/app-preview.png)
+
+</details>
 
 ### Figma Design Prototype
 
