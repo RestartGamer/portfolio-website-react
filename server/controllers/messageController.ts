@@ -63,7 +63,6 @@ export async function createMessage(req: Request, res: Response): Promise<void> 
     },
     tls: {
       minVersion: "TLSv1.2" as const,
-      rejectUnauthorized: false,
     },
     family: 4,
   };

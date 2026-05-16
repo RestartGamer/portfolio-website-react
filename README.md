@@ -16,7 +16,7 @@ A personal portfolio website built with **React** and **Express**, featuring a r
 
 ## Live Demo
 
-_Add your deployment link here._
+[View live demo](https://react-cv-portfolio.netlify.app/)
 
 ---
 
