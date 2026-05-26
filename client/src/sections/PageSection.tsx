@@ -23,7 +23,7 @@ export function PageSection({ children }: PageSectionProps) {
             sx={{
                 mt: pageMt,
                 pb: pagePb,
-                px: pagePaddingX,
+                paddingInline: pagePaddingX,
                 width: "100%",
                 position: "relative",
                 rowGap: pageSpacing,

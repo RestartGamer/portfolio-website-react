@@ -18,7 +18,7 @@ export const pageLayout = {
 
     pagePaddingX: {
         xs: convert(41),
-        md: "15%"
+        md: "12%"
     },
 
     //Individual Spacing

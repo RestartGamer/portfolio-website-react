@@ -42,7 +42,7 @@ const expandTime = "0.5s";
 const stackSize = 3;
 
 type KeywordRowProps = {
-  row: string[];
+    row: string[];
 };
 
 function KeywordRow({ row }: KeywordRowProps) {
@@ -73,218 +73,64 @@ export function ProjectsSection() {
     const isBelowMd = useMediaQuery(theme.breakpoints.down("md"))
 
     return (
-        <Stack direction="row" sx={{
-            gap: convert(35),
-            flexWrap: "wrap", // or remove this line entirely
+        <Box sx={{
+            display:"flex",
             justifyContent: "center",
         }}>
-            {cards.map(({ id, image, title, keywords, targetLink: targetLink }) => {
-                const rows = [];
-                for (let i = 0; i < keywords.length; i += stackSize) {
-                    rows.push(keywords.slice(i, i + stackSize))
-                }
-                while (rows.length < 2) {
-                    rows.push([]);
-                }
-                return (
-                    <Card key={id} component="article"
-                        onFocus={() => !isBelowMd && setExpandedCard(id)}
-                        onBlur={(e) => {
-                            if (!e.currentTarget.contains(e.relatedTarget)) {
-                                setExpandedCard(null);
-                            }
-                        }}
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            gap: convert(25),
-                            overflow: "hidden",
-                            width: "fit-content",
-                            height: "fit-content",
-                            maxWidth: cardMaxWidth,
-                            pb: convert(11),
-                            border: "1px solid",
-                            borderColor: "transparent",
-                            borderRadius: "13px",
-                            textDecoration: "none",
-                            background: "background.default",
-                            "&:focus-within": {
-                                borderColor: "#1465B1"
-                            }
 
-                        }}>
-                        {!isBelowMd ? (
-                            <Box
 
-                                //for Mouse users
-                                onMouseEnter={() => setExpandedCard(id)}
-                                onMouseLeave={() => setExpandedCard(null)}
+            <Stack direction="row" sx={{
+                gap: convert(35),
+                flexWrap: "wrap", // or remove this line entirely
+                justifyContent: "start",
+            }}>
+                {cards.map(({ id, image, title, keywords, targetLink: targetLink }) => {
+                    const rows = [];
+                    for (let i = 0; i < keywords.length; i += stackSize) {
+                        rows.push(keywords.slice(i, i + stackSize))
+                    }
+                    while (rows.length < 2) {
+                        rows.push([]);
+                    }
+                    return (
+                        <Card key={id} component="article"
+                            onFocus={() => !isBelowMd && setExpandedCard(id)}
+                            onBlur={(e) => {
+                                if (!e.currentTarget.contains(e.relatedTarget)) {
+                                    setExpandedCard(null);
+                                }
+                            }}
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                gap: convert(25),
+                                overflow: "hidden",
+                                width: "fit-content",
+                                height: "fit-content",
+                                maxWidth: cardMaxWidth,
+                                pb: convert(11),
+                                border: "1px solid",
+                                borderColor: "transparent",
+                                borderRadius: "13px",
+                                textDecoration: "none",
+                                background: "background.default",
+                                "&:focus-within": {
+                                    borderColor: "#1465B1"
+                                }
 
-                                sx={{
-                                    "&:hover": {
-                                        cursor: expandedCard === id ? "auto" : "pointer",
-                                    }
-                                }}
-                            >
-                                <Stack
+                            }}>
+                            {!isBelowMd ? (
+                                <Box
+
+                                    //for Mouse users
+                                    onMouseEnter={() => setExpandedCard(id)}
+                                    onMouseLeave={() => setExpandedCard(null)}
 
                                     sx={{
-                                        textDecoration: "none",
-                                        color: "text.primary",
-                                    }}>
-
-                                    <Box
-                                        component="a"
-                                        aria-label={`Open project: ${title}`}
-                                        href={targetLink}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        sx={{
-                                            display: "block",
-                                            textDecoration: "none",
-                                            color: "inherit",
-                                        }}>
-                                        <Box component="img" src={image} alt={title} sx={{
-                                            width: "100%",
-                                            height: "auto",
-                                            objectFit: "cover",
-                                        }} />
-                                    </Box>
-
-
-                                    {/*MAIN ROW*/}
-                                    <Stack
-                                        direction="row"
-                                        justifyContent="center"
-                                        alignItems="center"
-
-                                        sx={{
-                                            width: expandedCard === id ? "200%" : "100%",
-
-                                            pt: convert(12),
-                                            pb: convert(8),
-                                            transition: `width ${expandTime} ease-in-out`
-
-                                        }}>
-
-                                        {/*BOX LEFT*/}
-                                        <Stack alignItems="center" sx={{
-                                            paddingInline: expandedCard === id ? 0 : convert(23),
-                                            width: "50%",
-                                            minWidth: "fit-content",
-                                            boxSizing: "content-box",
-                                            transition: `padding-inline ${expandTime} ease-in-out`
-
-                                        }}>
-                                            <Stack alignItems="start" sx={{
-                                                width: expandedCard === id ? 0 : "100%",
-                                                minWidth: "fit-content",
-                                                transition: `width ${expandTime} ease-in-out`,
-
-                                            }}>
-                                                <Typography variant="bodyLarge" component="h3" color="text.primary">{title}</Typography>
-                                                <Stack>
-                                                    {rows.map((rowStack, index) => {
-                                                        return <KeywordRow key={index} row={rowStack} />
-                                                    })}
-                                                </Stack>
-                                            </Stack>
-                                        </Stack>
-
-                                        {/*BOX RIGHT*/}
-                                        <Stack alignItems="end" sx={{
-                                            pr: convert(20),
-                                            width: "50%",
-                                        }}>
-                                            <Stack direction="row" justifyContent="end" sx={{
-                                                overflow: "hidden",
-                                                whiteSpace: "nowrap",
-                                                borderStyle: "dashed",
-                                                borderColor: "custom.borderDefault2",
-                                                borderRadius: "8px",
-                                                columnGap: convert(4),
-
-
-
-                                                px: convert(7),
-                                                py: convert(7),
-                                                borderWidth: "1px",
-                                                opacity: expandedCard === id ? 0 : 1,
-
-                                                transition: `opacity ${expandTime} ease-in-out`,
-
-                                            }}>
-                                                <Typography variant="bodySmall" component="span" color="text.secondary">{hoverText}</Typography>
-                                                <Box component="img" src={hoverImage} alt="" aria-hidden="true" sx={{
-                                                    height: hoverImageSize,
-                                                    width: "auto",
-                                                    objectFit: "cover",
-                                                }} />
-                                            </Stack>
-                                        </Stack>
-
-
-                                    </Stack>
-
-                                    <Box sx={{
-                                        height: "fit-content",
-                                        width: "fit-content",
-
-
-
-
-                                    }}>
-                                        <Divider sx={{
-                                            width: "85.58%",
-                                            maxWidth: expandedCard === id ? "100%" : 0,
-                                            transition: `max-width ${expandTime} ease-in-out`,
-                                        }} />
-                                        <Stack
-                                            id={`project-details-${id}`}
-                                            sx={{
-                                                height: "fit-content",
-                                                width: "fit-content",
-                                                pb: expandedCard === id ? convert(10) : 0,
-                                                maxHeight: expandedCard === id
-                                                    ? `35vh`
-                                                    : "0px",
-                                                transition: `max-height ${expandTime} ease-in-out, padding ${expandTime} ease-in-out`,
-                                                overflowX: "scroll",
-                                            }}>
-                                            <Box sx={{
-                                                display: "flex",
-                                                justifyContent: "start",
-                                            }}>
-                                                <DescriptionBlock sx={{
-                                                    fontWeight: "300",
-                                                    px: convert(22),
-                                                }}>
-                                                    {descriptionText}
-                                                </DescriptionBlock>
-                                            </Box>
-                                        </Stack>
-
-
-                                    </Box>
-                                </Stack>
-                            </Box>
-
-                        ) : (
-                            <>
-                                <ButtonBase
-                                    aria-expanded={expandedCard === id}
-                                    aria-controls={`project-details-${id}`}
-                                    aria-label={`${expandedCard === id ? "Collapse" : "Expand"} details for ${title}`}
-                                    onClick={() => setExpandedCard(expandedCard === id ? null : id)}
-                                    sx={{
-                                        display: "block",
-                                        width: "100%",
-                                        textAlign: "initial",
-                                        color: "inherit",
-                                        font: "inherit",
-                                        fontWeight: "inherit",
-                                        letterSpacing: "inherit",
+                                        "&:hover": {
+                                            cursor: expandedCard === id ? "auto" : "pointer",
+                                        }
                                     }}
                                 >
                                     <Stack
@@ -294,11 +140,23 @@ export function ProjectsSection() {
                                             color: "text.primary",
                                         }}>
 
-                                        <Box component="img" src={image} alt={title} sx={{
-                                            width: "100%",
-                                            height: "auto",
-                                            objectFit: "cover",
-                                        }} />
+                                        <Box
+                                            component="a"
+                                            aria-label={`Open project: ${title}`}
+                                            href={targetLink}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            sx={{
+                                                display: "block",
+                                                textDecoration: "none",
+                                                color: "inherit",
+                                            }}>
+                                            <Box component="img" src={image} alt={title} sx={{
+                                                width: "100%",
+                                                height: "auto",
+                                                objectFit: "cover",
+                                            }} />
+                                        </Box>
 
 
                                         {/*MAIN ROW*/}
@@ -342,7 +200,7 @@ export function ProjectsSection() {
 
                                             {/*BOX RIGHT*/}
                                             <Stack alignItems="end" sx={{
-                                                px: convert(23),
+                                                pr: convert(20),
                                                 width: "50%",
                                             }}>
                                                 <Stack direction="row" justifyContent="end" sx={{
@@ -360,9 +218,7 @@ export function ProjectsSection() {
                                                     borderWidth: "1px",
                                                     opacity: expandedCard === id ? 0 : 1,
 
-                                                    transition: `
-                                                                                                                opacity ${expandTime} ease-in-out
-                                                                                                                `,
+                                                    transition: `opacity ${expandTime} ease-in-out`,
 
                                                 }}>
                                                     <Typography variant="bodySmall" component="span" color="text.secondary">{hoverText}</Typography>
@@ -380,6 +236,10 @@ export function ProjectsSection() {
                                         <Box sx={{
                                             height: "fit-content",
                                             width: "fit-content",
+
+
+
+
                                         }}>
                                             <Divider sx={{
                                                 width: "85.58%",
@@ -414,36 +274,183 @@ export function ProjectsSection() {
 
                                         </Box>
                                     </Stack>
-                                </ButtonBase>
-                                {expandedCard === id &&
-                                    <Box component="a"
-                                        href={targetLink}
-                                        target="_blank"
-                                        rel="noreferrer"
+                                </Box>
+
+                            ) : (
+                                <>
+                                    <ButtonBase
+                                        aria-expanded={expandedCard === id}
+                                        aria-controls={`project-details-${id}`}
+                                        aria-label={`${expandedCard === id ? "Collapse" : "Expand"} details for ${title}`}
+                                        onClick={() => setExpandedCard(expandedCard === id ? null : id)}
                                         sx={{
-                                            width: "max-content",
-                                            border: "2px solid",
-                                            borderColor: "white",
-                                            px: convert(10),
-                                            py: convert(2),
-                                            borderRadius: "5px",
-                                            textDecoration: "none",
-                                            color: "text.primary",
-                                            marginBottom: "15px"
-                                        }}>
-                                        Visit Page
-                                    </Box>
+                                            display: "block",
+                                            width: "100%",
+                                            textAlign: "initial",
+                                            color: "inherit",
+                                            font: "inherit",
+                                            fontWeight: "inherit",
+                                            letterSpacing: "inherit",
+                                        }}
+                                    >
+                                        <Stack
 
-                                }
-                            </>
+                                            sx={{
+                                                textDecoration: "none",
+                                                color: "text.primary",
+                                            }}>
 
-                        )}
+                                            <Box component="img" src={image} alt={title} sx={{
+                                                width: "100%",
+                                                height: "auto",
+                                                objectFit: "cover",
+                                            }} />
 
 
-                    </Card>
-                )
-            })}
-        </Stack>
+                                            {/*MAIN ROW*/}
+                                            <Stack
+                                                direction="row"
+                                                justifyContent="center"
+                                                alignItems="center"
+
+                                                sx={{
+                                                    width: expandedCard === id ? "200%" : "100%",
+
+                                                    pt: convert(12),
+                                                    pb: convert(8),
+                                                    transition: `width ${expandTime} ease-in-out`
+
+                                                }}>
+
+                                                {/*BOX LEFT*/}
+                                                <Stack alignItems="center" sx={{
+                                                    paddingInline: expandedCard === id ? 0 : convert(23),
+                                                    width: "50%",
+                                                    minWidth: "fit-content",
+                                                    boxSizing: "content-box",
+                                                    transition: `padding-inline ${expandTime} ease-in-out`
+
+                                                }}>
+                                                    <Stack alignItems="start" sx={{
+                                                        width: expandedCard === id ? 0 : "100%",
+                                                        minWidth: "fit-content",
+                                                        transition: `width ${expandTime} ease-in-out`,
+
+                                                    }}>
+                                                        <Typography variant="bodyLarge" component="h3" color="text.primary">{title}</Typography>
+                                                        <Stack>
+                                                            {rows.map((rowStack, index) => {
+                                                                return <KeywordRow key={index} row={rowStack} />
+                                                            })}
+                                                        </Stack>
+                                                    </Stack>
+                                                </Stack>
+
+                                                {/*BOX RIGHT*/}
+                                                <Stack alignItems="end" sx={{
+                                                    px: convert(23),
+                                                    width: "50%",
+                                                }}>
+                                                    <Stack direction="row" justifyContent="end" sx={{
+                                                        overflow: "hidden",
+                                                        whiteSpace: "nowrap",
+                                                        borderStyle: "dashed",
+                                                        borderColor: "custom.borderDefault2",
+                                                        borderRadius: "8px",
+                                                        columnGap: convert(4),
+
+
+
+                                                        px: convert(7),
+                                                        py: convert(7),
+                                                        borderWidth: "1px",
+                                                        opacity: expandedCard === id ? 0 : 1,
+
+                                                        transition: `
+                                                                                                                opacity ${expandTime} ease-in-out
+                                                                                                                `,
+
+                                                    }}>
+                                                        <Typography variant="bodySmall" component="span" color="text.secondary">{hoverText}</Typography>
+                                                        <Box component="img" src={hoverImage} alt="" aria-hidden="true" sx={{
+                                                            height: hoverImageSize,
+                                                            width: "auto",
+                                                            objectFit: "cover",
+                                                        }} />
+                                                    </Stack>
+                                                </Stack>
+
+
+                                            </Stack>
+
+                                            <Box sx={{
+                                                height: "fit-content",
+                                                width: "fit-content",
+                                            }}>
+                                                <Divider sx={{
+                                                    width: "85.58%",
+                                                    maxWidth: expandedCard === id ? "100%" : 0,
+                                                    transition: `max-width ${expandTime} ease-in-out`,
+                                                }} />
+                                                <Stack
+                                                    id={`project-details-${id}`}
+                                                    sx={{
+                                                        height: "fit-content",
+                                                        width: "fit-content",
+                                                        pb: expandedCard === id ? convert(10) : 0,
+                                                        maxHeight: expandedCard === id
+                                                            ? `35vh`
+                                                            : "0px",
+                                                        transition: `max-height ${expandTime} ease-in-out, padding ${expandTime} ease-in-out`,
+                                                        overflowX: "scroll",
+                                                    }}>
+                                                    <Box sx={{
+                                                        display: "flex",
+                                                        justifyContent: "start",
+                                                    }}>
+                                                        <DescriptionBlock sx={{
+                                                            fontWeight: "300",
+                                                            px: convert(22),
+                                                        }}>
+                                                            {descriptionText}
+                                                        </DescriptionBlock>
+                                                    </Box>
+                                                </Stack>
+
+
+                                            </Box>
+                                        </Stack>
+                                    </ButtonBase>
+                                    {expandedCard === id &&
+                                        <Box component="a"
+                                            href={targetLink}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            sx={{
+                                                width: "max-content",
+                                                border: "2px solid",
+                                                borderColor: "white",
+                                                px: convert(10),
+                                                py: convert(2),
+                                                borderRadius: "5px",
+                                                textDecoration: "none",
+                                                color: "text.primary",
+                                                marginBottom: "15px"
+                                            }}>
+                                            Visit Page
+                                        </Box>
+
+                                    }
+                                </>
+
+                            )}
+
+
+                        </Card>
+                    )
+                })}
+            </Stack>
+        </Box>
 
     )
 }
