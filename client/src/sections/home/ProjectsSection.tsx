@@ -231,7 +231,7 @@ export function ProjectsSection() {
                                 borderRadius: "13px",
 
                                 textDecoration: "none",
-                                background: "background.default",
+                                bgcolor: "background.default",
 
                                 "&:focus-within": {
                                     borderColor: "#1465B1",
