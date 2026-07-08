@@ -18,6 +18,7 @@ export { default as currentCVImage } from "./images/currentCVImage.png";
 export { default as mgPortfolioImage } from "./images/mgPortfolioImage.png";
 export { default as oldCVImage } from "./images/oldCVImage.png";
 export { default as pathwayImage } from "./images/pathwayImage.jpg";
+export { default as littleLemonImage } from "./images/littleLemonImage.png";
 
 export { default as wireframe1Image } from "./images/wireframe1Image.png";
 export { default as wireframe2Image } from "./images/wireframe2Image.png";
