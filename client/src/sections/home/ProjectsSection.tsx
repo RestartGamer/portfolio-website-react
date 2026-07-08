@@ -91,11 +91,15 @@ const cards = [
     },
 ]
 
-const hoverImageSize = "23px"
+const hoverText = "More Info"
+const hoverImageSize = "20px"
 const cardMaxWidth = "350px"
 const cardImageHeight = "207px"
 const cardMinimumHeight = "344px"
 const expandTime = "0.5s"
+
+const cardHorizontalPadding = 23
+const mobilePromptReservedSpace = 124
 
 const stackSize = 3
 
@@ -293,6 +297,8 @@ export function ProjectsSection() {
                                             justifyContent="center"
                                             alignItems="center"
                                             sx={{
+                                                position: "relative",
+
                                                 width:
                                                     expandedCard === id
                                                         ? "200%"
@@ -312,7 +318,9 @@ export function ProjectsSection() {
                                                     paddingInline:
                                                         expandedCard === id
                                                             ? 0
-                                                            : convert(23),
+                                                            : convert(
+                                                                cardHorizontalPadding
+                                                            ),
 
                                                     width: "50%",
                                                     minWidth: "fit-content",
@@ -362,47 +370,73 @@ export function ProjectsSection() {
 
                                             {/* BOX RIGHT */}
                                             <Stack
-                                                alignItems="flex-end"
-                                                justifyContent="center"
                                                 sx={{
-                                                    pr: convert(20),
+                                                    position: "relative",
                                                     width: "50%",
+                                                    minHeight: "45px",
                                                 }}
                                             >
-                                                <Box
-                                                    component="img"
-                                                    src={hoverImage}
-                                                    alt=""
-                                                    aria-hidden="true"
+                                                <Stack
+                                                    direction="row"
+                                                    alignItems="center"
                                                     sx={{
-                                                        display: "block",
+                                                        position: "absolute",
+                                                        top: "50%",
 
-                                                        width:
-                                                            hoverImageSize,
+                                                        right: convert(180),
 
-                                                        height:
-                                                            hoverImageSize,
+                                                        transform:
+                                                            "translateY(-50%)",
 
-                                                        objectFit: "contain",
-                                                        filter:
-                                                            "brightness(0)",
+                                                        overflow: "hidden",
+                                                        whiteSpace: "nowrap",
+
+                                                        borderStyle: "dashed",
+                                                        borderColor:
+                                                            "custom.borderDefault2",
+
+                                                        borderRadius: "8px",
+                                                        borderWidth: "1px",
+
+                                                        columnGap: convert(4),
+
+                                                        px: convert(7),
+                                                        py: convert(7),
 
                                                         opacity:
                                                             expandedCard === id
                                                                 ? 0
-                                                                : 0.75,
+                                                                : 1,
 
-                                                        transform:
-                                                            expandedCard === id
-                                                                ? "scale(0.9)"
-                                                                : "scale(1)",
-
-                                                        transition: `
-                                                            opacity ${expandTime} ease-in-out,
-                                                            transform ${expandTime} ease-in-out
-                                                        `,
+                                                        transition:
+                                                            `opacity ${expandTime} ease-in-out`,
                                                     }}
-                                                />
+                                                >
+                                                    <Typography
+                                                        variant="bodySmall"
+                                                        component="span"
+                                                        color="text.secondary"
+                                                    >
+                                                        {hoverText}
+                                                    </Typography>
+
+                                                    <Box
+                                                        component="img"
+                                                        src={hoverImage}
+                                                        alt=""
+                                                        aria-hidden="true"
+                                                        sx={{
+                                                            width:
+                                                                hoverImageSize,
+
+                                                            height:
+                                                                hoverImageSize,
+
+                                                            objectFit:
+                                                                "contain",
+                                                        }}
+                                                    />
+                                                </Stack>
                                             </Stack>
                                         </Stack>
 
@@ -521,101 +555,128 @@ export function ProjectsSection() {
 
                                             {/* MOBILE PROJECT INFORMATION */}
                                             <Stack
-                                                direction="row"
                                                 sx={{
+                                                    position: "relative",
+
                                                     width: "100%",
                                                     minWidth: 0,
 
-                                                    alignItems: "center",
-                                                    justifyContent:
-                                                        "space-between",
+                                                    alignItems: "flex-start",
 
-                                                    gap: convert(12),
+                                                    pl: convert(
+                                                        cardHorizontalPadding
+                                                    ),
 
-                                                    px: convert(23),
+                                                    pr: convert(
+                                                        mobilePromptReservedSpace
+                                                    ),
+
                                                     pt: convert(12),
                                                     pb: convert(8),
 
                                                     boxSizing: "border-box",
                                                 }}
                                             >
-                                                <Stack
+                                                <Typography
+                                                    variant="bodyLarge"
+                                                    component="h3"
+                                                    color="text.primary"
                                                     sx={{
-                                                        flex: 1,
+                                                        width: "100%",
                                                         minWidth: 0,
-                                                        alignItems:
-                                                            "flex-start",
+
+                                                        overflowWrap:
+                                                            "break-word",
                                                     }}
                                                 >
-                                                    <Typography
-                                                        variant="bodyLarge"
-                                                        component="h3"
-                                                        color="text.primary"
-                                                        sx={{
-                                                            width: "100%",
-                                                            minWidth: 0,
+                                                    {title}
+                                                </Typography>
 
-                                                            overflowWrap:
-                                                                "break-word",
-                                                        }}
-                                                    >
-                                                        {title}
-                                                    </Typography>
-
-                                                    <Stack
-                                                        sx={{
-                                                            width: "100%",
-                                                            minWidth: 0,
-                                                        }}
-                                                    >
-                                                        {rows.map((
-                                                            rowStack,
-                                                            index
-                                                        ) => {
-                                                            return (
-                                                                <KeywordRow
-                                                                    key={index}
-                                                                    row={rowStack}
-                                                                />
-                                                            )
-                                                        })}
-                                                    </Stack>
+                                                <Stack
+                                                    sx={{
+                                                        width: "100%",
+                                                        minWidth: 0,
+                                                    }}
+                                                >
+                                                    {rows.map((
+                                                        rowStack,
+                                                        index
+                                                    ) => {
+                                                        return (
+                                                            <KeywordRow
+                                                                key={index}
+                                                                row={rowStack}
+                                                            />
+                                                        )
+                                                    })}
                                                 </Stack>
 
-                                                <Box
-                                                    component="img"
-                                                    src={hoverImage}
-                                                    alt=""
-                                                    aria-hidden="true"
+                                                <Stack
+                                                className="HoverPseudoButton"
+                                                    direction="row"
+                                                    alignItems="center"
                                                     sx={{
-                                                        flexShrink: 0,
-                                                        
-                                                        width:
-                                                            hoverImageSize,
+                                                        position: "absolute",
+                                                        top: "50%",
 
-                                                        height:
-                                                            hoverImageSize,
-
-                                                        objectFit: "contain",
-                                                        filter:
-                                                            "brightness(0)",
-
-                                                        opacity:
-                                                            expandedCard === id
-                                                                ? 0.4
-                                                                : 0.75,
+                                                        right: convert(180),
 
                                                         transform:
                                                             expandedCard === id
-                                                                ? "scale(0.9)"
-                                                                : "scale(1)",
+                                                                ? "translate(130%, -50%)"
+                                                                : "translate(0, -50%)",
+
+                                                        overflow: "hidden",
+                                                        whiteSpace: "nowrap",
+
+                                                        borderStyle: "dashed",
+                                                        borderColor:
+                                                            "custom.borderDefault2",
+
+                                                        borderRadius: "8px",
+                                                        borderWidth: "1px",
+
+                                                        columnGap: convert(4),
+
+                                                        px: convert(7),
+                                                        py: convert(7),
+
+                                                        opacity:
+                                                            expandedCard === id
+                                                                ? 0
+                                                                : 1,
 
                                                         transition: `
-                                                            opacity ${expandTime} ease-in-out,
-                                                            transform ${expandTime} ease-in-out
+                                                            transform ${expandTime} ease-in-out,
+                                                            opacity ${expandTime} ease-in-out
                                                         `,
                                                     }}
-                                                />
+                                                >
+                                                    <Typography
+                                                        variant="bodySmall"
+                                                        component="span"
+                                                        color="text.secondary"
+                                                    >
+                                                        {hoverText}
+                                                    </Typography>
+
+                                                    <Box
+                                                        component="img"
+                                                        src={hoverImage}
+                                                        alt=""
+                                                        aria-hidden="true"
+                                                        sx={{
+                                                            width:
+                                                                hoverImageSize,
+
+                                                            height:
+                                                                hoverImageSize,
+
+                                                            objectFit:
+                                                                "contain",
+                                                        }}
+                                                    />
+                                                </Stack>
                                             </Stack>
 
                                             <Box
