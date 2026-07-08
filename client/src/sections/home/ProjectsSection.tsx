@@ -63,7 +63,7 @@ const cards = [
     },
     {
         id: "mgportfolio",
-        title: "E-Commerce UI",
+        title: "Jewelry Website UI",
         keywords: [
             "HTML",
             "CSS",
