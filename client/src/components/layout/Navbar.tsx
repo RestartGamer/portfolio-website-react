@@ -30,11 +30,6 @@ const socialMedia = [
         source: linkedInIcon,
     },
     {
-        id: "instagram",
-        url: "https://www.instagram.com/",
-        source: instaIcon,
-    },
-    {
         id: "github",
         url: "https://github.com/RestartGamer",
         source: githubIconDarkMode,
