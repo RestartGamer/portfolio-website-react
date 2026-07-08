@@ -30,11 +30,6 @@ const socialMedia = [
         source: linkedInIcon,
     },
     {
-        id: "facebook",
-        url: "https://www.facebook.com/ckckorkmaz",
-        source: fbIcon,
-    },
-    {
         id: "instagram",
         url: "https://www.instagram.com/",
         source: instaIcon,
