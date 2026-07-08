@@ -229,7 +229,9 @@ export function ContactForm() {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
       spacing={convert(24)}
-      sx={{ width: "100%" }}
+      sx={{ 
+        width: "100%",
+       }}
     >
       {isSubmitted ? (
         <Stack alignItems="center" justifyContent="center" spacing={convert(20)} sx={{ minHeight: 400 }}>
@@ -287,7 +289,12 @@ export function ContactForm() {
               </Button>
             </>
           ) :
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" sx={{
+              width: "100%",
+              maxWidth: {xs: "100%", md: "300px"},
+              px: convert(80),
+              alignSelf: "center"
+            }}>
               Submit
             </Button>
           }

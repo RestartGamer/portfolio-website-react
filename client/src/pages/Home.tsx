@@ -11,8 +11,8 @@ const {
 
 const profileDescription = `Hi, I'm Can.\n\n
 I'm a junior Frontend developer focused on building modern web applications with React
-and TypeScript. I have a background in IT support and multilingual communication(English, German, Portuguese).\n
-I'm particularly interested in building clean, performant,and scalable user interfaces.`
+and TypeScript. I have a background in IT support and multilingual communication (English, German, and Portuguese).\n
+I'm particularly interested in building clean, performant, and scalable user interfaces.`
 
 const heroTitle = "Can Korkmaz";
 const heroSubTitle = "Front-End Developer in Lisbon";

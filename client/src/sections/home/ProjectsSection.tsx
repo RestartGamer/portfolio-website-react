@@ -63,7 +63,7 @@ const cards = [
     },
     {
         id: "mgportfolio",
-        title: "E-Commerce UI",
+        title: "Jewelry Website UI",
         keywords: [
             "HTML",
             "CSS",
@@ -281,6 +281,7 @@ export function ProjectsSection() {
                                                 component="img"
                                                 src={image}
                                                 alt={title}
+                                                decoding="async"
                                                 sx={{
                                                     display: "block",
                                                     width: "100%",
@@ -425,6 +426,7 @@ export function ProjectsSection() {
                                                         src={hoverImage}
                                                         alt=""
                                                         aria-hidden="true"
+                                                        decoding="async"
                                                         sx={{
                                                             width:
                                                                 hoverImageSize,
@@ -544,6 +546,7 @@ export function ProjectsSection() {
                                                 component="img"
                                                 src={image}
                                                 alt={title}
+                                                decoding="async"
                                                 sx={{
                                                     display: "block",
                                                     width: "100%",
@@ -612,7 +615,6 @@ export function ProjectsSection() {
                                                 </Stack>
 
                                                 <Stack
-                                                className="HoverPseudoButton"
                                                     direction="row"
                                                     alignItems="center"
                                                     sx={{
@@ -665,6 +667,7 @@ export function ProjectsSection() {
                                                         src={hoverImage}
                                                         alt=""
                                                         aria-hidden="true"
+                                                        decoding="async"
                                                         sx={{
                                                             width:
                                                                 hoverImageSize,
